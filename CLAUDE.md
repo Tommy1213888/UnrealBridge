@@ -11,11 +11,11 @@ UnrealBridge is a TCP bridge between external tools (Claude Code) and Unreal Eng
 
 ## Key Commands
 
-**Sync plugin to UE project and compile:**
+**Sync plugin and matching skills to a UE project:**
 ```bash
-sync_plugin.bat
+sync_project.bat D:\Path\To\YourProject
 ```
-Mirrors `Plugin/UnrealBridge/` into the target project's `Plugins/UnrealBridge/` (excluding `Binaries`/`Intermediate`). The DST path lives in `sync_plugin.bat` itself — do not hardcode it anywhere else.
+Mirrors `Plugin/UnrealBridge/` plus `.claude/skills/unreal-bridge/` into the target project's plugin, `.agents`, and `.claude` destinations. Local plugin build outputs are retained. `sync_plugin.bat` is a legacy command-name alias with the same project-root argument.
 
 **Test bridge connection:**
 ```bash
@@ -94,7 +94,7 @@ Syncs plugin source then triggers Live Coding via the bridge. Works when the edi
 python .claude/skills/unreal-bridge/scripts/rebuild_relaunch.py
 ```
 
-Quits the editor → runs `sync_plugin.bat` → runs the target project's `Build.bat` → launches the editor detached → polls `bridge.py ping` until ready. Use when adding/removing `UFUNCTION` / `UCLASS` / `UPROPERTY`, changing struct layouts, or recovering from a failed LC compile. Build.bat's stdout captures full compiler output (this is the only way to surface MSVC errors when hot reload reports Failure). Takes ~2–5 minutes.
+Quits the editor → runs the version-locked plugin + skill sync → runs the target project's `Build.bat` → launches the editor detached → polls `bridge.py ping` until ready. Use when adding/removing `UFUNCTION` / `UCLASS` / `UPROPERTY`, changing struct layouts, or recovering from a failed LC compile. Build.bat's stdout captures full compiler output (this is the only way to surface MSVC errors when hot reload reports Failure). Takes ~2–5 minutes.
 
 The script resolves the editor exe from `--editor-exe` CLI arg → `UNREAL_EDITOR_EXE` env var → `UE_ROOT` env var. No hardcoded paths. Set one of those env vars before first use.
 

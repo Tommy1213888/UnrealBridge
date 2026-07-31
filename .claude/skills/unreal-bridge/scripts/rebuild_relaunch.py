@@ -10,14 +10,13 @@ Use this whenever a hot-reload via Live Coding won't work:
 Flow:
   1. (if editor is up) ask it to quit_editor via the bridge
   2. wait for UnrealEditor.exe to exit (kill as last resort)
-  3. run sync_plugin.bat (unless --no-sync)
+  3. sync the plugin and matching skills (unless --no-sync)
   4. run the target project's Build.bat (compiles the editor module)
   5. launch UnrealEditor.exe <uproject> detached
   6. poll `bridge.py ping` until ready (or --no-wait)
 
-Paths are read from sync_plugin.bat's DST line by default; override with
---project-dir / --uproject / --editor-exe. The target project is the one
-sync_plugin.bat pushes to — usually NOT this repo.
+When the skill is installed inside a UE project, that project is detected
+automatically. Otherwise pass --project-dir / --uproject / --editor-exe.
 """
 from __future__ import annotations
 
@@ -25,10 +24,11 @@ import argparse
 import json
 import os
 import pathlib
-import re
 import subprocess
 import sys
 import time
+
+from _project_sync import detect_project_root, run_project_sync
 
 # Windows consoles in non-en locales (e.g. cp936) can't encode every Unicode
 # code point that ends up in MSVC localized error text or in our utf-8-replaced
@@ -40,8 +40,6 @@ if hasattr(sys.stderr, "reconfigure"):
 
 SCRIPT_DIR = pathlib.Path(__file__).resolve().parent
 BRIDGE_PY  = SCRIPT_DIR / "bridge.py"
-REPO_ROOT  = SCRIPT_DIR.parents[3]
-SYNC_BAT   = REPO_ROOT / "sync_plugin.bat"
 
 # Resolve UnrealEditor.exe in this order:
 #   1. --editor-exe CLI arg
@@ -57,28 +55,6 @@ def resolve_default_editor_exe() -> str:
     if ue_root:
         return str(pathlib.Path(ue_root) / "Engine" / "Binaries" / "Win64" / "UnrealEditor.exe")
     return ""
-
-
-def parse_project_dir_from_sync_bat() -> pathlib.Path | None:
-    """Pull the target project's root directory from sync_plugin.bat's DST line.
-
-    The bat writes `set "DST=...\\Plugins\\UnrealBridge"`, so the project
-    root is two parents up.
-    """
-    if not SYNC_BAT.exists():
-        return None
-    try:
-        content = SYNC_BAT.read_text(encoding="utf-8", errors="ignore")
-    except OSError:
-        return None
-    m = re.search(r'set\s+"DST=([^"]+)"', content, flags=re.IGNORECASE)
-    if not m:
-        return None
-    dst = pathlib.Path(m.group(1))
-    # DST ends with \Plugins\<PluginName>; project root is two levels up.
-    if dst.parent.name.lower() == "plugins":
-        return dst.parent.parent
-    return None
 
 
 def find_uproject(project_dir: pathlib.Path) -> pathlib.Path | None:
@@ -231,25 +207,6 @@ def force_kill_editor() -> None:
         time.sleep(0.25)
 
 
-def run_sync(verbose: bool) -> int:
-    if not SYNC_BAT.exists():
-        sys.stderr.write(f"sync_plugin.bat not found at {SYNC_BAT}\n")
-        return 3
-    print(f"[rebuild] syncing plugin via {SYNC_BAT.name} ...")
-    p = subprocess.run(
-        ["cmd.exe", "/c", str(SYNC_BAT)],
-        capture_output=not verbose, text=True,
-    )
-    if p.returncode != 0:
-        if not verbose and p.stdout:
-            sys.stderr.write(p.stdout)
-        if not verbose and p.stderr:
-            sys.stderr.write(p.stderr)
-        sys.stderr.write(f"sync_plugin.bat failed (rc={p.returncode})\n")
-        return 3
-    return 0
-
-
 def run_build(project_dir: pathlib.Path, verbose: bool) -> int:
     build_bat = project_dir / "Build.bat"
     if not build_bat.exists():
@@ -337,7 +294,10 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--project-dir",
                     help="UE project root (contains Build.bat + .uproject). "
-                         "Default: parsed from sync_plugin.bat DST line.")
+                         "Default: auto-detected from the installed skill.")
+    ap.add_argument("--sync-source",
+                    help="UnrealBridge source-repo root. Defaults to the source "
+                         "marker written by sync_project.bat.")
     ap.add_argument("--uproject",
                     help="Explicit path to .uproject (default: first *.uproject "
                          "under --project-dir).")
@@ -366,13 +326,13 @@ def main() -> int:
 
     # Resolve project dir
     if args.project_dir:
-        project_dir = pathlib.Path(args.project_dir)
+        project_dir = pathlib.Path(args.project_dir).resolve()
     else:
-        project_dir = parse_project_dir_from_sync_bat()
+        project_dir = detect_project_root()
         if project_dir is None:
             sys.stderr.write(
-                "Could not parse project dir from sync_plugin.bat. "
-                "Pass --project-dir.\n"
+                "Could not detect the target UE project. "
+                "Install the skill into a UE project or pass --project-dir.\n"
             )
             return 5
     if not project_dir.is_dir():
@@ -458,7 +418,12 @@ def main() -> int:
 
     # 3: sync
     if not args.no_sync:
-        rc = run_sync(args.verbose)
+        rc = run_project_sync(
+            project_dir,
+            source_dir=args.sync_source,
+            verbose=args.verbose,
+            label="rebuild",
+        )
         if rc != 0:
             return rc
 

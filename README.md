@@ -100,15 +100,22 @@ link_agents_skills.bat
 
 Mac / Linux equivalent: `ln -sfn .claude/skills .agents/skills` (run from repo root).
 
-### 3. Install the plugin
+### 3. Install the plugin and matching skills
 
-Edit the `DST` line in `sync_plugin.bat` to point at your UE project's `Plugins/` folder:
+Pass the UE project root to the canonical sync command:
 
 ```bat
-set "DST=D:\Path\To\YourProject\Plugins\UnrealBridge"
+sync_project.bat D:\Path\To\YourProject
 ```
 
-Run `sync_plugin.bat`. It mirrors `Plugin/UnrealBridge/` into the project, skipping `Binaries/` and `Intermediate/`.
+One invocation mirrors `Plugin/UnrealBridge/` and the matching
+`.claude/skills/unreal-bridge/` into the project's plugin, `.agents`, and
+`.claude` destinations. Local build outputs are retained. Each destination is
+stamped with the source commit. The local source-repository path is stored under
+the project's ignored `Saved/UnrealBridge/` directory, allowing the reload
+helpers to repeat the same version-locked sync without publishing a machine-local
+path. `sync_plugin.bat` is retained as a legacy command-name alias and accepts
+the same project-root argument.
 
 ### 4. Build & launch
 
@@ -191,6 +198,11 @@ python .claude/skills/unreal-bridge/scripts/hot_reload.py        # body-only edi
 python .claude/skills/unreal-bridge/scripts/rebuild_relaunch.py  # reflection changes
 ```
 
+Installed skill copies auto-detect their containing UE project and the source
+repository recorded by `sync_project.bat`. From a source checkout, pass
+`--project-dir D:\Path\To\YourProject`; use `--sync-source` only when moving the
+source checkout invalidated the recorded path.
+
 ## Bridge libraries
 
 | Library | Purpose |
@@ -259,7 +271,8 @@ UnrealBridge/
 │   └── references/              # Per-library API docs
 ├── docs/                        # Design notes and plans
 ├── tools/                       # Standalone helpers
-└── sync_plugin.bat              # Mirror plugin into a UE project
+├── sync_project.bat             # Mirror plugin + matching skills into a UE project
+└── sync_plugin.bat              # Legacy alias for sync_project.bat
 ```
 
 ## Requirements

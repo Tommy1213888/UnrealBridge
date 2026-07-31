@@ -100,15 +100,21 @@ link_agents_skills.bat
 
 Mac / Linux 等价命令:`ln -sfn .claude/skills .agents/skills`(在 repo 根目录跑)。
 
-### 3. 安装插件
+### 3. 安装插件及对应 Skill
 
-修改 `sync_plugin.bat` 里的 `DST`，指向你 UE 项目的 `Plugins/` 目录：
+把 UE 项目根目录传给统一同步命令：
 
 ```bat
-set "DST=D:\Path\To\YourProject\Plugins\UnrealBridge"
+sync_project.bat D:\Path\To\YourProject
 ```
 
-运行 `sync_plugin.bat`，它会把 `Plugin/UnrealBridge/` 镜像进项目，并跳过 `Binaries/` 与 `Intermediate/`。
+一次调用会把 `Plugin/UnrealBridge/` 和同版本的
+`.claude/skills/unreal-bridge/` 分别同步到项目的插件、`.agents` 与
+`.claude` 目标目录，同时保留本地编译产物。每个目标都会记录源码提交和源码
+提交。源码仓库的本机路径只记录在项目通常被忽略的
+`Saved/UnrealBridge/` 目录下，重载脚本之后可重复执行同一套版本绑定同步，
+同时不会把本机路径发布到仓库。`sync_plugin.bat` 仅作为旧命令名别名保留，
+参数同样是项目根目录。
 
 ### 4. 构建并启动
 
@@ -191,6 +197,11 @@ python .claude/skills/unreal-bridge/scripts/hot_reload.py        # 只改函数�
 python .claude/skills/unreal-bridge/scripts/rebuild_relaunch.py  # 动到反射
 ```
 
+安装到项目中的 Skill 会自动识别所在 UE 项目，以及 `sync_project.bat`
+记录的源码仓库。从源码仓库直接运行时需传
+`--project-dir D:\Path\To\YourProject`；只有移动源码仓库导致记录路径失效时
+才需要额外传 `--sync-source`。
+
 ## 桥接库
 
 | 库 | 作用 |
@@ -259,7 +270,8 @@ UnrealBridge/
 │   └── references/              # 各库 API 文档
 ├── docs/                        # 设计文档与规划
 ├── tools/                       # 独立小工具
-└── sync_plugin.bat              # 把插件镜像进 UE 项目
+├── sync_project.bat             # 把插件与对应 Skill 镜像进 UE 项目
+└── sync_plugin.bat              # sync_project.bat 的旧命令名别名
 ```
 
 ## 系统要求

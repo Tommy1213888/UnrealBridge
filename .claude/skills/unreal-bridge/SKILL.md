@@ -12,7 +12,7 @@ Execute Python directly inside a running UE 5.3+ editor. Auto-discovers via UDP 
 
 If `bridge.py` returns `discovery: no UnrealBridge editors found`, walk these in order — don't troubleshoot Python or firewalls first:
 
-1. **Plugin installed** in `<UEProject>/Plugins/UnrealBridge/` (use `sync_plugin.bat` from this repo; user must edit its `DST=` once). Check: `<UEProject>/Plugins/UnrealBridge/UnrealBridge.uplugin` exists.
+1. **Plugin and matching skill installed** with `sync_project.bat <UEProjectRoot>`. Check: `<UEProject>/Plugins/UnrealBridge/UnrealBridge.uplugin` exists. The legacy `sync_plugin.bat` command name accepts the same project-root argument.
 2. **Plugin enabled** — check `<UEProject>/<Project>.uproject` `"Plugins"` block for `{"Name":"UnrealBridge", "Enabled":false}` and flip if present.
 3. **Editor up and ready** — `bridge.py ping` returns `"ready": true`. `false` means MainFrame still loading; wait 10–60s.
 
@@ -213,7 +213,7 @@ Signatures are now mechanically enforced (preflight). References carry semantic 
 **Exceptions** (skip the dance):
 - Pure data writes (`set_blueprint_variable_default` etc.) without new nodes
 - Bulk automation explicitly framed as such ("扫 100 个 BP 改默认值")
-- Standing authorization in `CLAUDE.md` or current conversation
+- Standing authorization in `AGENTS.md`, `CLAUDE.md`, or current conversation
 
 Hard line: any op spawning/connecting/removing nodes, adding events, or creating functions needs the confirmation dance.
 
