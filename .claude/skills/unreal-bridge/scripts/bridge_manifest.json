@@ -7051,6 +7051,30 @@
           ],
           "returns": "Array[BridgeCHTRowResult]"
         },
+        "move_chooser_column": {
+          "doc": "X.move_chooser_column(chooser_table_path, source_index, target_index) -> int32",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "chooser_table_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_index",
+              "type": ""
+            }
+          ],
+          "returns": "int32"
+        },
         "remove_chooser_column": {
           "doc": "X.remove_chooser_column(chooser_table_path, column_index) -> bool",
           "params": [

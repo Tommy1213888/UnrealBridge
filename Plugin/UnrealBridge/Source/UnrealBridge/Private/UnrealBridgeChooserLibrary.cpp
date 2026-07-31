@@ -863,6 +863,33 @@ bool UUnrealBridgeChooserLibrary::RemoveChooserColumn(const FString& ChooserTabl
 	return true;
 }
 
+int32 UUnrealBridgeChooserLibrary::MoveChooserColumn(const FString& ChooserTablePath, int32 SourceIndex, int32 TargetIndex)
+{
+	using namespace BridgeChooserImpl;
+	UChooserTable* CHT = LoadCHT(ChooserTablePath);
+	if (!CHT || !CHT->ColumnsStructs.IsValidIndex(SourceIndex)) return INDEX_NONE;
+
+	const int32 OriginalNum = CHT->ColumnsStructs.Num();
+	TargetIndex = TargetIndex < 0 ? OriginalNum : FMath::Clamp(TargetIndex, 0, OriginalNum);
+	if (SourceIndex == TargetIndex || SourceIndex + 1 == TargetIndex)
+	{
+		return SourceIndex;
+	}
+
+	const FScopedTransaction Tx(LOCTEXT("MoveCHTCol", "Move Chooser Column"));
+	CHT->Modify();
+	FInstancedStruct ColumnData = MoveTemp(CHT->ColumnsStructs[SourceIndex]);
+	CHT->ColumnsStructs.RemoveAt(SourceIndex);
+	if (SourceIndex < TargetIndex)
+	{
+		--TargetIndex;
+	}
+	TargetIndex = FMath::Clamp(TargetIndex, 0, CHT->ColumnsStructs.Num());
+	CHT->ColumnsStructs.Insert(MoveTemp(ColumnData), TargetIndex);
+	FinishChooserWrite(CHT);
+	return TargetIndex;
+}
+
 bool UUnrealBridgeChooserLibrary::SetChooserColumnDisabled(const FString& ChooserTablePath, int32 ColumnIndex, bool bDisabled)
 {
 #if WITH_EDITORONLY_DATA

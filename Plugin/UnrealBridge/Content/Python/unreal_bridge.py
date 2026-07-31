@@ -1450,6 +1450,11 @@ class Chooser:
         return unreal.UnrealBridgeChooserLibrary.list_possible_results(chooser_table_path)
 
     @staticmethod
+    def move_chooser_column(*, chooser_table_path, source_index, target_index):
+        """X.move_chooser_column(chooser_table_path, source_index, target_index) -> int32"""
+        return unreal.UnrealBridgeChooserLibrary.move_chooser_column(chooser_table_path, source_index, target_index)
+
+    @staticmethod
     def remove_chooser_column(*, chooser_table_path, column_index):
         """X.remove_chooser_column(chooser_table_path, column_index) -> bool"""
         return unreal.UnrealBridgeChooserLibrary.remove_chooser_column(chooser_table_path, column_index)
