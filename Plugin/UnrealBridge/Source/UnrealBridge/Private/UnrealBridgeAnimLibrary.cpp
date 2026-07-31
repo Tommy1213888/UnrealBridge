@@ -55,6 +55,7 @@
 #include "Animation/AnimTypes.h"
 #include "AnimationModifier.h"
 #include "AnimationModifiersAssetUserData.h"
+#include "PoseSearch/AnimNode_PoseSearchHistoryCollector.h"
 #include "UObject/UnrealType.h"
 #include "UObject/UObjectIterator.h"
 
@@ -2448,6 +2449,81 @@ bool UUnrealBridgeAnimLibrary::SetAnimGraphNodePosition(const FString& AnimBluep
 	Node->Modify();
 	Node->NodePosX = PosX;
 	Node->NodePosY = PosY;
+
+	FinalizeEdit(ABP, Graph);
+	return true;
+}
+
+bool UUnrealBridgeAnimLibrary::EnsurePoseHistoryCollectedBones(const FString& AnimBlueprintPath,
+	const FString& GraphName, const FString& NodeGuid, const TArray<FName>& BoneNames)
+{
+	using namespace BridgeAnimWriteImpl;
+
+	UAnimBlueprint* ABP = BridgeAnimImpl::LoadABP(AnimBlueprintPath);
+	if (!ABP || !ABP->TargetSkeleton)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("UnrealBridge: EnsurePoseHistoryCollectedBones requires an ABP with a target skeleton"));
+		return false;
+	}
+
+	UEdGraph* Graph = FindAnyGraphByName(ABP, GraphName);
+	if (!Graph) return false;
+
+	UEdGraphNode* GraphNode = FindNodeByGuid(Graph, NodeGuid);
+	UAnimGraphNode_Base* AnimNode = Cast<UAnimGraphNode_Base>(GraphNode);
+	if (!AnimNode)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("UnrealBridge: Node '%s' is not an AnimGraph node"), *NodeGuid);
+		return false;
+	}
+
+	FAnimNode_Base* RuntimeNode = BridgeAnimNodeAccess::GetFNode(AnimNode);
+	UScriptStruct* RuntimeNodeType = BridgeAnimNodeAccess::GetFNodeType(AnimNode);
+	if (!RuntimeNode || !RuntimeNodeType ||
+		!RuntimeNodeType->IsChildOf(FAnimNode_PoseSearchHistoryCollector_Base::StaticStruct()))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("UnrealBridge: Node '%s' is not a Pose Search History Collector"), *NodeGuid);
+		return false;
+	}
+
+	const FReferenceSkeleton& RefSkeleton = ABP->TargetSkeleton->GetReferenceSkeleton();
+	TArray<FName> UniqueBoneNames;
+	for (const FName BoneName : BoneNames)
+	{
+		if (BoneName.IsNone() || RefSkeleton.FindBoneIndex(BoneName) == INDEX_NONE)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("UnrealBridge: Bone '%s' does not exist on skeleton '%s'"),
+				*BoneName.ToString(), *ABP->TargetSkeleton->GetName());
+			return false;
+		}
+		UniqueBoneNames.AddUnique(BoneName);
+	}
+
+	FAnimNode_PoseSearchHistoryCollector_Base* HistoryNode =
+		static_cast<FAnimNode_PoseSearchHistoryCollector_Base*>(RuntimeNode);
+	TArray<FName> MissingBoneNames;
+	for (const FName BoneName : UniqueBoneNames)
+	{
+		const bool bAlreadyCollected = HistoryNode->CollectedBones.ContainsByPredicate(
+			[BoneName](const FBoneReference& Bone) { return Bone.BoneName == BoneName; });
+		if (!bAlreadyCollected)
+		{
+			MissingBoneNames.Add(BoneName);
+		}
+	}
+
+	if (MissingBoneNames.IsEmpty())
+	{
+		return true;
+	}
+
+	const FScopedTransaction Tx(LOCTEXT("EnsurePoseHistoryCollectedBones", "Add Pose History Collected Bones"));
+	AnimNode->Modify();
+	for (const FName BoneName : MissingBoneNames)
+	{
+		FBoneReference& Bone = HistoryNode->CollectedBones.AddDefaulted_GetRef();
+		Bone.BoneName = BoneName;
+	}
 
 	FinalizeEdit(ABP, Graph);
 	return true;

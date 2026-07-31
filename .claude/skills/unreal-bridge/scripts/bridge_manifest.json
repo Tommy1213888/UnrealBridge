@@ -31,7 +31,7 @@
       "TIMER"
     ]
   },
-  "generated_at": "2026-07-31T08:52:16+00:00",
+  "generated_at": "2026-07-31T13:57:46+00:00",
   "libraries": {
     "UnrealBridgeAnimLibrary": {
       "functions": {
@@ -792,6 +792,36 @@
               "default": null,
               "has_default": false,
               "name": "pin_name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "ensure_pose_history_collected_bones": {
+          "doc": "X.ensure_pose_history_collected_bones(anim_blueprint_path, graph_name, node_guid, bone_names) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "anim_blueprint_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "node_guid",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "bone_names",
               "type": ""
             }
           ],
@@ -11893,10 +11923,34 @@
           "params": [],
           "returns": "Vector2D or None"
         },
+        "get_player_anim_instance": {
+          "doc": "X.get_player_anim_instance(component_name=\"\") -> AnimInstance",
+          "params": [
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "component_name",
+              "type": ""
+            }
+          ],
+          "returns": "AnimInstance"
+        },
         "get_player_pawn_actor_name": {
           "doc": "X.get_player_pawn_actor_name() -> str",
           "params": [],
           "returns": "str"
+        },
+        "get_player_skeletal_mesh_component": {
+          "doc": "X.get_player_skeletal_mesh_component(component_name=\"\") -> SkeletalMeshComponent",
+          "params": [
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "component_name",
+              "type": ""
+            }
+          ],
+          "returns": "SkeletalMeshComponent"
         },
         "get_player_start_actor_name": {
           "doc": "X.get_player_start_actor_name() -> str",
@@ -18284,6 +18338,60 @@
           ],
           "returns": "str"
         },
+        "set_crashing_legs_channel": {
+          "doc": "X.set_crashing_legs_channel(schema_path, left_thigh_bone, right_thigh_bone, left_foot_bone, right_foot_bone, weight=0.200000, allowed_tolerance=0.300000, use_continuing_pose=True) -> BridgePSSCrashingLegsChannelResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "schema_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "left_thigh_bone",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "right_thigh_bone",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "left_foot_bone",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "right_foot_bone",
+              "type": ""
+            },
+            {
+              "default": "0.200000",
+              "has_default": true,
+              "name": "weight",
+              "type": ""
+            },
+            {
+              "default": "0.300000",
+              "has_default": true,
+              "name": "allowed_tolerance",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "use_continuing_pose",
+              "type": ""
+            }
+          ],
+          "returns": "BridgePSSCrashingLegsChannelResult"
+        },
         "set_database_animation_enabled": {
           "doc": "X.set_database_animation_enabled(database_path, index, enabled) -> bool",
           "params": [
@@ -21601,6 +21709,13 @@
       "sample_time_offset",
       "sub_channel_count",
       "weight"
+    ],
+    "BridgePSSCrashingLegsChannelResult": [
+      "changed",
+      "channel_index",
+      "created",
+      "error",
+      "success"
     ],
     "BridgePSSInfo": [
       "add_data_padding",

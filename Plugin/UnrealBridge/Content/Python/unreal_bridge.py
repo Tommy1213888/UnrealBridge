@@ -16,7 +16,7 @@ structural rather than mnemonic.
 
 import unreal
 
-_GENERATED_AT = '2026-07-31T08:52:16+00:00'
+_GENERATED_AT = '2026-07-31T13:57:46+00:00'
 _UE_VERSION = '5.7.1-48512491+++UE5+Release-5.7'
 
 class Anim:
@@ -136,6 +136,11 @@ class Anim:
     def disconnect_anim_graph_pin(*, anim_blueprint_path, graph_name, node_guid, pin_name):
         """X.disconnect_anim_graph_pin(anim_blueprint_path, graph_name, node_guid, pin_name) -> bool"""
         return unreal.UnrealBridgeAnimLibrary.disconnect_anim_graph_pin(anim_blueprint_path, graph_name, node_guid, pin_name)
+
+    @staticmethod
+    def ensure_pose_history_collected_bones(*, anim_blueprint_path, graph_name, node_guid, bone_names):
+        """X.ensure_pose_history_collected_bones(anim_blueprint_path, graph_name, node_guid, bone_names) -> bool"""
+        return unreal.UnrealBridgeAnimLibrary.ensure_pose_history_collected_bones(anim_blueprint_path, graph_name, node_guid, bone_names)
 
     @staticmethod
     def find_anim_graph_node_by_class(*, anim_blueprint_path, graph_name, short_class_name):
@@ -3130,9 +3135,19 @@ class Gameplay:
         return unreal.UnrealBridgeGameplayLibrary.get_pie_viewport_size()
 
     @staticmethod
+    def get_player_anim_instance(*, component_name=""):
+        """X.get_player_anim_instance(component_name="") -> AnimInstance"""
+        return unreal.UnrealBridgeGameplayLibrary.get_player_anim_instance(component_name)
+
+    @staticmethod
     def get_player_pawn_actor_name():
         """X.get_player_pawn_actor_name() -> str"""
         return unreal.UnrealBridgeGameplayLibrary.get_player_pawn_actor_name()
+
+    @staticmethod
+    def get_player_skeletal_mesh_component(*, component_name=""):
+        """X.get_player_skeletal_mesh_component(component_name="") -> SkeletalMeshComponent"""
+        return unreal.UnrealBridgeGameplayLibrary.get_player_skeletal_mesh_component(component_name)
 
     @staticmethod
     def get_player_start_actor_name():
@@ -4900,6 +4915,11 @@ class PoseSearch:
     def request_async_build_index(*, database_path):
         """X.request_async_build_index(database_path) -> str"""
         return unreal.UnrealBridgePoseSearchLibrary.request_async_build_index(database_path)
+
+    @staticmethod
+    def set_crashing_legs_channel(*, schema_path, left_thigh_bone, right_thigh_bone, left_foot_bone, right_foot_bone, weight=0.200000, allowed_tolerance=0.300000, use_continuing_pose=True):
+        """X.set_crashing_legs_channel(schema_path, left_thigh_bone, right_thigh_bone, left_foot_bone, right_foot_bone, weight=0.200000, allowed_tolerance=0.300000, use_continuing_pose=True) -> BridgePSSCrashingLegsChannelResult"""
+        return unreal.UnrealBridgePoseSearchLibrary.set_crashing_legs_channel(schema_path, left_thigh_bone, right_thigh_bone, left_foot_bone, right_foot_bone, weight, allowed_tolerance, use_continuing_pose)
 
     @staticmethod
     def set_database_animation_enabled(*, database_path, index, enabled):

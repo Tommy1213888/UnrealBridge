@@ -929,6 +929,15 @@ public:
 	static bool SetAnimGraphNodePosition(const FString& AnimBlueprintPath, const FString& GraphName,
 		const FString& NodeGuid, int32 PosX, int32 PosY);
 
+	/**
+	 * Append missing bones to an existing Pose Search History Collector node.
+	 * Existing entries and graph layout are preserved. Returns false when the
+	 * ABP, graph, node, target skeleton, or any requested bone is invalid.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "UnrealBridge|Animation")
+	static bool EnsurePoseHistoryCollectedBones(const FString& AnimBlueprintPath, const FString& GraphName,
+		const FString& NodeGuid, const TArray<FName>& BoneNames);
+
 	/** Change a SequencePlayer's bound sequence. Empty path clears the binding. */
 	UFUNCTION(BlueprintCallable, Category = "UnrealBridge|Animation")
 	static bool SetAnimSequencePlayerSequence(const FString& AnimBlueprintPath, const FString& GraphName,

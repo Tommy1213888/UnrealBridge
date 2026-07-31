@@ -1001,6 +1001,7 @@ apply_additive = lib.add_anim_graph_node_by_class_name(ABP, 'AnimGraph', 'AnimGr
 | `disconnect_anim_graph_pin(abp, graph_name, node_guid, pin_name)` → bool | Breaks every link on one pin. |
 | `remove_anim_graph_node(abp, graph_name, node_guid)` → bool | Removes the node and breaks all its links. |
 | `set_anim_graph_node_position(abp, graph_name, node_guid, x, y)` → bool | Updates `NodePosX` / `NodePosY`. |
+| `ensure_pose_history_collected_bones(abp, graph_name, node_guid, bone_names)` → bool | Appends only missing bones to an existing Pose Search History Collector. Preserves existing entries and node layout; validates every bone against the ABP skeleton. |
 | `set_anim_sequence_player_sequence(abp, graph_name, node_guid, sequence_path)` → bool | Swap the bound sequence on an existing SequencePlayer. Empty path clears it. |
 | `set_anim_slot_name(abp, graph_name, node_guid, slot_name)` → bool | Change a Slot node's `SlotName`; slot auto-registered on the skeleton if missing. |
 

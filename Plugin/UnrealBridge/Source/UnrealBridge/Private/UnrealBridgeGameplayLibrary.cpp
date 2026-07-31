@@ -13,6 +13,8 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Animation/AnimInstance.h"
 #include "GameFramework/PawnMovementComponent.h"
 #include "Camera/PlayerCameraManager.h"
 #include "Camera/CameraShakeBase.h"
@@ -145,6 +147,38 @@ namespace BridgeAgentImpl
 		if (APlayerController* PC = World->GetFirstPlayerController())
 		{
 			return PC->GetPawn();
+		}
+		return nullptr;
+	}
+
+	USkeletalMeshComponent* GetPlayerSkeletalMeshComponent(UWorld* World, const FString& ComponentName)
+	{
+		APawn* Pawn = GetPlayerPawn(World);
+		if (!Pawn)
+		{
+			return nullptr;
+		}
+
+		if (ComponentName.IsEmpty())
+		{
+			if (const ACharacter* Character = Cast<ACharacter>(Pawn))
+			{
+				if (USkeletalMeshComponent* CharacterMesh = Character->GetMesh())
+				{
+					return CharacterMesh;
+				}
+			}
+			return Pawn->FindComponentByClass<USkeletalMeshComponent>();
+		}
+
+		TArray<USkeletalMeshComponent*> MeshComponents;
+		Pawn->GetComponents<USkeletalMeshComponent>(MeshComponents);
+		for (USkeletalMeshComponent* MeshComponent : MeshComponents)
+		{
+			if (MeshComponent && MeshComponent->GetName().Equals(ComponentName, ESearchCase::IgnoreCase))
+			{
+				return MeshComponent;
+			}
 		}
 		return nullptr;
 	}
@@ -1911,6 +1945,20 @@ FString UUnrealBridgeGameplayLibrary::GetPlayerPawnActorName()
 	UWorld* World = BridgeAgentImpl::GetPIEWorld();
 	APawn* Pawn = BridgeAgentImpl::GetPlayerPawn(World);
 	return Pawn ? Pawn->GetFName().ToString() : FString();
+}
+
+USkeletalMeshComponent* UUnrealBridgeGameplayLibrary::GetPlayerSkeletalMeshComponent(const FString& ComponentName)
+{
+	return BridgeAgentImpl::GetPlayerSkeletalMeshComponent(BridgeAgentImpl::GetPIEWorld(), ComponentName);
+}
+
+UAnimInstance* UUnrealBridgeGameplayLibrary::GetPlayerAnimInstance(const FString& ComponentName)
+{
+	if (USkeletalMeshComponent* MeshComponent = GetPlayerSkeletalMeshComponent(ComponentName))
+	{
+		return MeshComponent->GetAnimInstance();
+	}
+	return nullptr;
 }
 
 FString UUnrealBridgeGameplayLibrary::GetPlayerStartActorName()
