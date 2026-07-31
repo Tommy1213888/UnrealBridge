@@ -358,7 +358,14 @@ namespace BridgeChooserImpl
 {
 	void InsertRowAt(UChooserTable* CHT, int32 RowIndex)
 	{
-		// Sync columns first; column.InsertRows ensures cells exist for the new row.
+		// PoseSearch columns resolve the row's result from their outer chooser while inserting.
+		// Grow the chooser arrays first so GetReferencedObject(RowIndex) is always in bounds.
+#if WITH_EDITORONLY_DATA
+		CHT->ResultsStructs.Insert(FInstancedStruct(), RowIndex);
+		CHT->DisabledRows.Insert(false, RowIndex);
+#endif
+
+		// Now let every column create its matching cell.
 		for (FInstancedStruct& Col : CHT->ColumnsStructs)
 		{
 #if WITH_EDITOR
@@ -368,10 +375,6 @@ namespace BridgeChooserImpl
 			}
 #endif
 		}
-#if WITH_EDITORONLY_DATA
-		CHT->ResultsStructs.Insert(FInstancedStruct(), RowIndex);
-		CHT->DisabledRows.Insert(false, RowIndex);
-#endif
 	}
 
 	bool RemoveRowAt(UChooserTable* CHT, int32 RowIndex)
@@ -463,6 +466,19 @@ bool UUnrealBridgeChooserLibrary::SetChooserRowDisabled(const FString& ChooserTa
 
 namespace BridgeChooserImpl
 {
+	void AutoPopulateColumnsForResult(UChooserTable* CHT, const int32 RowIndex, UObject* ReferencedObject)
+	{
+#if WITH_EDITOR
+		for (FInstancedStruct& Col : CHT->ColumnsStructs)
+		{
+			if (FChooserColumnBase* Base = Col.GetMutablePtr<FChooserColumnBase>(); Base && Base->AutoPopulates())
+			{
+				Base->AutoPopulate(RowIndex, ReferencedObject);
+			}
+		}
+#endif
+	}
+
 	template <typename TChooserStruct>
 	bool SetRowResultTyped(UChooserTable* CHT, int32 RowIndex,
 		const TFunction<void(TChooserStruct&)>& Configure, const FText& Why)
@@ -473,8 +489,15 @@ namespace BridgeChooserImpl
 		CHT->Modify();
 		FInstancedStruct New;
 		New.InitializeAs(TChooserStruct::StaticStruct());
-		Configure(New.GetMutable<TChooserStruct>());
+		TChooserStruct& TypedResult = New.GetMutable<TChooserStruct>();
+		Configure(TypedResult);
+#if WITH_EDITOR
+		UObject* ReferencedObject = TypedResult.GetReferencedObject();
+#endif
 		CHT->ResultsStructs[RowIndex] = MoveTemp(New);
+#if WITH_EDITOR
+		AutoPopulateColumnsForResult(CHT, RowIndex, ReferencedObject);
+#endif
 		FinishChooserWrite(CHT);
 		return true;
 #else
@@ -534,6 +557,7 @@ bool UUnrealBridgeChooserLibrary::ClearChooserRowResult(const FString& ChooserTa
 	const FScopedTransaction Tx(LOCTEXT("ChooserRowClear", "Clear Chooser Row Result"));
 	CHT->Modify();
 	CHT->ResultsStructs[RowIndex].Reset();
+	AutoPopulateColumnsForResult(CHT, RowIndex, nullptr);
 	FinishChooserWrite(CHT);
 	return true;
 #else
