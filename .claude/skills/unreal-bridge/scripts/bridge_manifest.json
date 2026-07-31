@@ -31,7 +31,7 @@
       "TIMER"
     ]
   },
-  "generated_at": "2026-05-22T16:07:54+00:00",
+  "generated_at": "2026-07-31T05:01:06+00:00",
   "libraries": {
     "UnrealBridgeAnimLibrary": {
       "functions": {
@@ -713,6 +713,24 @@
           ],
           "returns": "bool"
         },
+        "copy_and_apply_animation_modifiers": {
+          "doc": "X.copy_and_apply_animation_modifiers(source_sequence_path, target_sequence_paths) -> int32",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_sequence_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_sequence_paths",
+              "type": ""
+            }
+          ],
+          "returns": "int32"
+        },
         "disconnect_anim_graph_pin": {
           "doc": "X.disconnect_anim_graph_pin(anim_blueprint_path, graph_name, node_guid, pin_name) -> bool",
           "params": [
@@ -988,6 +1006,18 @@
             }
           ],
           "returns": "Array[BridgeMontageSlotSegment]"
+        },
+        "get_motion_warping_notifies": {
+          "doc": "X.get_motion_warping_notifies(animation_path) -> Array[BridgeMotionWarpingNotifyInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "animation_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeMotionWarpingNotifyInfo]"
         },
         "get_skeleton_blend_profiles": {
           "doc": "X.get_skeleton_blend_profiles(skeleton_path) -> Array[BridgeBlendProfileInfo]",
@@ -1596,6 +1626,36 @@
               "default": null,
               "has_default": false,
               "name": "start_time",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_motion_warping_notify": {
+          "doc": "X.set_motion_warping_notify(animation_path, warp_target_name, start_time, end_time) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "animation_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "warp_target_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "start_time",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "end_time",
               "type": ""
             }
           ],
@@ -20211,7 +20271,7 @@
       }
     }
   },
-  "project_path": "G:/UEProjects/Epic/GameAnimationSample_57/GameAnimationSample_57.uproject",
+  "project_path": "G:/UEProjects/GameplayLocomotion/GameplayLocomotion.uproject",
   "structs": {
     "BridgeAbilityCooldownInfo": [
       "ability_class_name",
@@ -21305,6 +21365,12 @@
       "looping_count",
       "slot_name",
       "start_pos"
+    ],
+    "BridgeMotionWarpingNotifyInfo": [
+      "end_time",
+      "modifier_class",
+      "start_time",
+      "warp_target_name"
     ],
     "BridgeNaniteStats": [
       "available",

@@ -33,6 +33,8 @@ public class UnrealBridge : ModuleRules
 			"EditorSubsystem",
 			"MovieScene",
 			"AnimGraphRuntime",
+			"AnimationBlueprintLibrary",
+			"AnimationModifiers",
 			"ContentBrowser",
 			"ContentBrowserData",
 			"LevelEditor",
@@ -63,6 +65,7 @@ public class UnrealBridge : ModuleRules
 			"Chooser",
 			"ChooserEditor",
 			"StructUtils",
+			"MotionWarping",
 			// Geometry Script — Lane 2 of the procedural-content roadmap
 			// (UnrealBridgeGeometryLibrary). UDynamicMesh + the runtime BP
 			// function libs (CopyMeshFromStaticMesh, ApplyMeshBoolean, etc.)

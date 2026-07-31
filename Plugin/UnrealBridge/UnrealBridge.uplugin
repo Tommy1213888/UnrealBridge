@@ -39,6 +39,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "MotionWarping",
+			"Enabled": true
+		},
+		{
 			"Name": "GeometryScripting",
 			"Enabled": true
 		},

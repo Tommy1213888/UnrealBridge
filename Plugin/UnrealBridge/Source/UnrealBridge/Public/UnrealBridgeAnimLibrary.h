@@ -545,6 +545,25 @@ struct FBridgeBlendProfileEntry
 	float BlendScale = 0.f;
 };
 
+/** Read-back view of an authored Motion Warping notify state. */
+USTRUCT(BlueprintType)
+struct FBridgeMotionWarpingNotifyInfo
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "UnrealBridge|Animation")
+	FName WarpTargetName = NAME_None;
+
+	UPROPERTY(BlueprintReadOnly, Category = "UnrealBridge|Animation")
+	float StartTime = 0.f;
+
+	UPROPERTY(BlueprintReadOnly, Category = "UnrealBridge|Animation")
+	float EndTime = 0.f;
+
+	UPROPERTY(BlueprintReadOnly, Category = "UnrealBridge|Animation")
+	FString ModifierClass;
+};
+
 // ─── Library class ──────────────────────────────────────────
 
 UCLASS()
@@ -626,9 +645,31 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "UnrealBridge|Animation")
 	static int32 RemoveAnimNotifiesByName(const FString& SequencePath, const FString& NotifyName);
 
+	/** Return every authored Motion Warping notify and its target/window. */
+	UFUNCTION(BlueprintCallable, Category = "UnrealBridge|Animation")
+	static TArray<FBridgeMotionWarpingNotifyInfo> GetMotionWarpingNotifies(const FString& AnimationPath);
+
+	/**
+	 * Author exactly one Skew Warp notify for WarpTargetName.
+	 * Existing Motion Warping notifies for other targets are preserved; every existing
+	 * notify for the requested target is replaced. The package is marked dirty but not saved.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "UnrealBridge|Animation")
+	static bool SetMotionWarpingNotify(const FString& AnimationPath, FName WarpTargetName,
+		float StartTime, float EndTime);
+
 	/** Set RateScale on an AnimSequence. */
 	UFUNCTION(BlueprintCallable, Category = "UnrealBridge|Animation")
 	static bool SetAnimSequenceRateScale(const FString& SequencePath, float RateScale);
+
+	/**
+	 * Copy the configured Animation Modifier stack from SourceSequence to every target and apply it.
+	 * Existing target modifiers of the same class are updated in place; unrelated modifiers are preserved.
+	 * Returns the total number of modifier instances successfully applied. Assets are marked dirty but not saved.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "UnrealBridge|Animation")
+	static int32 CopyAndApplyAnimationModifiers(const FString& SourceSequencePath,
+		const TArray<FString>& TargetSequencePaths);
 
 	/** Add a composite section to a montage. Returns false when name already exists or StartTime invalid. */
 	UFUNCTION(BlueprintCallable, Category = "UnrealBridge|Animation")

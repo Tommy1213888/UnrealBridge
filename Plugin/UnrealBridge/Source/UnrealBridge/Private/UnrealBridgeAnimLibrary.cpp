@@ -39,6 +39,10 @@
 #include "AnimNodes/AnimNode_Slot.h"
 #include "Animation/AnimNotifies/AnimNotify.h"
 #include "Animation/AnimNotifies/AnimNotifyState.h"
+#include "AnimationBlueprintLibrary.h"
+#include "AnimNotifyState_MotionWarping.h"
+#include "RootMotionModifier.h"
+#include "RootMotionModifier_SkewWarp.h"
 #include "EdGraph/EdGraph.h"
 #include "EdGraph/EdGraphPin.h"
 #include "EdGraph/EdGraphSchema.h"
@@ -49,6 +53,9 @@
 #include "Internationalization/Text.h"
 #include "Animation/BlendProfile.h"
 #include "Animation/AnimTypes.h"
+#include "AnimationModifier.h"
+#include "AnimationModifiersAssetUserData.h"
+#include "UObject/UnrealType.h"
 #include "UObject/UObjectIterator.h"
 
 #define LOCTEXT_NAMESPACE "UnrealBridgeAnim"
@@ -759,6 +766,160 @@ int32 UUnrealBridgeAnimLibrary::RemoveAnimNotifiesByName(
 	return Removed;
 }
 
+TArray<FBridgeMotionWarpingNotifyInfo> UUnrealBridgeAnimLibrary::GetMotionWarpingNotifies(
+	const FString& AnimationPath)
+{
+	TArray<FBridgeMotionWarpingNotifyInfo> Result;
+	const UAnimSequenceBase* Animation = LoadObject<UAnimSequenceBase>(nullptr, *AnimationPath);
+	if (!Animation)
+	{
+		UE_LOG(LogTemp, Warning,
+			TEXT("UnrealBridge: GetMotionWarpingNotifies failed to load '%s'"), *AnimationPath);
+		return Result;
+	}
+
+	for (const FAnimNotifyEvent& NotifyEvent : Animation->Notifies)
+	{
+		const UAnimNotifyState_MotionWarping* MotionWarpingNotify =
+			Cast<UAnimNotifyState_MotionWarping>(NotifyEvent.NotifyStateClass);
+		const URootMotionModifier_Warp* WarpModifier = MotionWarpingNotify
+			? Cast<URootMotionModifier_Warp>(MotionWarpingNotify->RootMotionModifier)
+			: nullptr;
+		if (!WarpModifier)
+		{
+			continue;
+		}
+
+		FBridgeMotionWarpingNotifyInfo& Info = Result.AddDefaulted_GetRef();
+		Info.WarpTargetName = WarpModifier->WarpTargetName;
+		Info.StartTime = NotifyEvent.GetTriggerTime();
+		Info.EndTime = NotifyEvent.GetEndTriggerTime();
+		Info.ModifierClass = GetNameSafe(MotionWarpingNotify->RootMotionModifier->GetClass());
+	}
+
+	return Result;
+}
+
+bool UUnrealBridgeAnimLibrary::SetMotionWarpingNotify(
+	const FString& AnimationPath, const FName WarpTargetName,
+	const float StartTime, const float EndTime)
+{
+	UAnimSequenceBase* Animation = LoadObject<UAnimSequenceBase>(nullptr, *AnimationPath);
+	if (!Animation)
+	{
+		UE_LOG(LogTemp, Warning,
+			TEXT("UnrealBridge: SetMotionWarpingNotify failed to load '%s'"), *AnimationPath);
+		return false;
+	}
+
+	const float PlayLength = Animation->GetPlayLength();
+	if (WarpTargetName.IsNone()
+		|| StartTime < 0.f
+		|| EndTime <= StartTime + UE_KINDA_SMALL_NUMBER
+		|| EndTime > PlayLength + UE_KINDA_SMALL_NUMBER)
+	{
+		UE_LOG(LogTemp, Warning,
+			TEXT("UnrealBridge: invalid Motion Warping notify for '%s': Target=%s Window=[%.6f, %.6f] Length=%.6f"),
+			*AnimationPath, *WarpTargetName.ToString(), StartTime, EndTime, PlayLength);
+		return false;
+	}
+
+	TArray<FName> NotifyTrackNames;
+	UAnimationBlueprintLibrary::GetAnimationNotifyTrackNames(Animation, NotifyTrackNames);
+	static const FName MotionWarpingTrackName(TEXT("MotionWarping"));
+	const bool bCreateMotionWarpingTrack = !NotifyTrackNames.Contains(MotionWarpingTrackName);
+	const bool bPackageWasDirty = Animation->GetOutermost()->IsDirty();
+
+	FScopedTransaction Transaction(
+		LOCTEXT("SetMotionWarpingNotify", "Set Motion Warping Notify"));
+	Animation->Modify();
+
+	if (bCreateMotionWarpingTrack)
+	{
+		UAnimationBlueprintLibrary::AddAnimationNotifyTrack(
+			Animation, MotionWarpingTrackName, FLinearColor(0.12f, 0.55f, 1.0f));
+
+		TArray<FName> UpdatedTrackNames;
+		UAnimationBlueprintLibrary::GetAnimationNotifyTrackNames(Animation, UpdatedTrackNames);
+		if (!UpdatedTrackNames.Contains(MotionWarpingTrackName))
+		{
+			if (!bPackageWasDirty)
+			{
+				Animation->GetOutermost()->SetDirtyFlag(false);
+			}
+			Transaction.Cancel();
+			UE_LOG(LogTemp, Error,
+				TEXT("UnrealBridge: failed to create MotionWarping notify track for '%s'"), *AnimationPath);
+			return false;
+		}
+	}
+
+	UAnimNotifyState* AddedState = UAnimationBlueprintLibrary::AddAnimationNotifyStateEvent(
+		Animation,
+		MotionWarpingTrackName,
+		StartTime,
+		FMath::Min(EndTime, PlayLength) - StartTime,
+		UAnimNotifyState_MotionWarping::StaticClass());
+	UAnimNotifyState_MotionWarping* MotionWarpingNotify =
+		Cast<UAnimNotifyState_MotionWarping>(AddedState);
+	URootMotionModifier_SkewWarp* SkewWarp = MotionWarpingNotify
+		? Cast<URootMotionModifier_SkewWarp>(MotionWarpingNotify->RootMotionModifier)
+		: nullptr;
+	if (!SkewWarp)
+	{
+		if (AddedState)
+		{
+			Animation->Notifies.RemoveAll(
+				[AddedState](const FAnimNotifyEvent& NotifyEvent)
+				{
+					return NotifyEvent.NotifyStateClass == AddedState;
+				});
+		}
+		if (bCreateMotionWarpingTrack)
+		{
+			UAnimationBlueprintLibrary::RemoveAnimationNotifyTrack(Animation, MotionWarpingTrackName);
+		}
+		Animation->RefreshCacheData();
+		Animation->PostEditChange();
+		if (!bPackageWasDirty)
+		{
+			Animation->GetOutermost()->SetDirtyFlag(false);
+		}
+		Transaction.Cancel();
+		UE_LOG(LogTemp, Error,
+			TEXT("UnrealBridge: failed to construct Skew Warp notify for '%s'"), *AnimationPath);
+		return false;
+	}
+
+	SkewWarp->Modify();
+	SkewWarp->WarpTargetName = WarpTargetName;
+
+	// The freshly-added state is excluded so this operation is an atomic upsert
+	// for one target without disturbing Motion Warping windows for other systems.
+	Animation->Notifies.RemoveAll(
+		[MotionWarpingNotify, WarpTargetName](const FAnimNotifyEvent& NotifyEvent)
+		{
+			const UAnimNotifyState_MotionWarping* ExistingNotify =
+				Cast<UAnimNotifyState_MotionWarping>(NotifyEvent.NotifyStateClass);
+			const URootMotionModifier_Warp* ExistingModifier = ExistingNotify
+				? Cast<URootMotionModifier_Warp>(ExistingNotify->RootMotionModifier)
+				: nullptr;
+			return ExistingNotify
+				&& ExistingNotify != MotionWarpingNotify
+				&& ExistingModifier
+				&& ExistingModifier->WarpTargetName == WarpTargetName;
+		});
+
+	Animation->Notifies.Sort([](const FAnimNotifyEvent& A, const FAnimNotifyEvent& B)
+	{
+		return A.GetTime() < B.GetTime();
+	});
+	Animation->RefreshCacheData();
+	Animation->PostEditChange();
+	Animation->MarkPackageDirty();
+	return true;
+}
+
 bool UUnrealBridgeAnimLibrary::SetAnimSequenceRateScale(
 	const FString& SequencePath, float RateScale)
 {
@@ -772,6 +933,113 @@ bool UUnrealBridgeAnimLibrary::SetAnimSequenceRateScale(
 	Seq->PostEditChange();
 	Seq->MarkPackageDirty();
 	return true;
+}
+
+int32 UUnrealBridgeAnimLibrary::CopyAndApplyAnimationModifiers(const FString& SourceSequencePath,
+	const TArray<FString>& TargetSequencePaths)
+{
+	UAnimSequence* Source = LoadObject<UAnimSequence>(nullptr, *SourceSequencePath);
+	const UAnimationModifiersAssetUserData* SourceUserData = Source
+		? Source->GetAssetUserData<UAnimationModifiersAssetUserData>()
+		: nullptr;
+	if (!SourceUserData || SourceUserData->GetAnimationModifierInstances().IsEmpty())
+	{
+		UE_LOG(LogTemp, Warning,
+			TEXT("UnrealBridge: CopyAndApplyAnimationModifiers source '%s' has no configured modifiers"),
+			*SourceSequencePath);
+		return 0;
+	}
+
+	auto FindUnclaimedModifier = [](UAnimationModifiersAssetUserData* UserData, UClass* ModifierClass,
+		const TSet<UAnimationModifier*>& Claimed) -> UAnimationModifier*
+	{
+		if (!UserData)
+		{
+			return nullptr;
+		}
+
+		for (UAnimationModifier* Candidate : UserData->GetAnimationModifierInstances())
+		{
+			if (Candidate && Candidate->GetClass() == ModifierClass && !Claimed.Contains(Candidate))
+			{
+				return Candidate;
+			}
+		}
+		return nullptr;
+	};
+
+	auto CopyEditableProperties = [](const UAnimationModifier* From, UAnimationModifier* To)
+	{
+		for (TFieldIterator<FProperty> It(From->GetClass(), EFieldIterationFlags::IncludeSuper); It; ++It)
+		{
+			FProperty* Property = *It;
+			if (Property->HasAnyPropertyFlags(CPF_Edit)
+				&& !Property->HasAnyPropertyFlags(CPF_Transient | CPF_Deprecated))
+			{
+				Property->CopyCompleteValue_InContainer(To, From);
+			}
+		}
+	};
+
+	const FScopedTransaction Transaction(
+		LOCTEXT("CopyAndApplyAnimationModifiers", "Copy and Apply Animation Modifiers"));
+	UE::Anim::FApplyModifiersScope ApplyScope(
+		UE::Anim::FApplyModifiersScope::SuppressWarningAndError);
+	int32 AppliedCount = 0;
+	for (const FString& TargetPath : TargetSequencePaths)
+	{
+		UAnimSequence* Target = LoadObject<UAnimSequence>(nullptr, *TargetPath);
+		if (!Target || Target == Source)
+		{
+			UE_LOG(LogTemp, Warning,
+				TEXT("UnrealBridge: CopyAndApplyAnimationModifiers skipped invalid target '%s'"), *TargetPath);
+			continue;
+		}
+
+		Target->Modify();
+		TSet<UAnimationModifier*> ClaimedTargetModifiers;
+		for (const UAnimationModifier* SourceModifier : SourceUserData->GetAnimationModifierInstances())
+		{
+			if (!SourceModifier)
+			{
+				continue;
+			}
+
+			UAnimationModifiersAssetUserData* TargetUserData =
+				Target->GetAssetUserData<UAnimationModifiersAssetUserData>();
+			UAnimationModifier* TargetModifier = FindUnclaimedModifier(
+				TargetUserData, SourceModifier->GetClass(), ClaimedTargetModifiers);
+
+			if (!TargetModifier)
+			{
+				if (!UAnimationModifiersAssetUserData::AddAnimationModifierOfClass(Target, SourceModifier->GetClass()))
+				{
+					UE_LOG(LogTemp, Warning, TEXT("UnrealBridge: failed to add modifier %s to %s"),
+						*GetNameSafe(SourceModifier->GetClass()), *TargetPath);
+					continue;
+				}
+
+				TargetUserData = Target->GetAssetUserData<UAnimationModifiersAssetUserData>();
+				TargetModifier = FindUnclaimedModifier(
+					TargetUserData, SourceModifier->GetClass(), ClaimedTargetModifiers);
+			}
+
+			if (!TargetModifier)
+			{
+				continue;
+			}
+
+			ClaimedTargetModifiers.Add(TargetModifier);
+			TargetModifier->Modify();
+			CopyEditableProperties(SourceModifier, TargetModifier);
+			TargetModifier->ApplyToAnimationSequence(Target);
+			++AppliedCount;
+		}
+
+		Target->MarkPackageDirty();
+	}
+
+	return AppliedCount;
 }
 
 bool UUnrealBridgeAnimLibrary::AddMontageSection(

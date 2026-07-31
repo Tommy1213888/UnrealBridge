@@ -16,7 +16,7 @@ structural rather than mnemonic.
 
 import unreal
 
-_GENERATED_AT = '2026-05-22T16:07:54+00:00'
+_GENERATED_AT = '2026-07-31T05:01:06+00:00'
 _UE_VERSION = '5.7.1-48512491+++UE5+Release-5.7'
 
 class Anim:
@@ -123,6 +123,11 @@ class Anim:
         return unreal.UnrealBridgeAnimLibrary.connect_anim_graph_pins(anim_blueprint_path, graph_name, source_node_guid, source_pin_name, target_node_guid, target_pin_name)
 
     @staticmethod
+    def copy_and_apply_animation_modifiers(*, source_sequence_path, target_sequence_paths):
+        """X.copy_and_apply_animation_modifiers(source_sequence_path, target_sequence_paths) -> int32"""
+        return unreal.UnrealBridgeAnimLibrary.copy_and_apply_animation_modifiers(source_sequence_path, target_sequence_paths)
+
+    @staticmethod
     def disconnect_anim_graph_pin(*, anim_blueprint_path, graph_name, node_guid, pin_name):
         """X.disconnect_anim_graph_pin(anim_blueprint_path, graph_name, node_guid, pin_name) -> bool"""
         return unreal.UnrealBridgeAnimLibrary.disconnect_anim_graph_pin(anim_blueprint_path, graph_name, node_guid, pin_name)
@@ -206,6 +211,11 @@ class Anim:
     def get_montage_slot_segments(*, montage_path):
         """X.get_montage_slot_segments(montage_path) -> Array[BridgeMontageSlotSegment]"""
         return unreal.UnrealBridgeAnimLibrary.get_montage_slot_segments(montage_path)
+
+    @staticmethod
+    def get_motion_warping_notifies(*, animation_path):
+        """X.get_motion_warping_notifies(animation_path) -> Array[BridgeMotionWarpingNotifyInfo]"""
+        return unreal.UnrealBridgeAnimLibrary.get_motion_warping_notifies(animation_path)
 
     @staticmethod
     def get_skeleton_blend_profiles(*, skeleton_path):
@@ -336,6 +346,11 @@ class Anim:
     def set_montage_section_start_time(*, montage_path, section_name, start_time):
         """X.set_montage_section_start_time(montage_path, section_name, start_time) -> bool"""
         return unreal.UnrealBridgeAnimLibrary.set_montage_section_start_time(montage_path, section_name, start_time)
+
+    @staticmethod
+    def set_motion_warping_notify(*, animation_path, warp_target_name, start_time, end_time):
+        """X.set_motion_warping_notify(animation_path, warp_target_name, start_time, end_time) -> bool"""
+        return unreal.UnrealBridgeAnimLibrary.set_motion_warping_notify(animation_path, warp_target_name, start_time, end_time)
 
     @staticmethod
     def set_skeleton_socket_transform(*, skeleton_path, socket_name, relative_location, relative_rotation, relative_scale):

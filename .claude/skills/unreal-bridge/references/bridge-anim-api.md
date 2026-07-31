@@ -601,9 +601,36 @@ Remove every notify whose name matches (exact `FName` compare). Returns count re
 n = unreal.UnrealBridgeAnimLibrary.remove_anim_notifies_by_name('/Game/Anim/Attack', 'HitFrame')
 ```
 
+### get_motion_warping_notifies(animation_path) -> list[FBridgeMotionWarpingNotifyInfo]
+
+Return authored `UAnimNotifyState_MotionWarping` windows, including
+`warp_target_name`, `start_time`, `end_time`, and `modifier_class`.
+
+### set_motion_warping_notify(animation_path, warp_target_name, start_time, end_time) -> bool
+
+Author exactly one `Skew Warp` Motion Warping NotifyState for the requested target.
+Existing Motion Warping windows for other targets are preserved; existing windows
+for the same target are replaced. The animation package is marked dirty but must
+still be saved by the caller.
+
+```python
+ok = unreal.UnrealBridgeAnimLibrary.set_motion_warping_notify(
+    '/Game/Anim/DoorOpen', 'DoorInteract', 0.0001, 1.85)
+windows = unreal.UnrealBridgeAnimLibrary.get_motion_warping_notifies(
+    '/Game/Anim/DoorOpen')
+unreal.EditorAssetLibrary.save_asset('/Game/Anim/DoorOpen')
+```
+
 ### set_anim_sequence_rate_scale(sequence_path, rate_scale) -> bool
 
 Set `RateScale` on an `UAnimSequence`. Accepts negative values (reversed playback).
+
+### copy_and_apply_animation_modifiers(source_sequence_path, target_sequence_paths) -> int
+
+Copy the editable Animation Modifier stack from one `AnimSequence` to every target,
+then apply each modifier. Existing target modifiers of the same class are updated;
+unrelated modifiers remain intact. Returns the number of modifier instances applied.
+Target packages are marked dirty and must still be saved by the caller.
 
 ### add_montage_section(montage_path, section_name, start_time) -> bool
 
