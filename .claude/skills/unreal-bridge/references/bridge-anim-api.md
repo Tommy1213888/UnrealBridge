@@ -601,6 +601,34 @@ Remove every notify whose name matches (exact `FName` compare). Returns count re
 n = unreal.UnrealBridgeAnimLibrary.remove_anim_notifies_by_name('/Game/Anim/Attack', 'HitFrame')
 ```
 
+### add_anim_notify_state(animation_path, notify_state_class_path, notify_track_name, start_time, end_time) -> bool
+
+Add a class-backed `UAnimNotifyState` to any `UAnimSequenceBase` (sequence or
+montage). The named track is created when missing. The class path must resolve
+to a loaded `UAnimNotifyState` subclass.
+
+```python
+ok = unreal.UnrealBridgeAnimLibrary.add_anim_notify_state(
+    '/Game/Anim/DoorOpen',
+    '/Script/MyGame.ANS_InterruptWindow',
+    'Interrupt',
+    0.0,
+    0.35)
+unreal.EditorAssetLibrary.save_asset('/Game/Anim/DoorOpen')
+```
+
+### remove_anim_notify_states_by_class(animation_path, notify_state_class_path) -> int
+
+Remove every state notify whose concrete class exactly matches the supplied
+class path. This is the idempotent cleanup step before batch re-authoring a
+pair of windows.
+
+```python
+removed = unreal.UnrealBridgeAnimLibrary.remove_anim_notify_states_by_class(
+    '/Game/Anim/DoorOpen',
+    '/Script/MyGame.ANS_InterruptWindow')
+```
+
 ### get_motion_warping_notifies(animation_path) -> list[FBridgeMotionWarpingNotifyInfo]
 
 Return authored `UAnimNotifyState_MotionWarping` windows, including

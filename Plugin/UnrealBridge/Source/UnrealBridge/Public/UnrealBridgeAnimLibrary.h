@@ -641,6 +641,20 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "UnrealBridge|Animation")
 	static bool AddAnimNotify(const FString& SequencePath, const FString& NotifyName, float TriggerTime, float Duration);
 
+	/**
+	 * Add one class-backed AnimNotifyState on a named notify track.
+	 * NotifyStateClassPath must resolve to a UAnimNotifyState subclass.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "UnrealBridge|Animation")
+	static bool AddAnimNotifyState(const FString& AnimationPath,
+		const FString& NotifyStateClassPath, FName NotifyTrackName,
+		float StartTime, float EndTime);
+
+	/** Remove every state notify whose class exactly matches NotifyStateClassPath. */
+	UFUNCTION(BlueprintCallable, Category = "UnrealBridge|Animation")
+	static int32 RemoveAnimNotifyStatesByClass(const FString& AnimationPath,
+		const FString& NotifyStateClassPath);
+
 	/** Remove all notifies whose NotifyName matches (case-insensitive). Returns removed count. */
 	UFUNCTION(BlueprintCallable, Category = "UnrealBridge|Animation")
 	static int32 RemoveAnimNotifiesByName(const FString& SequencePath, const FString& NotifyName);

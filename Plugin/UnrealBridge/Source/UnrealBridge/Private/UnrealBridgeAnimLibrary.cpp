@@ -742,6 +742,121 @@ bool UUnrealBridgeAnimLibrary::AddAnimNotify(
 	return true;
 }
 
+bool UUnrealBridgeAnimLibrary::AddAnimNotifyState(
+	const FString& AnimationPath,
+	const FString& NotifyStateClassPath,
+	const FName NotifyTrackName,
+	const float StartTime,
+	const float EndTime)
+{
+	UAnimSequenceBase* Animation = LoadObject<UAnimSequenceBase>(nullptr, *AnimationPath);
+	UClass* NotifyStateClass = LoadObject<UClass>(nullptr, *NotifyStateClassPath);
+	if (!Animation || !NotifyStateClass
+		|| !NotifyStateClass->IsChildOf(UAnimNotifyState::StaticClass()))
+	{
+		UE_LOG(LogTemp, Warning,
+			TEXT("UnrealBridge: AddAnimNotifyState invalid animation/class: Animation='%s' Class='%s'"),
+			*AnimationPath, *NotifyStateClassPath);
+		return false;
+	}
+
+	const float PlayLength = Animation->GetPlayLength();
+	if (NotifyTrackName.IsNone() || StartTime < 0.0f
+		|| EndTime <= StartTime + UE_KINDA_SMALL_NUMBER
+		|| EndTime > PlayLength + UE_KINDA_SMALL_NUMBER)
+	{
+		UE_LOG(LogTemp, Warning,
+			TEXT("UnrealBridge: AddAnimNotifyState invalid window for '%s': Track=%s Window=[%.6f, %.6f] Length=%.6f"),
+			*AnimationPath, *NotifyTrackName.ToString(), StartTime, EndTime, PlayLength);
+		return false;
+	}
+
+	TArray<FName> NotifyTrackNames;
+	UAnimationBlueprintLibrary::GetAnimationNotifyTrackNames(Animation, NotifyTrackNames);
+	const bool bCreateTrack = !NotifyTrackNames.Contains(NotifyTrackName);
+	const bool bPackageWasDirty = Animation->GetOutermost()->IsDirty();
+
+	FScopedTransaction Transaction(
+		LOCTEXT("AddAnimNotifyState", "Add Animation Notify State"));
+	Animation->Modify();
+	if (bCreateTrack)
+	{
+		UAnimationBlueprintLibrary::AddAnimationNotifyTrack(
+			Animation, NotifyTrackName, FLinearColor(0.95f, 0.48f, 0.08f));
+	}
+
+	UAnimNotifyState* AddedState = UAnimationBlueprintLibrary::AddAnimationNotifyStateEvent(
+		Animation,
+		NotifyTrackName,
+		StartTime,
+		FMath::Min(EndTime, PlayLength) - StartTime,
+		NotifyStateClass);
+	if (!AddedState)
+	{
+		if (bCreateTrack)
+		{
+			UAnimationBlueprintLibrary::RemoveAnimationNotifyTrack(
+				Animation, NotifyTrackName);
+		}
+		Animation->RefreshCacheData();
+		Animation->PostEditChange();
+		if (!bPackageWasDirty)
+		{
+			Animation->GetOutermost()->SetDirtyFlag(false);
+		}
+		Transaction.Cancel();
+		UE_LOG(LogTemp, Error,
+			TEXT("UnrealBridge: failed to add notify state '%s' to '%s'"),
+			*NotifyStateClassPath, *AnimationPath);
+		return false;
+	}
+
+	Animation->Notifies.Sort([](const FAnimNotifyEvent& A, const FAnimNotifyEvent& B)
+	{
+		return A.GetTime() < B.GetTime();
+	});
+	Animation->RefreshCacheData();
+	Animation->PostEditChange();
+	Animation->MarkPackageDirty();
+	return true;
+}
+
+int32 UUnrealBridgeAnimLibrary::RemoveAnimNotifyStatesByClass(
+	const FString& AnimationPath,
+	const FString& NotifyStateClassPath)
+{
+	UAnimSequenceBase* Animation = LoadObject<UAnimSequenceBase>(nullptr, *AnimationPath);
+	const UClass* NotifyStateClass = LoadObject<UClass>(nullptr, *NotifyStateClassPath);
+	if (!Animation || !NotifyStateClass
+		|| !NotifyStateClass->IsChildOf(UAnimNotifyState::StaticClass()))
+	{
+		return 0;
+	}
+
+	const int32 Before = Animation->Notifies.Num();
+	FScopedTransaction Transaction(
+		LOCTEXT("RemoveAnimNotifyStatesByClass", "Remove Animation Notify States By Class"));
+	Animation->Modify();
+	Animation->Notifies.RemoveAll(
+		[NotifyStateClass](const FAnimNotifyEvent& NotifyEvent)
+		{
+			return NotifyEvent.NotifyStateClass
+				&& NotifyEvent.NotifyStateClass->GetClass() == NotifyStateClass;
+		});
+	const int32 Removed = Before - Animation->Notifies.Num();
+	if (Removed > 0)
+	{
+		Animation->RefreshCacheData();
+		Animation->PostEditChange();
+		Animation->MarkPackageDirty();
+	}
+	else
+	{
+		Transaction.Cancel();
+	}
+	return Removed;
+}
+
 int32 UUnrealBridgeAnimLibrary::RemoveAnimNotifiesByName(
 	const FString& SequencePath, const FString& NotifyName)
 {

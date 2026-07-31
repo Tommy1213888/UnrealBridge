@@ -16,7 +16,7 @@ structural rather than mnemonic.
 
 import unreal
 
-_GENERATED_AT = '2026-07-31T05:01:06+00:00'
+_GENERATED_AT = '2026-07-31T08:52:16+00:00'
 _UE_VERSION = '5.7.1-48512491+++UE5+Release-5.7'
 
 class Anim:
@@ -81,6 +81,11 @@ class Anim:
     def add_anim_notify(*, sequence_path, notify_name, trigger_time, duration):
         """X.add_anim_notify(sequence_path, notify_name, trigger_time, duration) -> bool"""
         return unreal.UnrealBridgeAnimLibrary.add_anim_notify(sequence_path, notify_name, trigger_time, duration)
+
+    @staticmethod
+    def add_anim_notify_state(*, animation_path, notify_state_class_path, notify_track_name, start_time, end_time):
+        """X.add_anim_notify_state(animation_path, notify_state_class_path, notify_track_name, start_time, end_time) -> bool"""
+        return unreal.UnrealBridgeAnimLibrary.add_anim_notify_state(animation_path, notify_state_class_path, notify_track_name, start_time, end_time)
 
     @staticmethod
     def add_anim_state(*, anim_blueprint_path, state_machine_graph_name, state_name, pos_x, pos_y):
@@ -261,6 +266,11 @@ class Anim:
     def remove_anim_notifies_by_name(*, sequence_path, notify_name):
         """X.remove_anim_notifies_by_name(sequence_path, notify_name) -> int32"""
         return unreal.UnrealBridgeAnimLibrary.remove_anim_notifies_by_name(sequence_path, notify_name)
+
+    @staticmethod
+    def remove_anim_notify_states_by_class(*, animation_path, notify_state_class_path):
+        """X.remove_anim_notify_states_by_class(animation_path, notify_state_class_path) -> int32"""
+        return unreal.UnrealBridgeAnimLibrary.remove_anim_notify_states_by_class(animation_path, notify_state_class_path)
 
     @staticmethod
     def remove_anim_state(*, anim_blueprint_path, state_machine_graph_name, state_name):
