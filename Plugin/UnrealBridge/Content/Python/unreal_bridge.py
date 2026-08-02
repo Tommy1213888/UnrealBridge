@@ -16,7 +16,7 @@ structural rather than mnemonic.
 
 import unreal
 
-_GENERATED_AT = '2026-07-31T13:57:46+00:00'
+_GENERATED_AT = '2026-08-02T05:35:49+00:00'
 _UE_VERSION = '5.7.1-48512491+++UE5+Release-5.7'
 
 class Anim:
@@ -1815,6 +1815,11 @@ class Editor:
     def capture_active_viewport(*, out_file_path, include_base64):
         """X.capture_active_viewport(out_file_path, include_base64) -> BridgeScreenshotResult"""
         return unreal.UnrealBridgeEditorLibrary.capture_active_viewport(out_file_path, include_base64)
+
+    @staticmethod
+    def capture_active_viewport_as_displayed(*, out_file_path, include_base64):
+        """X.capture_active_viewport_as_displayed(out_file_path, include_base64) -> BridgeScreenshotResult"""
+        return unreal.UnrealBridgeEditorLibrary.capture_active_viewport_as_displayed(out_file_path, include_base64)
 
     @staticmethod
     def capture_channel_from_pose(*, channel, location, rotation, fov, width, height, max_depth_clamp, out_file_path, include_base64):

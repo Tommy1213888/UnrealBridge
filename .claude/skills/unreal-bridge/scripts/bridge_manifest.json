@@ -31,7 +31,7 @@
       "TIMER"
     ]
   },
-  "generated_at": "2026-07-31T13:57:46+00:00",
+  "generated_at": "2026-08-02T05:35:49+00:00",
   "libraries": {
     "UnrealBridgeAnimLibrary": {
       "functions": {
@@ -8546,6 +8546,24 @@
         },
         "capture_active_viewport": {
           "doc": "X.capture_active_viewport(out_file_path, include_base64) -> BridgeScreenshotResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "out_file_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "include_base64",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeScreenshotResult"
+        },
+        "capture_active_viewport_as_displayed": {
+          "doc": "X.capture_active_viewport_as_displayed(out_file_path, include_base64) -> BridgeScreenshotResult",
           "params": [
             {
               "default": null,

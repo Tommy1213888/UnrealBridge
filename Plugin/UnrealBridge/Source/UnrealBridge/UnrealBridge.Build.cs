@@ -15,6 +15,7 @@ public class UnrealBridge : ModuleRules
 		{
 			"CoreUObject",
 			"Engine",
+			"ApplicationCore",
 			"Sockets",
 			"Networking",
 			"Json",
