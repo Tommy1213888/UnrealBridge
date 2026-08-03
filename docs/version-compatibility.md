@@ -25,6 +25,16 @@ fail with "no such function on UnrealBridgeXxxLibrary".
 | `UnrealBridgeMaterialLibrary` | `EMaterialDomain::MD_*` enum values differ in scope; `MATUSAGE_Voxels` / `MATUSAGE_StaticMesh` don't exist in 5.4 |
 | `UnrealBridgeNavigationLibrary` | `ARecastNavMesh::GetDebugGeometryForTile` 2nd arg type changed (`int32` → `FNavTileRef`) and the "default tile = aggregate all" sentinel doesn't exist on 5.4 |
 
+### Whole-library safe-stub gate
+
+`UnrealBridgeStateTreeLibrary` keeps its reflected class and kwargs wrapper on
+all supported engines, but its real implementation is gated by
+`!UE_VERSION_OLDER_THAN(5, 7, 0)`. UE 5.3-5.6 compile generated safe stubs;
+`IsStateTreeApiAvailable()` returns false and
+`GetLastStateTreeError()` explains the version requirement. This preserves a
+stable automation surface without compiling against StateTree editor APIs whose
+data model and property-binding contracts changed substantially before 5.7.
+
 ## Single-UFUNCTION gates (library still works, one function unavailable on 5.4)
 
 | UFUNCTION | Reason |

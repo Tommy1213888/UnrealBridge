@@ -112,11 +112,11 @@ EOF
 ## API surface — use the wrapper module first
 
 ```python
-from unreal_bridge import Asset, Level, Blueprint, Editor, Anim, Material, PoseSearch, Chooser, ...
+from unreal_bridge import Asset, Level, Blueprint, Editor, Anim, Material, PoseSearch, Chooser, StateTree, ...
 paths, _ = Asset.search_assets_in_all_content(query="Hero", max_results=20)
 ```
 
-The wrapper has 21 classes (one per `UnrealBridge*Library`) with **kwargs-only signatures** — positional args raise `TypeError` immediately, no UE round-trip. This is the structural fix for positional-arg-order hallucinations. Regenerate after C++ header changes via `python tools/gen_manifest.py`.
+The wrapper has 23 classes (one per `UnrealBridge*Library`) with **kwargs-only signatures** — positional args raise `TypeError` immediately, no UE round-trip. This is the structural fix for positional-arg-order hallucinations. Regenerate after C++ header changes via `python tools/gen_manifest.py`.
 
 Fallback: raw `unreal.UnrealBridge*Library.foo(...)` works (preflight catches errors), but prefer the wrapper.
 
@@ -191,6 +191,7 @@ Signatures are now mechanically enforced (preflight). References carry semantic 
 | **GameplayTag references / sources / mutations** | `references/bridge-gameplaytag-api.md` | Read: `find_assets_referencing_tag` (with child-tag expansion), `list_all_registered_tags`, `get_tag_source_info`. Write: `add_gameplay_tag(tag, source_ini='', comment='')`, `rename_gameplay_tag(old, new, rename_children=True)` (auto-inserts redirect, redirect lifetime hardened — survives subsequent mutations + cold restart), `remove_gameplay_tag(tag)`. Source enum: `list_tag_source_inis(filter_type='')`. Redirect ops: `list_gameplay_tag_redirects(source='', old_prefix='')` + `remove_gameplay_tag_redirect(old, new)` for enumerate-then-sweep. Built on the AssetRegistry SearchableName index + IGameplayTagsEditorModule. `bridge-asset-api.md` "SearchableName Index" has the generic read version (PrimaryAssetId, custom named-value structs). |
 | **Motion Matching — PoseSearch** | `references/bridge-pose-search-api.md` | **Read before any PSS / PSD read or write** — `DatabaseAnimationAssets` / `Channels` are `private:` and unreachable via `get_editor_property`; this lib is the only path. Includes `wait-pose-index` CLI. |
 | **Motion Matching — Chooser** | `references/bridge-chooser-api.md` | **Read before any CHT read or write** — `ResultsStructs` / `DisabledRows` etc. are `private:`; this lib is the only path. Covers NestedChooser `:Name` paths, `matched_row=-1` caveat, and the auto Compile+PostEditChange contract. |
+| **StateTree authoring + runtime** | `references/bridge-statetree-api.md` | **Read before any StateTree write.** GUID-first hierarchy/node/transition workflows, schema-filtered type discovery, reflected node-property discovery, bindings, parameters, compile diagnostics, transient breakpoints, and PIE component control. Functional on UE 5.7+. |
 | Reactive handlers | `references/bridge-reactive.md` | Register Python on UE events (GameplayEvent / AnimNotify / MovementMode / Attribute / ActorLifecycle / InputAction). |
 | Navigation | `references/bridge-navigation-api.md` | NavMesh OBJ export |
 | Perf snapshots | `references/bridge-perf-api.md` | Structured FPS / GT / RT / GPU / draw calls / mem / UObject histogram |

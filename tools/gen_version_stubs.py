@@ -35,6 +35,7 @@ PRIVATE = REPO_ROOT / "Plugin" / "UnrealBridge" / "Source" / "UnrealBridge" / "P
 # the supplied list — used when a library has a handful of 5.7-gated funcs
 # alongside many version-stable ones).
 TARGETS: list[dict] = [
+    {"name": "UnrealBridgeStateTreeLibrary",      "scope": "all"},
     {"name": "UnrealBridgeChooserLibrary",        "scope": "all"},
     {"name": "UnrealBridgePoseSearchLibrary",     "scope": "all"},
     {"name": "UnrealBridgeMaterialLibrary",       "scope": "all"},
@@ -145,7 +146,11 @@ def render_stub(class_name: str, func: dict) -> str:
         f'\tUE_LOG(LogTemp, Warning, '
         f'TEXT("{class_name}::{name} requires UE 5.7+ — call ignored on this engine version"));\n'
     )
-    return f"{rt} {class_name}::{name}({params})\n{{\n{log}{stub_body(rt)}}}\n\n"
+    if class_name == "UUnrealBridgeStateTreeLibrary" and name == "GetLastStateTreeError":
+        body = '\treturn TEXT("StateTree authoring API requires Unreal Engine 5.7+");\n'
+    else:
+        body = stub_body(rt)
+    return f"{rt} {class_name}::{name}({params})\n{{\n{log}{body}}}\n\n"
 
 
 def render_file(header_stem: str, class_name: str, funcs: list[dict]) -> str:

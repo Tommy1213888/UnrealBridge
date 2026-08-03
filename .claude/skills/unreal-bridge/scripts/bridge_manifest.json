@@ -31,7 +31,7 @@
       "TIMER"
     ]
   },
-  "generated_at": "2026-08-02T05:35:49+00:00",
+  "generated_at": "2026-08-03T14:31:34+00:00",
   "libraries": {
     "UnrealBridgeAnimLibrary": {
       "functions": {
@@ -20106,6 +20106,1094 @@
         }
       }
     },
+    "UnrealBridgeStateTreeLibrary": {
+      "functions": {
+        "add_state_tree_binding": {
+          "doc": "X.add_state_tree_binding(asset_path, source_id, source_path, target_id, target_path, output_binding=False) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_path",
+              "type": ""
+            },
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "output_binding",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "add_state_tree_node": {
+          "doc": "X.add_state_tree_node(asset_path, owner_id, scope, type_path, insert_index=-1) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "owner_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "scope",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "type_path",
+              "type": ""
+            },
+            {
+              "default": "-1",
+              "has_default": true,
+              "name": "insert_index",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_state_tree_root_parameter": {
+          "doc": "X.add_state_tree_root_parameter(asset_path, name, type, default_value=\"\") -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "type",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "default_value",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_state_tree_state": {
+          "doc": "X.add_state_tree_state(asset_path, parent_state_id, name, state_type=\"State\", insert_index=-1) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "parent_state_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": "\"State\"",
+              "has_default": true,
+              "name": "state_type",
+              "type": ""
+            },
+            {
+              "default": "-1",
+              "has_default": true,
+              "name": "insert_index",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_state_tree_transition": {
+          "doc": "X.add_state_tree_transition(asset_path, state_id, trigger, target_type, target_state_id=\"\", required_event_tag=\"\", insert_index=-1) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "state_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "trigger",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_type",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "target_state_id",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "required_event_tag",
+              "type": ""
+            },
+            {
+              "default": "-1",
+              "has_default": true,
+              "name": "insert_index",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "clear_state_tree_bindings_for_item": {
+          "doc": "X.clear_state_tree_bindings_for_item(asset_path, item_id) -> int32",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "item_id",
+              "type": ""
+            }
+          ],
+          "returns": "int32"
+        },
+        "clear_state_tree_breakpoints": {
+          "doc": "X.clear_state_tree_breakpoints(asset_path) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "compile_state_tree": {
+          "doc": "X.compile_state_tree(asset_path, run_validation=True) -> BridgeStateTreeCompileResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "run_validation",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeStateTreeCompileResult"
+        },
+        "control_state_tree_component": {
+          "doc": "X.control_state_tree_component(component_path, action, reason=\"UnrealBridge\") -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "component_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "action",
+              "type": ""
+            },
+            {
+              "default": "\"UnrealBridge\"",
+              "has_default": true,
+              "name": "reason",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "create_state_tree": {
+          "doc": "X.create_state_tree(asset_path, schema_class_path) -> BridgeStateTreeCreateResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "schema_class_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeStateTreeCreateResult"
+        },
+        "get_last_state_tree_error": {
+          "doc": "X.get_last_state_tree_error() -> str",
+          "params": [],
+          "returns": "str"
+        },
+        "get_state_tree_component_info": {
+          "doc": "X.get_state_tree_component_info(component_path) -> BridgeStateTreeComponentInfo",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "component_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeStateTreeComponentInfo"
+        },
+        "get_state_tree_info": {
+          "doc": "X.get_state_tree_info(asset_path) -> BridgeStateTreeAssetInfo",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeStateTreeAssetInfo"
+        },
+        "get_state_tree_node_property": {
+          "doc": "X.get_state_tree_node_property(asset_path, node_id, data_source, property_path) -> BridgeStateTreePropertyResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "node_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "data_source",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeStateTreePropertyResult"
+        },
+        "get_state_tree_state_property": {
+          "doc": "X.get_state_tree_state_property(asset_path, state_id, property_path) -> BridgeStateTreePropertyResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "state_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeStateTreePropertyResult"
+        },
+        "get_state_tree_transition_property": {
+          "doc": "X.get_state_tree_transition_property(asset_path, transition_id, property_path) -> BridgeStateTreePropertyResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "transition_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeStateTreePropertyResult"
+        },
+        "is_state_tree_api_available": {
+          "doc": "X.is_state_tree_api_available() -> bool",
+          "params": [],
+          "returns": "bool"
+        },
+        "list_state_tree_bindable_structs": {
+          "doc": "X.list_state_tree_bindable_structs(asset_path, target_id=\"\") -> Array[BridgeStateTreeBindableStructInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "target_id",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeStateTreeBindableStructInfo]"
+        },
+        "list_state_tree_bindings": {
+          "doc": "X.list_state_tree_bindings(asset_path) -> Array[BridgeStateTreeBindingInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeStateTreeBindingInfo]"
+        },
+        "list_state_tree_breakpoints": {
+          "doc": "X.list_state_tree_breakpoints(asset_path) -> Array[BridgeStateTreeBreakpointInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeStateTreeBreakpointInfo]"
+        },
+        "list_state_tree_components": {
+          "doc": "X.list_state_tree_components(pie_only=False) -> Array[BridgeStateTreeComponentInfo]",
+          "params": [
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "pie_only",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeStateTreeComponentInfo]"
+        },
+        "list_state_tree_node_properties": {
+          "doc": "X.list_state_tree_node_properties(asset_path, node_id, data_source=\"Instance\", include_inherited=True) -> Array[BridgeStateTreePropertyInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "node_id",
+              "type": ""
+            },
+            {
+              "default": "\"Instance\"",
+              "has_default": true,
+              "name": "data_source",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "include_inherited",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeStateTreePropertyInfo]"
+        },
+        "list_state_tree_node_types": {
+          "doc": "X.list_state_tree_node_types(asset_path, kind=\"\", include_disallowed=False) -> Array[BridgeStateTreeNodeTypeInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "kind",
+              "type": ""
+            },
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "include_disallowed",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeStateTreeNodeTypeInfo]"
+        },
+        "list_state_tree_nodes": {
+          "doc": "X.list_state_tree_nodes(asset_path, scope=\"\") -> Array[BridgeStateTreeNodeInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "scope",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeStateTreeNodeInfo]"
+        },
+        "list_state_tree_parameters": {
+          "doc": "X.list_state_tree_parameters(asset_path, scope_id=\"\") -> Array[BridgeStateTreeParameterInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "scope_id",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeStateTreeParameterInfo]"
+        },
+        "list_state_tree_states": {
+          "doc": "X.list_state_tree_states(asset_path) -> Array[BridgeStateTreeStateInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeStateTreeStateInfo]"
+        },
+        "list_state_tree_transitions": {
+          "doc": "X.list_state_tree_transitions(asset_path, state_id=\"\") -> Array[BridgeStateTreeTransitionInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "state_id",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeStateTreeTransitionInfo]"
+        },
+        "move_state_tree_node": {
+          "doc": "X.move_state_tree_node(asset_path, node_id, new_index) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "node_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "move_state_tree_state": {
+          "doc": "X.move_state_tree_state(asset_path, state_id, new_parent_state_id, insert_index=-1) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "state_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_parent_state_id",
+              "type": ""
+            },
+            {
+              "default": "-1",
+              "has_default": true,
+              "name": "insert_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "move_state_tree_transition": {
+          "doc": "X.move_state_tree_transition(asset_path, transition_id, new_index) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "transition_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_state_tree_binding": {
+          "doc": "X.remove_state_tree_binding(asset_path, target_id, target_path) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_path",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_state_tree_node": {
+          "doc": "X.remove_state_tree_node(asset_path, node_id) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "node_id",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_state_tree_root_parameter": {
+          "doc": "X.remove_state_tree_root_parameter(asset_path, name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_state_tree_state": {
+          "doc": "X.remove_state_tree_state(asset_path, state_id) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "state_id",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_state_tree_transition": {
+          "doc": "X.remove_state_tree_transition(asset_path, transition_id) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "transition_id",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "rename_state_tree_root_parameter": {
+          "doc": "X.rename_state_tree_root_parameter(asset_path, old_name, new_name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "old_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "send_state_tree_component_event": {
+          "doc": "X.send_state_tree_component_event(component_path, event_tag, origin=\"UnrealBridge\") -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "component_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "event_tag",
+              "type": ""
+            },
+            {
+              "default": "\"UnrealBridge\"",
+              "has_default": true,
+              "name": "origin",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_state_tree_breakpoint": {
+          "doc": "X.set_state_tree_breakpoint(asset_path, item_id, breakpoint_type, enabled) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "item_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "breakpoint_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "enabled",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_state_tree_component_asset": {
+          "doc": "X.set_state_tree_component_asset(component_path, asset_path) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "component_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_state_tree_linked_asset": {
+          "doc": "X.set_state_tree_linked_asset(asset_path, state_id, linked_asset_path) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "state_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "linked_asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_state_tree_linked_state": {
+          "doc": "X.set_state_tree_linked_state(asset_path, state_id, linked_state_id) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "state_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "linked_state_id",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_state_tree_node_property": {
+          "doc": "X.set_state_tree_node_property(asset_path, node_id, data_source, property_path, value) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "node_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "data_source",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_state_tree_parameter_value": {
+          "doc": "X.set_state_tree_parameter_value(asset_path, scope_id, name, value, mark_overridden=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "scope_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "mark_overridden",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_state_tree_state_property": {
+          "doc": "X.set_state_tree_state_property(asset_path, state_id, property_path, value) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "state_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_state_tree_state_type": {
+          "doc": "X.set_state_tree_state_type(asset_path, state_id, state_type) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "state_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "state_type",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_state_tree_transition_property": {
+          "doc": "X.set_state_tree_transition_property(asset_path, transition_id, property_path, value) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "transition_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_state_tree_transition_target": {
+          "doc": "X.set_state_tree_transition_target(asset_path, transition_id, target_type, target_state_id=\"\") -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "transition_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_type",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "target_state_id",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "validate_state_tree": {
+          "doc": "X.validate_state_tree(asset_path) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        }
+      }
+    },
     "UnrealBridgeStructLibrary": {
       "functions": {
         "add_struct_variable": {
@@ -22140,6 +23228,157 @@
       "name",
       "states",
       "transitions"
+    ],
+    "BridgeStateTreeAssetInfo": [
+      "asset_path",
+      "binding_count",
+      "breakpoint_count",
+      "dirty",
+      "editor_data_hash",
+      "editor_schema_class_path",
+      "last_compiled_editor_data_hash",
+      "node_count",
+      "parameter_count",
+      "ready_to_run",
+      "root_parameters_id",
+      "root_state_count",
+      "schema_class_path",
+      "state_count",
+      "transition_count"
+    ],
+    "BridgeStateTreeBindableStructInfo": [
+      "category",
+      "id",
+      "name",
+      "section",
+      "type_path"
+    ],
+    "BridgeStateTreeBindingInfo": [
+      "output_binding",
+      "source_id",
+      "source_path",
+      "target_id",
+      "target_path"
+    ],
+    "BridgeStateTreeBreakpointInfo": [
+      "item_id",
+      "type"
+    ],
+    "BridgeStateTreeCompileMessage": [
+      "item_id",
+      "item_name",
+      "message",
+      "severity",
+      "state_id",
+      "state_path"
+    ],
+    "BridgeStateTreeCompileResult": [
+      "error",
+      "messages",
+      "ready_to_run",
+      "success"
+    ],
+    "BridgeStateTreeComponentInfo": [
+      "active_state_names",
+      "component_name",
+      "component_path",
+      "owner_label",
+      "owner_path",
+      "paused",
+      "run_status",
+      "running",
+      "state_tree_asset_path",
+      "world_type"
+    ],
+    "BridgeStateTreeCreateResult": [
+      "asset_path",
+      "error",
+      "success"
+    ],
+    "BridgeStateTreeNodeInfo": [
+      "blueprint_node",
+      "enabled",
+      "execution_runtime_data_type_path",
+      "expression_indent",
+      "expression_operand",
+      "id",
+      "index",
+      "instance_type_path",
+      "name",
+      "node_type_path",
+      "owner_id",
+      "scope"
+    ],
+    "BridgeStateTreeNodeTypeInfo": [
+      "allowed_by_schema",
+      "blueprint_class",
+      "display_name",
+      "instance_type_path",
+      "kind",
+      "type_path"
+    ],
+    "BridgeStateTreeParameterInfo": [
+      "id",
+      "name",
+      "overridden",
+      "type",
+      "value"
+    ],
+    "BridgeStateTreePropertyInfo": [
+      "bindable",
+      "category",
+      "data_source",
+      "display_name",
+      "editable",
+      "inherited",
+      "path",
+      "type",
+      "usage",
+      "value"
+    ],
+    "BridgeStateTreePropertyResult": [
+      "error",
+      "success",
+      "type_path",
+      "value"
+    ],
+    "BridgeStateTreeStateInfo": [
+      "child_count",
+      "consideration_count",
+      "depth",
+      "description",
+      "enabled",
+      "enter_condition_count",
+      "expanded",
+      "id",
+      "index",
+      "linked_asset_path",
+      "linked_state_id",
+      "name",
+      "parent_id",
+      "path",
+      "selection_behavior",
+      "tag",
+      "task_count",
+      "tasks_completion",
+      "transition_count",
+      "type"
+    ],
+    "BridgeStateTreeTransitionInfo": [
+      "condition_count",
+      "delay_duration",
+      "delay_random_variance",
+      "enabled",
+      "has_delay",
+      "id",
+      "index",
+      "priority",
+      "required_event_tag",
+      "state_id",
+      "target_state_id",
+      "target_state_name",
+      "target_type",
+      "trigger"
     ],
     "BridgeStaticMeshInfo": [
       "asset_path",

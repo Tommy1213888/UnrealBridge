@@ -16,7 +16,7 @@ structural rather than mnemonic.
 
 import unreal
 
-_GENERATED_AT = '2026-08-02T05:35:49+00:00'
+_GENERATED_AT = '2026-08-03T14:31:34+00:00'
 _UE_VERSION = '5.7.1-48512491+++UE5+Release-5.7'
 
 class Anim:
@@ -5222,6 +5222,250 @@ class Reactive:
     def unregister(*, handler_id):
         """X.unregister(handler_id) -> bool"""
         return unreal.UnrealBridgeReactiveLibrary.unregister(handler_id)
+
+
+class StateTree:
+    """Wraps unreal.UnrealBridgeStateTreeLibrary (kwargs-only)."""
+
+    @staticmethod
+    def add_state_tree_binding(*, asset_path, source_id, source_path, target_id, target_path, output_binding=False):
+        """X.add_state_tree_binding(asset_path, source_id, source_path, target_id, target_path, output_binding=False) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.add_state_tree_binding(asset_path, source_id, source_path, target_id, target_path, output_binding)
+
+    @staticmethod
+    def add_state_tree_node(*, asset_path, owner_id, scope, type_path, insert_index=-1):
+        """X.add_state_tree_node(asset_path, owner_id, scope, type_path, insert_index=-1) -> str"""
+        return unreal.UnrealBridgeStateTreeLibrary.add_state_tree_node(asset_path, owner_id, scope, type_path, insert_index)
+
+    @staticmethod
+    def add_state_tree_root_parameter(*, asset_path, name, type, default_value=""):
+        """X.add_state_tree_root_parameter(asset_path, name, type, default_value="") -> str"""
+        return unreal.UnrealBridgeStateTreeLibrary.add_state_tree_root_parameter(asset_path, name, type, default_value)
+
+    @staticmethod
+    def add_state_tree_state(*, asset_path, parent_state_id, name, state_type="State", insert_index=-1):
+        """X.add_state_tree_state(asset_path, parent_state_id, name, state_type="State", insert_index=-1) -> str"""
+        return unreal.UnrealBridgeStateTreeLibrary.add_state_tree_state(asset_path, parent_state_id, name, state_type, insert_index)
+
+    @staticmethod
+    def add_state_tree_transition(*, asset_path, state_id, trigger, target_type, target_state_id="", required_event_tag="", insert_index=-1):
+        """X.add_state_tree_transition(asset_path, state_id, trigger, target_type, target_state_id="", required_event_tag="", insert_index=-1) -> str"""
+        return unreal.UnrealBridgeStateTreeLibrary.add_state_tree_transition(asset_path, state_id, trigger, target_type, target_state_id, required_event_tag, insert_index)
+
+    @staticmethod
+    def clear_state_tree_bindings_for_item(*, asset_path, item_id):
+        """X.clear_state_tree_bindings_for_item(asset_path, item_id) -> int32"""
+        return unreal.UnrealBridgeStateTreeLibrary.clear_state_tree_bindings_for_item(asset_path, item_id)
+
+    @staticmethod
+    def clear_state_tree_breakpoints(*, asset_path):
+        """X.clear_state_tree_breakpoints(asset_path) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.clear_state_tree_breakpoints(asset_path)
+
+    @staticmethod
+    def compile_state_tree(*, asset_path, run_validation=True):
+        """X.compile_state_tree(asset_path, run_validation=True) -> BridgeStateTreeCompileResult"""
+        return unreal.UnrealBridgeStateTreeLibrary.compile_state_tree(asset_path, run_validation)
+
+    @staticmethod
+    def control_state_tree_component(*, component_path, action, reason="UnrealBridge"):
+        """X.control_state_tree_component(component_path, action, reason="UnrealBridge") -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.control_state_tree_component(component_path, action, reason)
+
+    @staticmethod
+    def create_state_tree(*, asset_path, schema_class_path):
+        """X.create_state_tree(asset_path, schema_class_path) -> BridgeStateTreeCreateResult"""
+        return unreal.UnrealBridgeStateTreeLibrary.create_state_tree(asset_path, schema_class_path)
+
+    @staticmethod
+    def get_last_state_tree_error():
+        """X.get_last_state_tree_error() -> str"""
+        return unreal.UnrealBridgeStateTreeLibrary.get_last_state_tree_error()
+
+    @staticmethod
+    def get_state_tree_component_info(*, component_path):
+        """X.get_state_tree_component_info(component_path) -> BridgeStateTreeComponentInfo"""
+        return unreal.UnrealBridgeStateTreeLibrary.get_state_tree_component_info(component_path)
+
+    @staticmethod
+    def get_state_tree_info(*, asset_path):
+        """X.get_state_tree_info(asset_path) -> BridgeStateTreeAssetInfo"""
+        return unreal.UnrealBridgeStateTreeLibrary.get_state_tree_info(asset_path)
+
+    @staticmethod
+    def get_state_tree_node_property(*, asset_path, node_id, data_source, property_path):
+        """X.get_state_tree_node_property(asset_path, node_id, data_source, property_path) -> BridgeStateTreePropertyResult"""
+        return unreal.UnrealBridgeStateTreeLibrary.get_state_tree_node_property(asset_path, node_id, data_source, property_path)
+
+    @staticmethod
+    def get_state_tree_state_property(*, asset_path, state_id, property_path):
+        """X.get_state_tree_state_property(asset_path, state_id, property_path) -> BridgeStateTreePropertyResult"""
+        return unreal.UnrealBridgeStateTreeLibrary.get_state_tree_state_property(asset_path, state_id, property_path)
+
+    @staticmethod
+    def get_state_tree_transition_property(*, asset_path, transition_id, property_path):
+        """X.get_state_tree_transition_property(asset_path, transition_id, property_path) -> BridgeStateTreePropertyResult"""
+        return unreal.UnrealBridgeStateTreeLibrary.get_state_tree_transition_property(asset_path, transition_id, property_path)
+
+    @staticmethod
+    def is_state_tree_api_available():
+        """X.is_state_tree_api_available() -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.is_state_tree_api_available()
+
+    @staticmethod
+    def list_state_tree_bindable_structs(*, asset_path, target_id=""):
+        """X.list_state_tree_bindable_structs(asset_path, target_id="") -> Array[BridgeStateTreeBindableStructInfo]"""
+        return unreal.UnrealBridgeStateTreeLibrary.list_state_tree_bindable_structs(asset_path, target_id)
+
+    @staticmethod
+    def list_state_tree_bindings(*, asset_path):
+        """X.list_state_tree_bindings(asset_path) -> Array[BridgeStateTreeBindingInfo]"""
+        return unreal.UnrealBridgeStateTreeLibrary.list_state_tree_bindings(asset_path)
+
+    @staticmethod
+    def list_state_tree_breakpoints(*, asset_path):
+        """X.list_state_tree_breakpoints(asset_path) -> Array[BridgeStateTreeBreakpointInfo]"""
+        return unreal.UnrealBridgeStateTreeLibrary.list_state_tree_breakpoints(asset_path)
+
+    @staticmethod
+    def list_state_tree_components(*, pie_only=False):
+        """X.list_state_tree_components(pie_only=False) -> Array[BridgeStateTreeComponentInfo]"""
+        return unreal.UnrealBridgeStateTreeLibrary.list_state_tree_components(pie_only)
+
+    @staticmethod
+    def list_state_tree_node_properties(*, asset_path, node_id, data_source="Instance", include_inherited=True):
+        """X.list_state_tree_node_properties(asset_path, node_id, data_source="Instance", include_inherited=True) -> Array[BridgeStateTreePropertyInfo]"""
+        return unreal.UnrealBridgeStateTreeLibrary.list_state_tree_node_properties(asset_path, node_id, data_source, include_inherited)
+
+    @staticmethod
+    def list_state_tree_node_types(*, asset_path, kind="", include_disallowed=False):
+        """X.list_state_tree_node_types(asset_path, kind="", include_disallowed=False) -> Array[BridgeStateTreeNodeTypeInfo]"""
+        return unreal.UnrealBridgeStateTreeLibrary.list_state_tree_node_types(asset_path, kind, include_disallowed)
+
+    @staticmethod
+    def list_state_tree_nodes(*, asset_path, scope=""):
+        """X.list_state_tree_nodes(asset_path, scope="") -> Array[BridgeStateTreeNodeInfo]"""
+        return unreal.UnrealBridgeStateTreeLibrary.list_state_tree_nodes(asset_path, scope)
+
+    @staticmethod
+    def list_state_tree_parameters(*, asset_path, scope_id=""):
+        """X.list_state_tree_parameters(asset_path, scope_id="") -> Array[BridgeStateTreeParameterInfo]"""
+        return unreal.UnrealBridgeStateTreeLibrary.list_state_tree_parameters(asset_path, scope_id)
+
+    @staticmethod
+    def list_state_tree_states(*, asset_path):
+        """X.list_state_tree_states(asset_path) -> Array[BridgeStateTreeStateInfo]"""
+        return unreal.UnrealBridgeStateTreeLibrary.list_state_tree_states(asset_path)
+
+    @staticmethod
+    def list_state_tree_transitions(*, asset_path, state_id=""):
+        """X.list_state_tree_transitions(asset_path, state_id="") -> Array[BridgeStateTreeTransitionInfo]"""
+        return unreal.UnrealBridgeStateTreeLibrary.list_state_tree_transitions(asset_path, state_id)
+
+    @staticmethod
+    def move_state_tree_node(*, asset_path, node_id, new_index):
+        """X.move_state_tree_node(asset_path, node_id, new_index) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.move_state_tree_node(asset_path, node_id, new_index)
+
+    @staticmethod
+    def move_state_tree_state(*, asset_path, state_id, new_parent_state_id, insert_index=-1):
+        """X.move_state_tree_state(asset_path, state_id, new_parent_state_id, insert_index=-1) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.move_state_tree_state(asset_path, state_id, new_parent_state_id, insert_index)
+
+    @staticmethod
+    def move_state_tree_transition(*, asset_path, transition_id, new_index):
+        """X.move_state_tree_transition(asset_path, transition_id, new_index) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.move_state_tree_transition(asset_path, transition_id, new_index)
+
+    @staticmethod
+    def remove_state_tree_binding(*, asset_path, target_id, target_path):
+        """X.remove_state_tree_binding(asset_path, target_id, target_path) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.remove_state_tree_binding(asset_path, target_id, target_path)
+
+    @staticmethod
+    def remove_state_tree_node(*, asset_path, node_id):
+        """X.remove_state_tree_node(asset_path, node_id) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.remove_state_tree_node(asset_path, node_id)
+
+    @staticmethod
+    def remove_state_tree_root_parameter(*, asset_path, name):
+        """X.remove_state_tree_root_parameter(asset_path, name) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.remove_state_tree_root_parameter(asset_path, name)
+
+    @staticmethod
+    def remove_state_tree_state(*, asset_path, state_id):
+        """X.remove_state_tree_state(asset_path, state_id) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.remove_state_tree_state(asset_path, state_id)
+
+    @staticmethod
+    def remove_state_tree_transition(*, asset_path, transition_id):
+        """X.remove_state_tree_transition(asset_path, transition_id) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.remove_state_tree_transition(asset_path, transition_id)
+
+    @staticmethod
+    def rename_state_tree_root_parameter(*, asset_path, old_name, new_name):
+        """X.rename_state_tree_root_parameter(asset_path, old_name, new_name) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.rename_state_tree_root_parameter(asset_path, old_name, new_name)
+
+    @staticmethod
+    def send_state_tree_component_event(*, component_path, event_tag, origin="UnrealBridge"):
+        """X.send_state_tree_component_event(component_path, event_tag, origin="UnrealBridge") -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.send_state_tree_component_event(component_path, event_tag, origin)
+
+    @staticmethod
+    def set_state_tree_breakpoint(*, asset_path, item_id, breakpoint_type, enabled):
+        """X.set_state_tree_breakpoint(asset_path, item_id, breakpoint_type, enabled) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.set_state_tree_breakpoint(asset_path, item_id, breakpoint_type, enabled)
+
+    @staticmethod
+    def set_state_tree_component_asset(*, component_path, asset_path):
+        """X.set_state_tree_component_asset(component_path, asset_path) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.set_state_tree_component_asset(component_path, asset_path)
+
+    @staticmethod
+    def set_state_tree_linked_asset(*, asset_path, state_id, linked_asset_path):
+        """X.set_state_tree_linked_asset(asset_path, state_id, linked_asset_path) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.set_state_tree_linked_asset(asset_path, state_id, linked_asset_path)
+
+    @staticmethod
+    def set_state_tree_linked_state(*, asset_path, state_id, linked_state_id):
+        """X.set_state_tree_linked_state(asset_path, state_id, linked_state_id) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.set_state_tree_linked_state(asset_path, state_id, linked_state_id)
+
+    @staticmethod
+    def set_state_tree_node_property(*, asset_path, node_id, data_source, property_path, value):
+        """X.set_state_tree_node_property(asset_path, node_id, data_source, property_path, value) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.set_state_tree_node_property(asset_path, node_id, data_source, property_path, value)
+
+    @staticmethod
+    def set_state_tree_parameter_value(*, asset_path, scope_id, name, value, mark_overridden=True):
+        """X.set_state_tree_parameter_value(asset_path, scope_id, name, value, mark_overridden=True) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.set_state_tree_parameter_value(asset_path, scope_id, name, value, mark_overridden)
+
+    @staticmethod
+    def set_state_tree_state_property(*, asset_path, state_id, property_path, value):
+        """X.set_state_tree_state_property(asset_path, state_id, property_path, value) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.set_state_tree_state_property(asset_path, state_id, property_path, value)
+
+    @staticmethod
+    def set_state_tree_state_type(*, asset_path, state_id, state_type):
+        """X.set_state_tree_state_type(asset_path, state_id, state_type) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.set_state_tree_state_type(asset_path, state_id, state_type)
+
+    @staticmethod
+    def set_state_tree_transition_property(*, asset_path, transition_id, property_path, value):
+        """X.set_state_tree_transition_property(asset_path, transition_id, property_path, value) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.set_state_tree_transition_property(asset_path, transition_id, property_path, value)
+
+    @staticmethod
+    def set_state_tree_transition_target(*, asset_path, transition_id, target_type, target_state_id=""):
+        """X.set_state_tree_transition_target(asset_path, transition_id, target_type, target_state_id="") -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.set_state_tree_transition_target(asset_path, transition_id, target_type, target_state_id)
+
+    @staticmethod
+    def validate_state_tree(*, asset_path):
+        """X.validate_state_tree(asset_path) -> bool"""
+        return unreal.UnrealBridgeStateTreeLibrary.validate_state_tree(asset_path)
 
 
 class Struct:

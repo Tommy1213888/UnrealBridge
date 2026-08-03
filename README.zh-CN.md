@@ -24,7 +24,7 @@ UnrealBridge 是一个面向 AI Agent 的 Unreal Engine 编辑器桥接层，围
 
 ## 亮点
 
-- **基于 AST 的防幻觉契约层。** 用户脚本到达 UE 之前，`bridge_preflight.py` 先用 Python AST 解析，对照自动生成的清单（22 个库 × 1037 UFUNCTION）逐一校验每个 `unreal.UnrealBridge*Library.fn(...)` 调用——**不回到编辑器** 就能拦下不存在的库 / 函数名（带 did-you-mean）、错误的位置参数数量、未知关键字、不存在的桥接枚举成员。第二层把 `AssetRegistry` / `GameplayStatics` 的裸调用模式重定向到桥接等价物，并追踪每个返回值的实际类型，在对 `str` / `SoftObjectPath` 这类绑定类型做属性访问时给出警告；UE 对象抛出真正的 `AttributeError` 时则回查 UE Python，列出该类实际反射的 `UPROPERTY` 并给出可粘贴的修正代码（自动处理 `snake_case` ↔ `PascalCase` 的差异）。第三层 ship 一份纯关键字参数的 Python wrapper 模块，让"位置参数顺序写错"在语法层面就不可能发生。三层叠加把新会话 agent 的桥接调用失败率从 **24% 降到 16%**（A/B 验证）——这是先前仅靠 `SKILL.md` 的"调用前先查文档"提示规则一直没能稳定做到的。
+- **基于 AST 的防幻觉契约层。** 用户脚本到达 UE 之前，`bridge_preflight.py` 先用 Python AST 解析，对照自动生成的清单（23 个库 × 1092 UFUNCTION）逐一校验每个 `unreal.UnrealBridge*Library.fn(...)` 调用——**不回到编辑器** 就能拦下不存在的库 / 函数名（带 did-you-mean）、错误的位置参数数量、未知关键字、不存在的桥接枚举成员。第二层把 `AssetRegistry` / `GameplayStatics` 的裸调用模式重定向到桥接等价物，并追踪每个返回值的实际类型，在对 `str` / `SoftObjectPath` 这类绑定类型做属性访问时给出警告；UE 对象抛出真正的 `AttributeError` 时则回查 UE Python，列出该类实际反射的 `UPROPERTY` 并给出可粘贴的修正代码（自动处理 `snake_case` ↔ `PascalCase` 的差异）。第三层 ship 一份纯关键字参数的 Python wrapper 模块，让"位置参数顺序写错"在语法层面就不可能发生。三层叠加把新会话 agent 的桥接调用失败率从 **24% 降到 16%**（A/B 验证）——这是先前仅靠 `SKILL.md` 的"调用前先查文档"提示规则一直没能稳定做到的。
 
   <p align="center">
     <img src="docs/images/zh/02-preflight.png" alt="本地 AST 预检 · 不让幻觉抵达编辑器">
@@ -34,7 +34,7 @@ UnrealBridge 是一个面向 AI Agent 的 Unreal Engine 编辑器桥接层，围
 - **基于 Reactive 系统的事件订阅。** Agent 可订阅 GAS 事件、属性变化、Actor 生命周期、AnimNotify、输入、定时器，以及编辑器端的资产变更事件。在指定事件触发时由桥接层主动回调，无需 Agent 轮询——这是纯请求 / 响应式协议无法覆盖的场景。
 - **PIE 运行时的 Agent 控制接口。** `UnrealBridgeGameplayLibrary` 提供聚合式世界观测、导航寻路，以及移动 / 视角 / 跳跃等操作输入，适用于 AI 行为验证、自动化测试、游戏内 NPC 原型等运行时工作流。
 - **蓝图工具链。** 不仅仅是自动布局：`auto_layout_graph` 的 `pin_aligned` 策略读取 Slate 实时几何对齐 exec 轨道、`straighten_exec_chain` 把主干拉直、`collapse_nodes_to_function` 提取子图、`lint_blueprint` 按固定规则扫 orphan / 未命名节点 / 过大函数 / 无注释大图，`add_comment_box` + 预设配色（Section / Validation / Danger / Network / UI / Debug / Setup）让图谱分区可读；AnimGraph 与状态机还有专用的 `auto_layout_anim_graph` / `auto_layout_state_machine`（后者递归进入每个状态内部 + 规则图）。
-- **Python 原生执行。** 22 个 `UnrealBridge*Library` 累计约 1037 个 `UFUNCTION`，覆盖常见子系统；未封装的能力可直接通过 `unreal.*` 原生 API 调用。相较于固定工具列表的 MCP 方案与仅暴露单一 `call` 命令的反射协议，该设计在灵活性与结构性之间取得了折衷。所有关卡写操作均包裹于 `FScopedTransaction` 内，支持标准 Undo / Redo。
+- **Python 原生执行。** 23 个 `UnrealBridge*Library` 累计 1092 个 `UFUNCTION`，覆盖常见子系统；未封装的能力可直接通过 `unreal.*` 原生 API 调用。相较于固定工具列表的 MCP 方案与仅暴露单一 `call` 命令的反射协议，该设计在灵活性与结构性之间取得了折衷。所有关卡写操作均包裹于 `FScopedTransaction` 内，支持标准 Undo / Redo。
 
 ## 架构
 
@@ -45,7 +45,7 @@ flowchart LR
     subgraph Host["Agent 主机"]
       CLI["bridge.py"]
       Pre["AST preflight<br/>（本地 — 调用前拦截，<br/>不发起 TCP）"]
-      Mani[("bridge_manifest.json<br/>22 个库 · 1037 UFUNCTION")]
+      Mani[("bridge_manifest.json<br/>23 个库 · 1092 UFUNCTION")]
     end
 
     Gen["tools/gen_manifest.py<br/>扫 C++ 头文件"]
@@ -56,7 +56,7 @@ flowchart LR
       Reactive["UnrealBridgeReactiveSubsystem<br/>+ 10 个事件适配器"]
       Exec["IPythonScriptPlugin::<br/>ExecPythonCommandEx<br/>（GameThread）"]
       Wrap["unreal_bridge<br/>kwargs-only 包装<br/>（可选的更安全入口）"]
-      Libs["22× UnrealBridge*Library"]
+      Libs["23× UnrealBridge*Library"]
       Engine["UEditor · UWorld · Assets"]
     end
 
@@ -212,6 +212,7 @@ python .claude/skills/unreal-bridge/scripts/rebuild_relaunch.py  # 动到反射
 | `UnrealBridgeAnimLibrary` | AnimBP 深度内省：状态机、AnimGraph 节点、链接层、Slot、曲线；Sequence / Montage / BlendSpace 资产信息；骨骼树、Socket、VirtualBone、BlendProfile。**写操作**：ABP 创建与变量、状态机 / 状态 / 导管 / 转移的增删改、转移属性（crossfade、优先级、双向）、常量规则捷径与真实变量驱动规则（配合 BP 库写 `KismetMathLibrary` 比较节点）、9 类 AnimGraph 节点工厂 + `add_anim_graph_node_by_class_name` 兜底、引脚连线 / 断开 / 移位、AnimGraph 与状态机的自动布局；AnimNotify、同步标记、Montage Section、Socket 的增删配置 |
 | `UnrealBridgePoseSearchLibrary` | Motion Matching —— `UPoseSearchSchema` / `UPoseSearchDatabase` 内省：schema 通道与权重、数据库动画条目、采样 / 分支采样、索引状态（`wait-pose-index` CLI 辅助）；针对运行时 pose 向量做匹配评估。`DatabaseAnimationAssets` / `Channels` 在 C++ 里是 `private:`，`get_editor_property` 拿不到 —— 这个库是唯一通路 |
 | `UnrealBridgeChooserLibrary` | Motion Matching —— `UChooserTable` 内省与作者：列、行（含 disabled 标记与解析后的结果）、上下文对象、NestedChooser 下钻（`:Name` 路径）。写操作：增删列 / 行、设置上下文类型时自动 Compile + PostEditChange 让编辑器刷新。`ResultsStructs` / `DisabledRows` 在 C++ 是 `private:` —— 这个库是唯一通路 |
+| `UnrealBridgeStateTreeLibrary` | StateTree 全流程读写、调试与运行时控制（UE 5.7+）：资产创建与 Schema 查询；以稳定 GUID 驱动状态、节点、条件、考量项和转移的 CRUD；按 Schema 发现原生/蓝图节点类型；可发现的 export-text 属性编辑；属性绑定、根/状态参数、完整编译诊断、临时断点，以及实时 `UStateTreeComponent` 查询、生命周期控制和事件投递。UE 5.3-5.6 暴露安全桩 |
 | `UnrealBridgeStructLibrary` | `UUserDefinedStruct`(UDS) 的作者级写接口 —— 创建 asset、字段 CRUD（增删改名 / 改类型 / 重排 / 改默认值 / tooltip / 每字段 edit on instance）。底层走 `FStructureEditorUtils`，所有写自动触发重编译 + 下游 BP 传播。`UserDefinedStructureFactory` 与 `StructureEditorUtils` 在 native Python 没暴露，这个库是程序化构造 DataTable / BP 变量可引用的 UDS 的唯一通路 |
 | `UnrealBridgeDataTableLibrary` | DataTable 行级读写与条件过滤；CSV / JSON 导入导出 —— 文件路径变体之外，新增 in-memory text 变体（适合 LLM 生成的 CSV/JSON 内容），外加 `create_data_table_from_csv` / `create_data_table_from_json` 一把梭从 row struct 直接造新 DataTable（支持 `/Game/...` 路径或短类名）；表间行复制、行差异比对；按 RowStruct 反查引用该结构的所有表 |
 | `UnrealBridgeCurveLibrary` | 曲线资产（`UCurveFloat` / `UCurveVector` / `UCurveLinearColor`）与 `UCurveTable` 行的读写：asset info、键 CRUD（批量 + 原子切线写）、前 / 后无穷外推模式、Auto 切线重算、批量采样（N 个时间点一次往返）、等距采样；曲线表行的增删改查与重命名。写操作广播 `OnCurveChanged` 让打开的 Curve Editor 即时刷新 |
@@ -276,7 +277,7 @@ UnrealBridge/
 
 ## 系统要求
 
-- **Unreal Engine 5.3+**,需启用 `PythonScriptPlugin` 与 `GameplayAbilities`(均为引擎自带)。`tools/build_matrix.py` 已对 5.3.2 / 5.4.4 / 5.5.4 / 5.6.1 / 5.7.1 / 5.8.0 验证 BuildPlugin 通过;部分库(Chooser / PoseSearch / Material / Navigation 及少量独立 UFUNCTION)需要 5.7+,5.3 与 5.8 各有少量 inline shim,详见 [docs/version-compatibility.md](docs/version-compatibility.md)。UE 5.2 及更早版本不支持。
+- **Unreal Engine 5.3+**,需启用 `PythonScriptPlugin` 与 `GameplayAbilities`(均为引擎自带)。`tools/build_matrix.py` 已对 5.3.2 / 5.4.4 / 5.5.4 / 5.6.1 / 5.7.1 / 5.8.0 验证 BuildPlugin 通过;部分库(Chooser / PoseSearch / Material / Navigation / StateTree 及少量独立 UFUNCTION)需要 5.7+,5.3 与 5.8 各有少量 inline shim,详见 [docs/version-compatibility.md](docs/version-compatibility.md)。UE 5.2 及更早版本不支持。
 - **Windows 10/11** —— 插件本身可移植,但辅助脚本里的路径按 Windows 风格写死
 - **Python 3.9+**,已加入 PATH
 - **Visual Studio 2022** + UE 工作负载 —— 用于编译插件。**Toolchain 注意事项:**
