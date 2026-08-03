@@ -6,7 +6,7 @@ allowed-tools: Bash Read Write Edit Glob Grep Monitor
 
 # UnrealBridge
 
-Execute Python directly inside a running UE 5.3+ editor. Auto-discovers via UDP multicast (`239.255.42.99:9876`); the TCP data port is OS-assigned per editor.
+Execute Python directly inside a running UE 5.3+ editor. Auto-discovery sends paired UDP probes to LAN multicast (`239.255.42.99:9876`) and local loopback (`127.0.0.1:9876`); responses are de-duplicated by editor PID. The TCP data port is OS-assigned per editor.
 
 ## Preconditions
 
@@ -16,7 +16,7 @@ If `bridge.py` returns `discovery: no UnrealBridge editors found`, walk these in
 2. **Plugin enabled** — check `<UEProject>/<Project>.uproject` `"Plugins"` block for `{"Name":"UnrealBridge", "Enabled":false}` and flip if present.
 3. **Editor up and ready** — `bridge.py ping` returns `"ready": true`. `false` means MainFrame still loading; wait 10–60s.
 
-Last resort if multicast is blocked (corp VPN, virtual NIC): `--endpoint=127.0.0.1:<port>` from the editor log line `LogUnrealBridge: Listening on 127.0.0.1:<port>`. Python 3.7+ stdlib only.
+The loopback probe keeps local discovery working when multicast is blocked by a VPN, virtual NIC, or Windows firewall policy. Last resort if UDP discovery itself is blocked: use `--endpoint=127.0.0.1:<port>` from the editor log line `LogUnrealBridge: Listening on 127.0.0.1:<port>`. Python 3.7+ stdlib only.
 
 ## Waiting for the editor to become ready (post-launch / post-relaunch)
 

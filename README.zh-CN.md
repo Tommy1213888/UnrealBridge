@@ -67,7 +67,7 @@ flowchart LR
     Gen -- "生成" --> Mani
     Gen -- "生成" --> Wrap
 
-    CLI -- "UDP 探测<br/>239.255.42.99:9876" --> Disc
+    CLI -- "UDP 双路探测<br/>多播 + 回环" --> Disc
     CLI -- "TCP / JSON<br/>（端口由发现得到）" --> Server
     Server -- "RPC 脚本" --> Exec
     Engine -. "委托触发" .-> Reactive
@@ -118,7 +118,7 @@ sync_project.bat D:\Path\To\YourProject
 
 ### 4. 构建并启动
 
-用 UE 打开 `.uproject` 让它自动重建插件，或从命令行跑项目自带的 `Build.bat`。启动编辑器 —— 插件会在 `PostEngineInit` 拉起服务器，看到日志里出现 `LogUnrealBridge: Listening on 127.0.0.1:<端口>` 就算成功。端口由 OS 分配，客户端通过多播发现自动找到它，不需要手动配置。
+用 UE 打开 `.uproject` 让它自动重建插件，或从命令行跑项目自带的 `Build.bat`。启动编辑器 —— 插件会在 `PostEngineInit` 拉起服务器，看到日志里出现 `LogUnrealBridge: Listening on 127.0.0.1:<端口>` 就算成功。端口由 OS 分配，客户端同时通过多播和本机回环探测自动找到它，不需要手动配置。
 
 ### 5. 验证
 
@@ -234,7 +234,7 @@ python .claude/skills/unreal-bridge/scripts/rebuild_relaunch.py  # 动到反射
 
 两个通道：
 
-1. **UDP 多播发现**：`239.255.42.99:9876`。客户端广播一个带 request_id 的 `probe`（可带 project 过滤器），每个运行中的编辑器单播回自己的 TCP 绑定地址 + 端口 + token 指纹。多编辑器通过 `SO_REUSEADDR` 共存。
+1. **UDP 发现**：端口 `9876`。客户端把带同一 request_id 的 `probe`（可带 project 过滤器）同时发往局域网多播 `239.255.42.99` 和本机回环 `127.0.0.1`，并按编辑器 PID 去重。多播保留局域网/多编辑器发现，回环探测则避免 Windows、VPN 或虚拟网卡丢弃多播回环时导致本机发现失效。每个编辑器单播回自己的 TCP 绑定地址 + 端口 + token 指纹，多编辑器通过 `SO_REUSEADDR` 共存。
 
 2. **TCP 数据通道**：端口由编辑器在发现响应里给出（OS 分配，默认 `127.0.0.1`）。长度前缀 JSON：
 

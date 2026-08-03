@@ -41,10 +41,10 @@ Length-prefixed JSON over TCP on an OS-assigned port (default bind `127.0.0.1`, 
   - `{"id":"...", "command":"debug_resume"}` → unsticks a paused BP breakpoint via `FKismetDebugUtilities::RequestAbortingExecution`
 
 ### Discovery Protocol
-UDP multicast on `239.255.42.99:9876` (the one constant the whole system shares). Multiple editors can bind via `SO_REUSEADDR`.
+UDP discovery uses LAN multicast on `239.255.42.99:9876` plus a parallel local-loopback probe to `127.0.0.1:9876`. Both carry the same request id and responses are de-duplicated by editor PID. This preserves LAN discovery while avoiding dependence on Windows multicast loopback. Multiple editors can bind via `SO_REUSEADDR`.
 - Probe (client → group): `{"v":1, "type":"probe", "request_id":"<uuid>", "filter":{"project":"<name|path|*>"}}`
 - Response (server → probe source, unicast): `{"v":1, "type":"response", "request_id":"<uuid>", "pid":..., "project":"...", "project_path":"...", "engine_version":"...", "tcp_bind":"...", "tcp_port":..., "token_fingerprint":"<sha1(token)[:16]>"}`
-- Client loop: probe → collect for `--discovery-timeout` ms (default 800) → filter by `--project=...` → connect TCP. Empty `token_fingerprint` means no token required.
+- Client loop: send the same probe to multicast + loopback → collect for `--discovery-timeout` ms (default 800) → de-duplicate by PID → filter by `--project=...` → connect TCP. Empty `token_fingerprint` means no token required.
 
 ### Server configuration (CLI / env / editor ini)
 Priority CLI > env > `EditorPerProjectUserSettings.ini [UnrealBridge]` > default.

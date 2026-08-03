@@ -67,7 +67,7 @@ flowchart LR
     Gen -- "writes" --> Mani
     Gen -- "writes" --> Wrap
 
-    CLI -- "UDP probe<br/>239.255.42.99:9876" --> Disc
+    CLI -- "UDP probes<br/>multicast + loopback" --> Disc
     CLI -- "TCP / JSON<br/>(port from discovery)" --> Server
     Server -- "RPC script" --> Exec
     Engine -. "delegate fires" .-> Reactive
@@ -119,7 +119,7 @@ the same project-root argument.
 
 ### 4. Build & launch
 
-Open the `.uproject` and let UE rebuild the plugin automatically, or run the project's `Build.bat` from the command line. Launch the editor — the plugin starts the server at `PostEngineInit`. You're good once `LogUnrealBridge: Listening on 127.0.0.1:<port>` shows up in the log (the port is OS-assigned; the client finds it via multicast — no manual config needed).
+Open the `.uproject` and let UE rebuild the plugin automatically, or run the project's `Build.bat` from the command line. Launch the editor — the plugin starts the server at `PostEngineInit`. You're good once `LogUnrealBridge: Listening on 127.0.0.1:<port>` shows up in the log (the port is OS-assigned; the client finds it via paired multicast + loopback probes — no manual config needed).
 
 ### 5. Verify
 
@@ -235,7 +235,7 @@ source checkout invalidated the recorded path.
 
 Two channels:
 
-1. **UDP multicast discovery** on `239.255.42.99:9876`. Client broadcasts a `probe` with a request id and an optional project filter; every running editor replies with its bound TCP address + port + token fingerprint. Multiple editors coexist on the same host via `SO_REUSEADDR`.
+1. **UDP discovery** on port `9876`. The client sends the same request-id-bearing `probe` to LAN multicast `239.255.42.99` and local loopback `127.0.0.1`, then de-duplicates replies by editor PID. Multicast preserves LAN/multi-editor discovery; loopback keeps local discovery reliable when Windows, a VPN, or a virtual NIC drops multicast loopback. Every editor replies with its bound TCP address + port + token fingerprint. Multiple editors coexist via `SO_REUSEADDR`.
 
 2. **TCP data** on the port the editor reports in its discovery response (OS-assigned; `127.0.0.1` by default). Length-prefixed JSON:
 
