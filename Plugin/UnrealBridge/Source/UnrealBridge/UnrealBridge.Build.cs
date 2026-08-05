@@ -104,5 +104,19 @@ public class UnrealBridge : ModuleRules
 		{
 			PrivateDependencyModuleNames.Add("LiveCoding");
 		}
+
+		// SmartObjects first ships in the supported engine matrix after 5.3,
+		// while UnrealBridge's authoring/runtime API intentionally targets the
+		// stable UE 5.7 surface. Older engines compile the generated safe stubs.
+		if (Target.Version.MajorVersion > 5
+			|| (Target.Version.MajorVersion == 5 && Target.Version.MinorVersion >= 7))
+		{
+			PrivateDependencyModuleNames.AddRange(new string[]
+			{
+				"SmartObjectsModule",
+				"SmartObjectsEditorModule",
+				"WorldConditions",
+			});
+		}
 	}
 }

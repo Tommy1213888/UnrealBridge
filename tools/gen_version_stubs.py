@@ -36,6 +36,7 @@ PRIVATE = REPO_ROOT / "Plugin" / "UnrealBridge" / "Source" / "UnrealBridge" / "P
 # alongside many version-stable ones).
 TARGETS: list[dict] = [
     {"name": "UnrealBridgeStateTreeLibrary",      "scope": "all"},
+    {"name": "UnrealBridgeSmartObjectLibrary",    "scope": "all"},
     {"name": "UnrealBridgeChooserLibrary",        "scope": "all"},
     {"name": "UnrealBridgePoseSearchLibrary",     "scope": "all"},
     {"name": "UnrealBridgeMaterialLibrary",       "scope": "all"},
@@ -148,6 +149,8 @@ def render_stub(class_name: str, func: dict) -> str:
     )
     if class_name == "UUnrealBridgeStateTreeLibrary" and name == "GetLastStateTreeError":
         body = '\treturn TEXT("StateTree authoring API requires Unreal Engine 5.7+");\n'
+    elif class_name == "UUnrealBridgeSmartObjectLibrary" and name == "GetLastSmartObjectError":
+        body = '\treturn TEXT("Smart Object API requires Unreal Engine 5.7+");\n'
     else:
         body = stub_body(rt)
     return f"{rt} {class_name}::{name}({params})\n{{\n{log}{body}}}\n\n"

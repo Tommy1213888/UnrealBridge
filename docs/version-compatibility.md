@@ -25,7 +25,7 @@ fail with "no such function on UnrealBridgeXxxLibrary".
 | `UnrealBridgeMaterialLibrary` | `EMaterialDomain::MD_*` enum values differ in scope; `MATUSAGE_Voxels` / `MATUSAGE_StaticMesh` don't exist in 5.4 |
 | `UnrealBridgeNavigationLibrary` | `ARecastNavMesh::GetDebugGeometryForTile` 2nd arg type changed (`int32` → `FNavTileRef`) and the "default tile = aggregate all" sentinel doesn't exist on 5.4 |
 
-### Whole-library safe-stub gate
+### Whole-library safe-stub gates
 
 `UnrealBridgeStateTreeLibrary` keeps its reflected class and kwargs wrapper on
 all supported engines, but its real implementation is gated by
@@ -34,6 +34,16 @@ all supported engines, but its real implementation is gated by
 `GetLastStateTreeError()` explains the version requirement. This preserves a
 stable automation surface without compiling against StateTree editor APIs whose
 data model and property-binding contracts changed substantially before 5.7.
+
+`UnrealBridgeSmartObjectLibrary` uses the same reflected-header plus generated
+inverse-stub pattern. Its 80 authoring, world, collection, runtime claim, and
+entrance APIs are functional on UE 5.7+; on UE 5.3-5.6,
+`IsSmartObjectApiAvailable()` returns false and
+`GetLastSmartObjectError()` explains the requirement. The `SmartObjectsModule`,
+`SmartObjectsEditorModule`, and `WorldConditions` module dependencies are added
+from `UnrealBridge.Build.cs` only for UE 5.7+, and the plugin references are
+optional, so UE 5.3 can still resolve and compile the descriptor even though it
+does not ship the SmartObjects plugin.
 
 ## Single-UFUNCTION gates (library still works, one function unavailable on 5.4)
 

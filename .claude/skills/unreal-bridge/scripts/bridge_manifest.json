@@ -31,7 +31,7 @@
       "TIMER"
     ]
   },
-  "generated_at": "2026-08-03T14:31:34+00:00",
+  "generated_at": "2026-08-05T03:18:14+00:00",
   "libraries": {
     "UnrealBridgeAnimLibrary": {
       "functions": {
@@ -20106,6 +20106,1770 @@
         }
       }
     },
+    "UnrealBridgeSmartObjectLibrary": {
+      "functions": {
+        "add_smart_object_behavior_definition": {
+          "doc": "X.add_smart_object_behavior_definition(asset_path, behavior_class_path, slot_id=\"\", insert_index=-1) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "behavior_class_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "slot_id",
+              "type": ""
+            },
+            {
+              "default": "-1",
+              "has_default": true,
+              "name": "insert_index",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_smart_object_binding": {
+          "doc": "X.add_smart_object_binding(asset_path, source_id, source_path, target_id, target_path) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_path",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "add_smart_object_component": {
+          "doc": "X.add_smart_object_component(actor_path, definition_asset_path, component_name=\"SmartObject\", can_be_part_of_collection=False, register_with_subsystem=True) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "actor_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "definition_asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"SmartObject\"",
+              "has_default": true,
+              "name": "component_name",
+              "type": ""
+            },
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "can_be_part_of_collection",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "register_with_subsystem",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_smart_object_definition_data": {
+          "doc": "X.add_smart_object_definition_data(asset_path, struct_type_path, slot_id=\"\", insert_index=-1) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "struct_type_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "slot_id",
+              "type": ""
+            },
+            {
+              "default": "-1",
+              "has_default": true,
+              "name": "insert_index",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_smart_object_parameter": {
+          "doc": "X.add_smart_object_parameter(asset_path, name, type, default_value=\"\") -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "type",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "default_value",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_smart_object_slot": {
+          "doc": "X.add_smart_object_slot(asset_path, name, offset, rotation, enabled=True, insert_index=-1) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "offset",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "rotation",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "enabled",
+              "type": ""
+            },
+            {
+              "default": "-1",
+              "has_default": true,
+              "name": "insert_index",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_smart_object_world_condition": {
+          "doc": "X.add_smart_object_world_condition(asset_path, condition_struct_path, slot_id=\"\", operator=\"And\", expression_depth=0, invert=False, insert_index=-1) -> int32",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "condition_struct_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "slot_id",
+              "type": ""
+            },
+            {
+              "default": "\"And\"",
+              "has_default": true,
+              "name": "operator",
+              "type": ""
+            },
+            {
+              "default": "0",
+              "has_default": true,
+              "name": "expression_depth",
+              "type": ""
+            },
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "invert",
+              "type": ""
+            },
+            {
+              "default": "-1",
+              "has_default": true,
+              "name": "insert_index",
+              "type": ""
+            }
+          ],
+          "returns": "int32"
+        },
+        "claim_smart_object_slot": {
+          "doc": "X.claim_smart_object_slot(slot_handle, user_actor_path=\"\", claim_priority=\"Normal\") -> BridgeSmartObjectClaimResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_handle",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "user_actor_path",
+              "type": ""
+            },
+            {
+              "default": "\"Normal\"",
+              "has_default": true,
+              "name": "claim_priority",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeSmartObjectClaimResult"
+        },
+        "control_persistent_smart_object_collection": {
+          "doc": "X.control_persistent_smart_object_collection(collection_actor_path, action) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "collection_actor_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "action",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "control_smart_object_component": {
+          "doc": "X.control_smart_object_component(component_path, action) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "component_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "action",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "create_persistent_smart_object_collection": {
+          "doc": "X.create_persistent_smart_object_collection(actor_label=\"SmartObjectPersistentCollection\") -> str",
+          "params": [
+            {
+              "default": "\"SmartObjectPersistentCollection\"",
+              "has_default": true,
+              "name": "actor_label",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "create_runtime_smart_object": {
+          "doc": "X.create_runtime_smart_object(definition_asset_path, transform, owner_actor_path=\"\") -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "definition_asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "transform",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "owner_actor_path",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "create_smart_object_definition": {
+          "doc": "X.create_smart_object_definition(asset_path) -> BridgeSmartObjectCreateResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeSmartObjectCreateResult"
+        },
+        "debug_smart_object_subsystem": {
+          "doc": "X.debug_smart_object_subsystem(action) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "action",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "destroy_persistent_smart_object_collection": {
+          "doc": "X.destroy_persistent_smart_object_collection(collection_actor_path) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "collection_actor_path",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "destroy_runtime_smart_object": {
+          "doc": "X.destroy_runtime_smart_object(smart_object_handle) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "smart_object_handle",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "duplicate_smart_object_slot": {
+          "doc": "X.duplicate_smart_object_slot(asset_path, source_slot_id, new_name=\"\", insert_index=-1) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_slot_id",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "new_name",
+              "type": ""
+            },
+            {
+              "default": "-1",
+              "has_default": true,
+              "name": "insert_index",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "find_smart_object_entrance": {
+          "doc": "X.find_smart_object_entrance(slot_handle, request) -> BridgeSmartObjectEntranceResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_handle",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "request",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeSmartObjectEntranceResult"
+        },
+        "get_last_smart_object_error": {
+          "doc": "X.get_last_smart_object_error() -> str",
+          "params": [],
+          "returns": "str"
+        },
+        "get_smart_object_behavior_property": {
+          "doc": "X.get_smart_object_behavior_property(asset_path, behavior_object_path, property_path) -> BridgeSmartObjectPropertyResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "behavior_object_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeSmartObjectPropertyResult"
+        },
+        "get_smart_object_component_info": {
+          "doc": "X.get_smart_object_component_info(component_path) -> BridgeSmartObjectComponentInfo",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "component_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeSmartObjectComponentInfo"
+        },
+        "get_smart_object_definition_data_property": {
+          "doc": "X.get_smart_object_definition_data_property(asset_path, data_id, property_path) -> BridgeSmartObjectPropertyResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "data_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeSmartObjectPropertyResult"
+        },
+        "get_smart_object_definition_info": {
+          "doc": "X.get_smart_object_definition_info(asset_path) -> BridgeSmartObjectDefinitionInfo",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeSmartObjectDefinitionInfo"
+        },
+        "get_smart_object_definition_property": {
+          "doc": "X.get_smart_object_definition_property(asset_path, property_path) -> BridgeSmartObjectPropertyResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeSmartObjectPropertyResult"
+        },
+        "get_smart_object_slot_property": {
+          "doc": "X.get_smart_object_slot_property(asset_path, slot_id, property_path) -> BridgeSmartObjectPropertyResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeSmartObjectPropertyResult"
+        },
+        "get_smart_object_tag_query_json": {
+          "doc": "X.get_smart_object_tag_query_json(asset_path, slot_id=\"\") -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "slot_id",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "get_smart_object_world_condition_property": {
+          "doc": "X.get_smart_object_world_condition_property(asset_path, slot_id, condition_index, property_path) -> BridgeSmartObjectPropertyResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "condition_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeSmartObjectPropertyResult"
+        },
+        "is_smart_object_api_available": {
+          "doc": "X.is_smart_object_api_available() -> bool",
+          "params": [],
+          "returns": "bool"
+        },
+        "list_persistent_smart_object_collection_entries": {
+          "doc": "X.list_persistent_smart_object_collection_entries(collection_actor_path) -> Array[BridgeSmartObjectCollectionEntryInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "collection_actor_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectCollectionEntryInfo]"
+        },
+        "list_persistent_smart_object_collections": {
+          "doc": "X.list_persistent_smart_object_collections(pie_only=False) -> Array[BridgeSmartObjectCollectionInfo]",
+          "params": [
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "pie_only",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectCollectionInfo]"
+        },
+        "list_smart_object_behavior_definitions": {
+          "doc": "X.list_smart_object_behavior_definitions(asset_path, slot_id=\"\") -> Array[BridgeSmartObjectBehaviorInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "slot_id",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectBehaviorInfo]"
+        },
+        "list_smart_object_behavior_properties": {
+          "doc": "X.list_smart_object_behavior_properties(asset_path, behavior_object_path, include_inherited=True) -> Array[BridgeSmartObjectPropertyInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "behavior_object_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "include_inherited",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectPropertyInfo]"
+        },
+        "list_smart_object_behavior_types": {
+          "doc": "X.list_smart_object_behavior_types() -> Array[BridgeSmartObjectTypeInfo]",
+          "params": [],
+          "returns": "Array[BridgeSmartObjectTypeInfo]"
+        },
+        "list_smart_object_bindable_structs": {
+          "doc": "X.list_smart_object_bindable_structs(asset_path) -> Array[BridgeSmartObjectBindableStructInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectBindableStructInfo]"
+        },
+        "list_smart_object_bindings": {
+          "doc": "X.list_smart_object_bindings(asset_path) -> Array[BridgeSmartObjectBindingInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectBindingInfo]"
+        },
+        "list_smart_object_claims": {
+          "doc": "X.list_smart_object_claims() -> Array[BridgeSmartObjectClaimResult]",
+          "params": [],
+          "returns": "Array[BridgeSmartObjectClaimResult]"
+        },
+        "list_smart_object_components": {
+          "doc": "X.list_smart_object_components(pie_only=False) -> Array[BridgeSmartObjectComponentInfo]",
+          "params": [
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "pie_only",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectComponentInfo]"
+        },
+        "list_smart_object_definition_data": {
+          "doc": "X.list_smart_object_definition_data(asset_path, slot_id=\"\") -> Array[BridgeSmartObjectDefinitionDataInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "slot_id",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectDefinitionDataInfo]"
+        },
+        "list_smart_object_definition_data_properties": {
+          "doc": "X.list_smart_object_definition_data_properties(asset_path, data_id, include_inherited=True) -> Array[BridgeSmartObjectPropertyInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "data_id",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "include_inherited",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectPropertyInfo]"
+        },
+        "list_smart_object_definition_data_types": {
+          "doc": "X.list_smart_object_definition_data_types(asset_path, slot_id=\"\") -> Array[BridgeSmartObjectTypeInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "slot_id",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectTypeInfo]"
+        },
+        "list_smart_object_definition_properties": {
+          "doc": "X.list_smart_object_definition_properties(asset_path, include_inherited=True) -> Array[BridgeSmartObjectPropertyInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "include_inherited",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectPropertyInfo]"
+        },
+        "list_smart_object_parameters": {
+          "doc": "X.list_smart_object_parameters(asset_path) -> Array[BridgeSmartObjectParameterInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectParameterInfo]"
+        },
+        "list_smart_object_runtime_slots": {
+          "doc": "X.list_smart_object_runtime_slots(smart_object_handle=\"\", component_path=\"\", claim_priority=\"Normal\") -> Array[BridgeSmartObjectRuntimeSlotInfo]",
+          "params": [
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "smart_object_handle",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "component_path",
+              "type": ""
+            },
+            {
+              "default": "\"Normal\"",
+              "has_default": true,
+              "name": "claim_priority",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectRuntimeSlotInfo]"
+        },
+        "list_smart_object_slot_properties": {
+          "doc": "X.list_smart_object_slot_properties(asset_path, slot_id) -> Array[BridgeSmartObjectPropertyInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_id",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectPropertyInfo]"
+        },
+        "list_smart_object_slots": {
+          "doc": "X.list_smart_object_slots(asset_path) -> Array[BridgeSmartObjectSlotInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectSlotInfo]"
+        },
+        "list_smart_object_world_condition_properties": {
+          "doc": "X.list_smart_object_world_condition_properties(asset_path, slot_id, condition_index, include_inherited=True) -> Array[BridgeSmartObjectPropertyInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "condition_index",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "include_inherited",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectPropertyInfo]"
+        },
+        "list_smart_object_world_condition_types": {
+          "doc": "X.list_smart_object_world_condition_types(asset_path, slot_id=\"\") -> Array[BridgeSmartObjectTypeInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "slot_id",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectTypeInfo]"
+        },
+        "list_smart_object_world_conditions": {
+          "doc": "X.list_smart_object_world_conditions(asset_path, slot_id=\"\") -> Array[BridgeSmartObjectWorldConditionInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "slot_id",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectWorldConditionInfo]"
+        },
+        "move_smart_object_behavior_definition": {
+          "doc": "X.move_smart_object_behavior_definition(asset_path, behavior_object_path, new_index) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "behavior_object_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "move_smart_object_definition_data": {
+          "doc": "X.move_smart_object_definition_data(asset_path, data_id, new_index) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "data_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "move_smart_object_slot": {
+          "doc": "X.move_smart_object_slot(asset_path, slot_id, new_index) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "move_smart_object_world_condition": {
+          "doc": "X.move_smart_object_world_condition(asset_path, slot_id, condition_index, new_index) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "condition_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "occupy_smart_object_claim": {
+          "doc": "X.occupy_smart_object_claim(claim_token, behavior_class_path) -> BridgeSmartObjectClaimResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "claim_token",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "behavior_class_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeSmartObjectClaimResult"
+        },
+        "query_smart_objects": {
+          "doc": "X.query_smart_objects(center, extent, user_tags, activity_tags, behavior_class_paths, activity_match=\"All\", claim_priority=\"Normal\", evaluate_conditions=True, include_claimed_slots=False, include_disabled_slots=False, user_actor_path=\"\", sort_by_distance=True, max_results=0) -> Array[BridgeSmartObjectQueryResult]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "center",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "extent",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "user_tags",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "activity_tags",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "behavior_class_paths",
+              "type": ""
+            },
+            {
+              "default": "\"All\"",
+              "has_default": true,
+              "name": "activity_match",
+              "type": ""
+            },
+            {
+              "default": "\"Normal\"",
+              "has_default": true,
+              "name": "claim_priority",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "evaluate_conditions",
+              "type": ""
+            },
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "include_claimed_slots",
+              "type": ""
+            },
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "include_disabled_slots",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "user_actor_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "sort_by_distance",
+              "type": ""
+            },
+            {
+              "default": "0",
+              "has_default": true,
+              "name": "max_results",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectQueryResult]"
+        },
+        "release_smart_object_claim": {
+          "doc": "X.release_smart_object_claim(claim_token) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "claim_token",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_smart_object_behavior_definition": {
+          "doc": "X.remove_smart_object_behavior_definition(asset_path, behavior_object_path) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "behavior_object_path",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_smart_object_binding": {
+          "doc": "X.remove_smart_object_binding(asset_path, target_id, target_path) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_path",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_smart_object_component": {
+          "doc": "X.remove_smart_object_component(component_path) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "component_path",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_smart_object_definition_data": {
+          "doc": "X.remove_smart_object_definition_data(asset_path, data_id) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "data_id",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_smart_object_parameter": {
+          "doc": "X.remove_smart_object_parameter(asset_path, name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_smart_object_slot": {
+          "doc": "X.remove_smart_object_slot(asset_path, slot_id) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_id",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_smart_object_world_condition": {
+          "doc": "X.remove_smart_object_world_condition(asset_path, slot_id, condition_index) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "condition_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "rename_smart_object_parameter": {
+          "doc": "X.rename_smart_object_parameter(asset_path, old_name, new_name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "old_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "send_smart_object_slot_event": {
+          "doc": "X.send_smart_object_slot_event(slot_handle, event_tag) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_handle",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "event_tag",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_behavior_property": {
+          "doc": "X.set_smart_object_behavior_property(asset_path, behavior_object_path, property_path, value) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "behavior_object_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_component_definition": {
+          "doc": "X.set_smart_object_component_definition(component_path, definition_asset_path, register_with_subsystem=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "component_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "definition_asset_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "register_with_subsystem",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_definition_data_property": {
+          "doc": "X.set_smart_object_definition_data_property(asset_path, data_id, property_path, value) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "data_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_definition_property": {
+          "doc": "X.set_smart_object_definition_property(asset_path, property_path, value) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_parameter_value": {
+          "doc": "X.set_smart_object_parameter_value(asset_path, name, value) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_runtime_enabled": {
+          "doc": "X.set_smart_object_runtime_enabled(smart_object_handle, enabled, reason_tag=\"\") -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "smart_object_handle",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "enabled",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "reason_tag",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_runtime_slot_enabled": {
+          "doc": "X.set_smart_object_runtime_slot_enabled(slot_handle, enabled) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_handle",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "enabled",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_runtime_tags": {
+          "doc": "X.set_smart_object_runtime_tags(handle, scope, tags, replace=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "handle",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "scope",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "tags",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "replace",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_slot_property": {
+          "doc": "X.set_smart_object_slot_property(asset_path, slot_id, property_path, value) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_tag_policies": {
+          "doc": "X.set_smart_object_tag_policies(asset_path, user_tags_filtering_policy, activity_tags_merging_policy) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "user_tags_filtering_policy",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "activity_tags_merging_policy",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_tag_query_json": {
+          "doc": "X.set_smart_object_tag_query_json(asset_path, query_json, slot_id=\"\") -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "query_json",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "slot_id",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_tags": {
+          "doc": "X.set_smart_object_tags(asset_path, tags, slot_id=\"\", tag_set=\"Activity\") -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "tags",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "slot_id",
+              "type": ""
+            },
+            {
+              "default": "\"Activity\"",
+              "has_default": true,
+              "name": "tag_set",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_world_condition_expression": {
+          "doc": "X.set_smart_object_world_condition_expression(asset_path, slot_id, condition_index, operator, expression_depth, invert) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "condition_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "operator",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "expression_depth",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "invert",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_smart_object_world_condition_property": {
+          "doc": "X.set_smart_object_world_condition_property(asset_path, slot_id, condition_index, property_path, value) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "condition_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "validate_smart_object_definition": {
+          "doc": "X.validate_smart_object_definition(asset_path) -> BridgeSmartObjectValidationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeSmartObjectValidationResult"
+        },
+        "validate_smart_object_definition_entrances": {
+          "doc": "X.validate_smart_object_definition_entrances(asset_path, owner_transform, request, skip_actor_path=\"\") -> Array[BridgeSmartObjectEntranceResult]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "owner_transform",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "request",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "skip_actor_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeSmartObjectEntranceResult]"
+        }
+      }
+    },
     "UnrealBridgeStateTreeLibrary": {
       "functions": {
         "add_state_tree_binding": {
@@ -23196,6 +24960,231 @@
       "physics_asset_path",
       "skeleton_path",
       "socket_names"
+    ],
+    "BridgeSmartObjectBehaviorInfo": [
+      "class_path",
+      "index",
+      "name",
+      "object_path",
+      "property_count",
+      "slot_id"
+    ],
+    "BridgeSmartObjectBindableStructInfo": [
+      "id",
+      "kind",
+      "name",
+      "type_path"
+    ],
+    "BridgeSmartObjectBindingInfo": [
+      "source_id",
+      "source_path",
+      "target_id",
+      "target_path"
+    ],
+    "BridgeSmartObjectClaimResult": [
+      "behavior_object_path",
+      "claim_token",
+      "error",
+      "priority",
+      "slot_handle",
+      "slot_state",
+      "smart_object_handle",
+      "success",
+      "user_actor_path"
+    ],
+    "BridgeSmartObjectCollectionEntryInfo": [
+      "bounds_max",
+      "bounds_min",
+      "component_path",
+      "definition_path",
+      "index",
+      "smart_object_handle",
+      "tags",
+      "transform"
+    ],
+    "BridgeSmartObjectCollectionInfo": [
+      "actor_label",
+      "actor_path",
+      "bounds_max",
+      "bounds_min",
+      "entry_count",
+      "registered",
+      "world_type"
+    ],
+    "BridgeSmartObjectComponentInfo": [
+      "applied_definition_path",
+      "base_definition_path",
+      "bound_to_simulation",
+      "bounds_max",
+      "bounds_min",
+      "can_be_part_of_collection",
+      "component_name",
+      "component_path",
+      "enabled",
+      "owner_label",
+      "owner_path",
+      "registered_handle",
+      "registration_type",
+      "transform",
+      "world_type"
+    ],
+    "BridgeSmartObjectCreateResult": [
+      "asset_path",
+      "error",
+      "success"
+    ],
+    "BridgeSmartObjectDefinitionDataInfo": [
+      "annotation",
+      "display_name",
+      "has_transform",
+      "id",
+      "index",
+      "property_count",
+      "slot_id",
+      "type_path"
+    ],
+    "BridgeSmartObjectDefinitionInfo": [
+      "activity_tags",
+      "activity_tags_merging_policy",
+      "asset_path",
+      "binding_count",
+      "default_behavior_count",
+      "definition_data_count",
+      "dirty",
+      "has_been_validated",
+      "object_condition_count",
+      "parameter_count",
+      "parameters_bindable_id",
+      "preview_object_actor_class_path",
+      "preview_object_mesh_path",
+      "preview_user_actor_class_path",
+      "preview_validation_filter_class_path",
+      "root_bindable_id",
+      "slot_count",
+      "user_tag_filter_json",
+      "user_tags_filtering_policy",
+      "valid",
+      "world_condition_schema_class_path"
+    ],
+    "BridgeSmartObjectEntranceRequest": [
+      "capsule_height",
+      "capsule_radius",
+      "capsule_step_height",
+      "check_entrance_location_overlap",
+      "check_slot_location_overlap",
+      "check_transition_trajectory",
+      "location_type",
+      "project_navigation_location",
+      "search_location",
+      "selection_method",
+      "trace_ground_location",
+      "use_slot_location_as_fallback",
+      "use_up_axis_locked_rotation",
+      "user_actor_path",
+      "validation_filter_class_path"
+    ],
+    "BridgeSmartObjectEntranceResult": [
+      "error",
+      "found",
+      "has_navigation_node",
+      "location",
+      "rotation",
+      "slot_handle",
+      "tags",
+      "valid"
+    ],
+    "BridgeSmartObjectParameterInfo": [
+      "id",
+      "name",
+      "type",
+      "value"
+    ],
+    "BridgeSmartObjectPropertyInfo": [
+      "bindable",
+      "category",
+      "display_name",
+      "editable",
+      "inherited",
+      "path",
+      "type",
+      "value"
+    ],
+    "BridgeSmartObjectPropertyResult": [
+      "error",
+      "success",
+      "type",
+      "value"
+    ],
+    "BridgeSmartObjectQueryResult": [
+      "activity_tags",
+      "behavior_class_paths",
+      "can_be_claimed",
+      "component_path",
+      "definition_path",
+      "distance",
+      "enabled",
+      "owner_path",
+      "rank",
+      "runtime_tags",
+      "slot_handle",
+      "slot_state",
+      "slot_transform",
+      "smart_object_handle"
+    ],
+    "BridgeSmartObjectRuntimeSlotInfo": [
+      "activity_tags",
+      "can_be_claimed",
+      "component_path",
+      "definition_path",
+      "enabled",
+      "owner_path",
+      "runtime_tags",
+      "slot_handle",
+      "slot_index",
+      "slot_state",
+      "slot_transform",
+      "smart_object_handle"
+    ],
+    "BridgeSmartObjectSlotInfo": [
+      "activity_tags",
+      "behavior_count",
+      "condition_count",
+      "definition_data_count",
+      "enabled",
+      "id",
+      "index",
+      "name",
+      "offset",
+      "rotation",
+      "runtime_tags",
+      "user_tag_filter_json"
+    ],
+    "BridgeSmartObjectTypeInfo": [
+      "allowed_at_definition",
+      "allowed_at_slot",
+      "allowed_by_schema",
+      "display_name",
+      "kind",
+      "type_path"
+    ],
+    "BridgeSmartObjectValidationMessage": [
+      "message",
+      "severity"
+    ],
+    "BridgeSmartObjectValidationResult": [
+      "error",
+      "messages",
+      "success"
+    ],
+    "BridgeSmartObjectWorldConditionInfo": [
+      "display_name",
+      "expression_depth",
+      "index",
+      "invert",
+      "operator",
+      "property_count",
+      "slot_id",
+      "type_path"
     ],
     "BridgeSocketInfo": [
       "parent_bone_name",

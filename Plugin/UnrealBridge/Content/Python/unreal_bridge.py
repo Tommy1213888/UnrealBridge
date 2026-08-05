@@ -16,7 +16,7 @@ structural rather than mnemonic.
 
 import unreal
 
-_GENERATED_AT = '2026-08-03T14:31:34+00:00'
+_GENERATED_AT = '2026-08-05T03:18:14+00:00'
 _UE_VERSION = '5.7.1-48512491+++UE5+Release-5.7'
 
 class Anim:
@@ -5222,6 +5222,410 @@ class Reactive:
     def unregister(*, handler_id):
         """X.unregister(handler_id) -> bool"""
         return unreal.UnrealBridgeReactiveLibrary.unregister(handler_id)
+
+
+class SmartObject:
+    """Wraps unreal.UnrealBridgeSmartObjectLibrary (kwargs-only)."""
+
+    @staticmethod
+    def add_smart_object_behavior_definition(*, asset_path, behavior_class_path, slot_id="", insert_index=-1):
+        """X.add_smart_object_behavior_definition(asset_path, behavior_class_path, slot_id="", insert_index=-1) -> str"""
+        return unreal.UnrealBridgeSmartObjectLibrary.add_smart_object_behavior_definition(asset_path, behavior_class_path, slot_id, insert_index)
+
+    @staticmethod
+    def add_smart_object_binding(*, asset_path, source_id, source_path, target_id, target_path):
+        """X.add_smart_object_binding(asset_path, source_id, source_path, target_id, target_path) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.add_smart_object_binding(asset_path, source_id, source_path, target_id, target_path)
+
+    @staticmethod
+    def add_smart_object_component(*, actor_path, definition_asset_path, component_name="SmartObject", can_be_part_of_collection=False, register_with_subsystem=True):
+        """X.add_smart_object_component(actor_path, definition_asset_path, component_name="SmartObject", can_be_part_of_collection=False, register_with_subsystem=True) -> str"""
+        return unreal.UnrealBridgeSmartObjectLibrary.add_smart_object_component(actor_path, definition_asset_path, component_name, can_be_part_of_collection, register_with_subsystem)
+
+    @staticmethod
+    def add_smart_object_definition_data(*, asset_path, struct_type_path, slot_id="", insert_index=-1):
+        """X.add_smart_object_definition_data(asset_path, struct_type_path, slot_id="", insert_index=-1) -> str"""
+        return unreal.UnrealBridgeSmartObjectLibrary.add_smart_object_definition_data(asset_path, struct_type_path, slot_id, insert_index)
+
+    @staticmethod
+    def add_smart_object_parameter(*, asset_path, name, type, default_value=""):
+        """X.add_smart_object_parameter(asset_path, name, type, default_value="") -> str"""
+        return unreal.UnrealBridgeSmartObjectLibrary.add_smart_object_parameter(asset_path, name, type, default_value)
+
+    @staticmethod
+    def add_smart_object_slot(*, asset_path, name, offset, rotation, enabled=True, insert_index=-1):
+        """X.add_smart_object_slot(asset_path, name, offset, rotation, enabled=True, insert_index=-1) -> str"""
+        return unreal.UnrealBridgeSmartObjectLibrary.add_smart_object_slot(asset_path, name, offset, rotation, enabled, insert_index)
+
+    @staticmethod
+    def add_smart_object_world_condition(*, asset_path, condition_struct_path, slot_id="", operator="And", expression_depth=0, invert=False, insert_index=-1):
+        """X.add_smart_object_world_condition(asset_path, condition_struct_path, slot_id="", operator="And", expression_depth=0, invert=False, insert_index=-1) -> int32"""
+        return unreal.UnrealBridgeSmartObjectLibrary.add_smart_object_world_condition(asset_path, condition_struct_path, slot_id, operator, expression_depth, invert, insert_index)
+
+    @staticmethod
+    def claim_smart_object_slot(*, slot_handle, user_actor_path="", claim_priority="Normal"):
+        """X.claim_smart_object_slot(slot_handle, user_actor_path="", claim_priority="Normal") -> BridgeSmartObjectClaimResult"""
+        return unreal.UnrealBridgeSmartObjectLibrary.claim_smart_object_slot(slot_handle, user_actor_path, claim_priority)
+
+    @staticmethod
+    def control_persistent_smart_object_collection(*, collection_actor_path, action):
+        """X.control_persistent_smart_object_collection(collection_actor_path, action) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.control_persistent_smart_object_collection(collection_actor_path, action)
+
+    @staticmethod
+    def control_smart_object_component(*, component_path, action):
+        """X.control_smart_object_component(component_path, action) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.control_smart_object_component(component_path, action)
+
+    @staticmethod
+    def create_persistent_smart_object_collection(*, actor_label="SmartObjectPersistentCollection"):
+        """X.create_persistent_smart_object_collection(actor_label="SmartObjectPersistentCollection") -> str"""
+        return unreal.UnrealBridgeSmartObjectLibrary.create_persistent_smart_object_collection(actor_label)
+
+    @staticmethod
+    def create_runtime_smart_object(*, definition_asset_path, transform, owner_actor_path=""):
+        """X.create_runtime_smart_object(definition_asset_path, transform, owner_actor_path="") -> str"""
+        return unreal.UnrealBridgeSmartObjectLibrary.create_runtime_smart_object(definition_asset_path, transform, owner_actor_path)
+
+    @staticmethod
+    def create_smart_object_definition(*, asset_path):
+        """X.create_smart_object_definition(asset_path) -> BridgeSmartObjectCreateResult"""
+        return unreal.UnrealBridgeSmartObjectLibrary.create_smart_object_definition(asset_path)
+
+    @staticmethod
+    def debug_smart_object_subsystem(*, action):
+        """X.debug_smart_object_subsystem(action) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.debug_smart_object_subsystem(action)
+
+    @staticmethod
+    def destroy_persistent_smart_object_collection(*, collection_actor_path):
+        """X.destroy_persistent_smart_object_collection(collection_actor_path) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.destroy_persistent_smart_object_collection(collection_actor_path)
+
+    @staticmethod
+    def destroy_runtime_smart_object(*, smart_object_handle):
+        """X.destroy_runtime_smart_object(smart_object_handle) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.destroy_runtime_smart_object(smart_object_handle)
+
+    @staticmethod
+    def duplicate_smart_object_slot(*, asset_path, source_slot_id, new_name="", insert_index=-1):
+        """X.duplicate_smart_object_slot(asset_path, source_slot_id, new_name="", insert_index=-1) -> str"""
+        return unreal.UnrealBridgeSmartObjectLibrary.duplicate_smart_object_slot(asset_path, source_slot_id, new_name, insert_index)
+
+    @staticmethod
+    def find_smart_object_entrance(*, slot_handle, request):
+        """X.find_smart_object_entrance(slot_handle, request) -> BridgeSmartObjectEntranceResult"""
+        return unreal.UnrealBridgeSmartObjectLibrary.find_smart_object_entrance(slot_handle, request)
+
+    @staticmethod
+    def get_last_smart_object_error():
+        """X.get_last_smart_object_error() -> str"""
+        return unreal.UnrealBridgeSmartObjectLibrary.get_last_smart_object_error()
+
+    @staticmethod
+    def get_smart_object_behavior_property(*, asset_path, behavior_object_path, property_path):
+        """X.get_smart_object_behavior_property(asset_path, behavior_object_path, property_path) -> BridgeSmartObjectPropertyResult"""
+        return unreal.UnrealBridgeSmartObjectLibrary.get_smart_object_behavior_property(asset_path, behavior_object_path, property_path)
+
+    @staticmethod
+    def get_smart_object_component_info(*, component_path):
+        """X.get_smart_object_component_info(component_path) -> BridgeSmartObjectComponentInfo"""
+        return unreal.UnrealBridgeSmartObjectLibrary.get_smart_object_component_info(component_path)
+
+    @staticmethod
+    def get_smart_object_definition_data_property(*, asset_path, data_id, property_path):
+        """X.get_smart_object_definition_data_property(asset_path, data_id, property_path) -> BridgeSmartObjectPropertyResult"""
+        return unreal.UnrealBridgeSmartObjectLibrary.get_smart_object_definition_data_property(asset_path, data_id, property_path)
+
+    @staticmethod
+    def get_smart_object_definition_info(*, asset_path):
+        """X.get_smart_object_definition_info(asset_path) -> BridgeSmartObjectDefinitionInfo"""
+        return unreal.UnrealBridgeSmartObjectLibrary.get_smart_object_definition_info(asset_path)
+
+    @staticmethod
+    def get_smart_object_definition_property(*, asset_path, property_path):
+        """X.get_smart_object_definition_property(asset_path, property_path) -> BridgeSmartObjectPropertyResult"""
+        return unreal.UnrealBridgeSmartObjectLibrary.get_smart_object_definition_property(asset_path, property_path)
+
+    @staticmethod
+    def get_smart_object_slot_property(*, asset_path, slot_id, property_path):
+        """X.get_smart_object_slot_property(asset_path, slot_id, property_path) -> BridgeSmartObjectPropertyResult"""
+        return unreal.UnrealBridgeSmartObjectLibrary.get_smart_object_slot_property(asset_path, slot_id, property_path)
+
+    @staticmethod
+    def get_smart_object_tag_query_json(*, asset_path, slot_id=""):
+        """X.get_smart_object_tag_query_json(asset_path, slot_id="") -> str"""
+        return unreal.UnrealBridgeSmartObjectLibrary.get_smart_object_tag_query_json(asset_path, slot_id)
+
+    @staticmethod
+    def get_smart_object_world_condition_property(*, asset_path, slot_id, condition_index, property_path):
+        """X.get_smart_object_world_condition_property(asset_path, slot_id, condition_index, property_path) -> BridgeSmartObjectPropertyResult"""
+        return unreal.UnrealBridgeSmartObjectLibrary.get_smart_object_world_condition_property(asset_path, slot_id, condition_index, property_path)
+
+    @staticmethod
+    def is_smart_object_api_available():
+        """X.is_smart_object_api_available() -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.is_smart_object_api_available()
+
+    @staticmethod
+    def list_persistent_smart_object_collection_entries(*, collection_actor_path):
+        """X.list_persistent_smart_object_collection_entries(collection_actor_path) -> Array[BridgeSmartObjectCollectionEntryInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_persistent_smart_object_collection_entries(collection_actor_path)
+
+    @staticmethod
+    def list_persistent_smart_object_collections(*, pie_only=False):
+        """X.list_persistent_smart_object_collections(pie_only=False) -> Array[BridgeSmartObjectCollectionInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_persistent_smart_object_collections(pie_only)
+
+    @staticmethod
+    def list_smart_object_behavior_definitions(*, asset_path, slot_id=""):
+        """X.list_smart_object_behavior_definitions(asset_path, slot_id="") -> Array[BridgeSmartObjectBehaviorInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_behavior_definitions(asset_path, slot_id)
+
+    @staticmethod
+    def list_smart_object_behavior_properties(*, asset_path, behavior_object_path, include_inherited=True):
+        """X.list_smart_object_behavior_properties(asset_path, behavior_object_path, include_inherited=True) -> Array[BridgeSmartObjectPropertyInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_behavior_properties(asset_path, behavior_object_path, include_inherited)
+
+    @staticmethod
+    def list_smart_object_behavior_types():
+        """X.list_smart_object_behavior_types() -> Array[BridgeSmartObjectTypeInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_behavior_types()
+
+    @staticmethod
+    def list_smart_object_bindable_structs(*, asset_path):
+        """X.list_smart_object_bindable_structs(asset_path) -> Array[BridgeSmartObjectBindableStructInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_bindable_structs(asset_path)
+
+    @staticmethod
+    def list_smart_object_bindings(*, asset_path):
+        """X.list_smart_object_bindings(asset_path) -> Array[BridgeSmartObjectBindingInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_bindings(asset_path)
+
+    @staticmethod
+    def list_smart_object_claims():
+        """X.list_smart_object_claims() -> Array[BridgeSmartObjectClaimResult]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_claims()
+
+    @staticmethod
+    def list_smart_object_components(*, pie_only=False):
+        """X.list_smart_object_components(pie_only=False) -> Array[BridgeSmartObjectComponentInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_components(pie_only)
+
+    @staticmethod
+    def list_smart_object_definition_data(*, asset_path, slot_id=""):
+        """X.list_smart_object_definition_data(asset_path, slot_id="") -> Array[BridgeSmartObjectDefinitionDataInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_definition_data(asset_path, slot_id)
+
+    @staticmethod
+    def list_smart_object_definition_data_properties(*, asset_path, data_id, include_inherited=True):
+        """X.list_smart_object_definition_data_properties(asset_path, data_id, include_inherited=True) -> Array[BridgeSmartObjectPropertyInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_definition_data_properties(asset_path, data_id, include_inherited)
+
+    @staticmethod
+    def list_smart_object_definition_data_types(*, asset_path, slot_id=""):
+        """X.list_smart_object_definition_data_types(asset_path, slot_id="") -> Array[BridgeSmartObjectTypeInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_definition_data_types(asset_path, slot_id)
+
+    @staticmethod
+    def list_smart_object_definition_properties(*, asset_path, include_inherited=True):
+        """X.list_smart_object_definition_properties(asset_path, include_inherited=True) -> Array[BridgeSmartObjectPropertyInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_definition_properties(asset_path, include_inherited)
+
+    @staticmethod
+    def list_smart_object_parameters(*, asset_path):
+        """X.list_smart_object_parameters(asset_path) -> Array[BridgeSmartObjectParameterInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_parameters(asset_path)
+
+    @staticmethod
+    def list_smart_object_runtime_slots(*, smart_object_handle="", component_path="", claim_priority="Normal"):
+        """X.list_smart_object_runtime_slots(smart_object_handle="", component_path="", claim_priority="Normal") -> Array[BridgeSmartObjectRuntimeSlotInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_runtime_slots(smart_object_handle, component_path, claim_priority)
+
+    @staticmethod
+    def list_smart_object_slot_properties(*, asset_path, slot_id):
+        """X.list_smart_object_slot_properties(asset_path, slot_id) -> Array[BridgeSmartObjectPropertyInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_slot_properties(asset_path, slot_id)
+
+    @staticmethod
+    def list_smart_object_slots(*, asset_path):
+        """X.list_smart_object_slots(asset_path) -> Array[BridgeSmartObjectSlotInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_slots(asset_path)
+
+    @staticmethod
+    def list_smart_object_world_condition_properties(*, asset_path, slot_id, condition_index, include_inherited=True):
+        """X.list_smart_object_world_condition_properties(asset_path, slot_id, condition_index, include_inherited=True) -> Array[BridgeSmartObjectPropertyInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_world_condition_properties(asset_path, slot_id, condition_index, include_inherited)
+
+    @staticmethod
+    def list_smart_object_world_condition_types(*, asset_path, slot_id=""):
+        """X.list_smart_object_world_condition_types(asset_path, slot_id="") -> Array[BridgeSmartObjectTypeInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_world_condition_types(asset_path, slot_id)
+
+    @staticmethod
+    def list_smart_object_world_conditions(*, asset_path, slot_id=""):
+        """X.list_smart_object_world_conditions(asset_path, slot_id="") -> Array[BridgeSmartObjectWorldConditionInfo]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.list_smart_object_world_conditions(asset_path, slot_id)
+
+    @staticmethod
+    def move_smart_object_behavior_definition(*, asset_path, behavior_object_path, new_index):
+        """X.move_smart_object_behavior_definition(asset_path, behavior_object_path, new_index) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.move_smart_object_behavior_definition(asset_path, behavior_object_path, new_index)
+
+    @staticmethod
+    def move_smart_object_definition_data(*, asset_path, data_id, new_index):
+        """X.move_smart_object_definition_data(asset_path, data_id, new_index) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.move_smart_object_definition_data(asset_path, data_id, new_index)
+
+    @staticmethod
+    def move_smart_object_slot(*, asset_path, slot_id, new_index):
+        """X.move_smart_object_slot(asset_path, slot_id, new_index) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.move_smart_object_slot(asset_path, slot_id, new_index)
+
+    @staticmethod
+    def move_smart_object_world_condition(*, asset_path, slot_id, condition_index, new_index):
+        """X.move_smart_object_world_condition(asset_path, slot_id, condition_index, new_index) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.move_smart_object_world_condition(asset_path, slot_id, condition_index, new_index)
+
+    @staticmethod
+    def occupy_smart_object_claim(*, claim_token, behavior_class_path):
+        """X.occupy_smart_object_claim(claim_token, behavior_class_path) -> BridgeSmartObjectClaimResult"""
+        return unreal.UnrealBridgeSmartObjectLibrary.occupy_smart_object_claim(claim_token, behavior_class_path)
+
+    @staticmethod
+    def query_smart_objects(*, center, extent, user_tags, activity_tags, behavior_class_paths, activity_match="All", claim_priority="Normal", evaluate_conditions=True, include_claimed_slots=False, include_disabled_slots=False, user_actor_path="", sort_by_distance=True, max_results=0):
+        """X.query_smart_objects(center, extent, user_tags, activity_tags, behavior_class_paths, activity_match="All", claim_priority="Normal", evaluate_conditions=True, include_claimed_slots=False, include_disabled_slots=False, user_actor_path="", sort_by_distance=True, max_results=0) -> Array[BridgeSmartObjectQueryResult]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.query_smart_objects(center, extent, user_tags, activity_tags, behavior_class_paths, activity_match, claim_priority, evaluate_conditions, include_claimed_slots, include_disabled_slots, user_actor_path, sort_by_distance, max_results)
+
+    @staticmethod
+    def release_smart_object_claim(*, claim_token):
+        """X.release_smart_object_claim(claim_token) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.release_smart_object_claim(claim_token)
+
+    @staticmethod
+    def remove_smart_object_behavior_definition(*, asset_path, behavior_object_path):
+        """X.remove_smart_object_behavior_definition(asset_path, behavior_object_path) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.remove_smart_object_behavior_definition(asset_path, behavior_object_path)
+
+    @staticmethod
+    def remove_smart_object_binding(*, asset_path, target_id, target_path):
+        """X.remove_smart_object_binding(asset_path, target_id, target_path) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.remove_smart_object_binding(asset_path, target_id, target_path)
+
+    @staticmethod
+    def remove_smart_object_component(*, component_path):
+        """X.remove_smart_object_component(component_path) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.remove_smart_object_component(component_path)
+
+    @staticmethod
+    def remove_smart_object_definition_data(*, asset_path, data_id):
+        """X.remove_smart_object_definition_data(asset_path, data_id) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.remove_smart_object_definition_data(asset_path, data_id)
+
+    @staticmethod
+    def remove_smart_object_parameter(*, asset_path, name):
+        """X.remove_smart_object_parameter(asset_path, name) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.remove_smart_object_parameter(asset_path, name)
+
+    @staticmethod
+    def remove_smart_object_slot(*, asset_path, slot_id):
+        """X.remove_smart_object_slot(asset_path, slot_id) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.remove_smart_object_slot(asset_path, slot_id)
+
+    @staticmethod
+    def remove_smart_object_world_condition(*, asset_path, slot_id, condition_index):
+        """X.remove_smart_object_world_condition(asset_path, slot_id, condition_index) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.remove_smart_object_world_condition(asset_path, slot_id, condition_index)
+
+    @staticmethod
+    def rename_smart_object_parameter(*, asset_path, old_name, new_name):
+        """X.rename_smart_object_parameter(asset_path, old_name, new_name) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.rename_smart_object_parameter(asset_path, old_name, new_name)
+
+    @staticmethod
+    def send_smart_object_slot_event(*, slot_handle, event_tag):
+        """X.send_smart_object_slot_event(slot_handle, event_tag) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.send_smart_object_slot_event(slot_handle, event_tag)
+
+    @staticmethod
+    def set_smart_object_behavior_property(*, asset_path, behavior_object_path, property_path, value):
+        """X.set_smart_object_behavior_property(asset_path, behavior_object_path, property_path, value) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_behavior_property(asset_path, behavior_object_path, property_path, value)
+
+    @staticmethod
+    def set_smart_object_component_definition(*, component_path, definition_asset_path, register_with_subsystem=True):
+        """X.set_smart_object_component_definition(component_path, definition_asset_path, register_with_subsystem=True) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_component_definition(component_path, definition_asset_path, register_with_subsystem)
+
+    @staticmethod
+    def set_smart_object_definition_data_property(*, asset_path, data_id, property_path, value):
+        """X.set_smart_object_definition_data_property(asset_path, data_id, property_path, value) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_definition_data_property(asset_path, data_id, property_path, value)
+
+    @staticmethod
+    def set_smart_object_definition_property(*, asset_path, property_path, value):
+        """X.set_smart_object_definition_property(asset_path, property_path, value) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_definition_property(asset_path, property_path, value)
+
+    @staticmethod
+    def set_smart_object_parameter_value(*, asset_path, name, value):
+        """X.set_smart_object_parameter_value(asset_path, name, value) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_parameter_value(asset_path, name, value)
+
+    @staticmethod
+    def set_smart_object_runtime_enabled(*, smart_object_handle, enabled, reason_tag=""):
+        """X.set_smart_object_runtime_enabled(smart_object_handle, enabled, reason_tag="") -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_runtime_enabled(smart_object_handle, enabled, reason_tag)
+
+    @staticmethod
+    def set_smart_object_runtime_slot_enabled(*, slot_handle, enabled):
+        """X.set_smart_object_runtime_slot_enabled(slot_handle, enabled) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_runtime_slot_enabled(slot_handle, enabled)
+
+    @staticmethod
+    def set_smart_object_runtime_tags(*, handle, scope, tags, replace=True):
+        """X.set_smart_object_runtime_tags(handle, scope, tags, replace=True) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_runtime_tags(handle, scope, tags, replace)
+
+    @staticmethod
+    def set_smart_object_slot_property(*, asset_path, slot_id, property_path, value):
+        """X.set_smart_object_slot_property(asset_path, slot_id, property_path, value) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_slot_property(asset_path, slot_id, property_path, value)
+
+    @staticmethod
+    def set_smart_object_tag_policies(*, asset_path, user_tags_filtering_policy, activity_tags_merging_policy):
+        """X.set_smart_object_tag_policies(asset_path, user_tags_filtering_policy, activity_tags_merging_policy) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_tag_policies(asset_path, user_tags_filtering_policy, activity_tags_merging_policy)
+
+    @staticmethod
+    def set_smart_object_tag_query_json(*, asset_path, query_json, slot_id=""):
+        """X.set_smart_object_tag_query_json(asset_path, query_json, slot_id="") -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_tag_query_json(asset_path, query_json, slot_id)
+
+    @staticmethod
+    def set_smart_object_tags(*, asset_path, tags, slot_id="", tag_set="Activity"):
+        """X.set_smart_object_tags(asset_path, tags, slot_id="", tag_set="Activity") -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_tags(asset_path, tags, slot_id, tag_set)
+
+    @staticmethod
+    def set_smart_object_world_condition_expression(*, asset_path, slot_id, condition_index, operator, expression_depth, invert):
+        """X.set_smart_object_world_condition_expression(asset_path, slot_id, condition_index, operator, expression_depth, invert) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_world_condition_expression(asset_path, slot_id, condition_index, operator, expression_depth, invert)
+
+    @staticmethod
+    def set_smart_object_world_condition_property(*, asset_path, slot_id, condition_index, property_path, value):
+        """X.set_smart_object_world_condition_property(asset_path, slot_id, condition_index, property_path, value) -> bool"""
+        return unreal.UnrealBridgeSmartObjectLibrary.set_smart_object_world_condition_property(asset_path, slot_id, condition_index, property_path, value)
+
+    @staticmethod
+    def validate_smart_object_definition(*, asset_path):
+        """X.validate_smart_object_definition(asset_path) -> BridgeSmartObjectValidationResult"""
+        return unreal.UnrealBridgeSmartObjectLibrary.validate_smart_object_definition(asset_path)
+
+    @staticmethod
+    def validate_smart_object_definition_entrances(*, asset_path, owner_transform, request, skip_actor_path=""):
+        """X.validate_smart_object_definition_entrances(asset_path, owner_transform, request, skip_actor_path="") -> Array[BridgeSmartObjectEntranceResult]"""
+        return unreal.UnrealBridgeSmartObjectLibrary.validate_smart_object_definition_entrances(asset_path, owner_transform, request, skip_actor_path)
 
 
 class StateTree:
