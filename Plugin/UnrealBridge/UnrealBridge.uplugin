@@ -71,6 +71,11 @@
 			"Name": "WorldConditions",
 			"Enabled": true,
 			"Optional": true
+		},
+		{
+			"Name": "ModelViewViewModel",
+			"Enabled": true,
+			"Optional": true
 		}
 	]
 }

@@ -45,6 +45,24 @@ from `UnrealBridge.Build.cs` only for UE 5.7+, and the plugin references are
 optional, so UE 5.3 can still resolve and compile the descriptor even though it
 does not ship the SmartObjects plugin.
 
+### In-library safe no-op gate: UMG MVVM
+
+`UnrealBridgeUMGLibrary` itself remains fully reflected on every supported
+engine: Widget Blueprint/tree/layout/style authoring, widget animations,
+UI-material brush assignment, compile validation, and non-MVVM PIE validation
+all compile normally on UE 5.3-5.6. Its 11 MVVM-specific authoring/runtime
+functions use in-function `UE_VERSION_OLDER_THAN(5, 7, 0)` gates because the
+ModelViewViewModel editor/runtime contracts used here are 5.7 APIs. On an older
+engine each call logs that MVVM requires UE 5.7+ and returns its safe empty or
+false result; the UFUNCTION remains present, so agents get a stable wrapper and
+an actionable diagnostic instead of a missing method or failed build.
+
+`FieldNotification`, `ModelViewViewModel`, and `ModelViewViewModelBlueprint`
+are added by `UnrealBridge.Build.cs` only on UE 5.7+, and the
+`ModelViewViewModel` plugin reference is optional. This is an in-library gate,
+not a generated whole-library stub, because most UMG functionality has no MVVM
+dependency and remains useful on lower versions.
+
 ## Single-UFUNCTION gates (library still works, one function unavailable on 5.4)
 
 | UFUNCTION | Reason |

@@ -180,7 +180,7 @@ Signatures are now mechanically enforced (preflight). References carry semantic 
 |-------|------|------|
 | Blueprint queries + authoring | `references/bridge-blueprint-api.md` | Class hierarchy, variables/functions/components, node search, write ops, auto-layout flow, lint loop |
 | Asset queries | `references/bridge-asset-api.md` | Asset lookup, search, references/dependencies, **`SoftObjectPath` stringification** (top-of-file block) |
-| UMG / Widget | `references/bridge-umg-api.md` | Widget Blueprint hierarchy/tree |
+| UMG / Widget | `references/bridge-umg-api.md` | **Read before any Widget Blueprint write.** Asset/tree/layout/style authoring, UI-material brushes, batched widget animations, UE 5.7+ MVVM, compile validation, and PIE functional verification. |
 | Animation | `references/bridge-anim-api.md` | ABP state machines, slots, sequences, montages, blend spaces. **Authoring an ABP? Read the "Authoring an Animation Blueprint (agent workflow)" section first.** |
 | DataTable | `references/bridge-datatable-api.md` | Schema, rows, fields, search, CSV |
 | Material | `references/bridge-material-api.md` | Material instance parameters |
@@ -198,6 +198,19 @@ Signatures are now mechanically enforced (preflight). References carry semantic 
 | Perf snapshots | `references/bridge-perf-api.md` | Structured FPS / GT / RT / GPU / draw calls / mem / UObject histogram |
 | Agent / Gameplay | `references/bridge-gameplay-api.md` | **Mandatory before driving the player pawn** — sticky inputs, camera steering, navmesh path planning. |
 | UE Asset / Actor / Material | `references/ue-python-*.md` | Stdlib UE Python helpers (load, list, duplicate, spawn) |
+
+## UMG deliverable loop (mandatory after UMG authoring)
+
+Creating a WidgetTree is not completion. For every agent-authored screen:
+
+1. Build one valid panel root, set responsive anchors/slots, and make only the widgets needed by logic/bindings variables.
+2. Create UI-domain shaders through the Material library, compile them cleanly, then assign them to `FSlateBrush` properties with the UMG library.
+3. On UE 5.7+, keep state in a FieldNotify ViewModel and prefer MVVM bindings over legacy binding functions or event-graph state plumbing. On UE 5.3-5.6, MVVM calls are safe logged no-ops; choose an explicitly documented fallback instead of failing the build.
+4. Author animation keys in batches, then require `compile_and_validate_widget_blueprint(..., save=True)` to succeed with no errors.
+5. Start PIE in a separate exec, spawn the widget, and prove live geometry, state propagation, semantic interactions, animation intermediate values, and dynamic material parameters by readback.
+6. Always call `remove_widget_instance` / `remove_all_widget_instances` before stopping PIE. Delete validation-only assets from their exact dedicated folder and verify both Asset Registry and backing files are empty.
+
+The exact API sequence, MVVM modes, animation key structs, runtime semantics, and cleanup checklist are in `references/bridge-umg-api.md`.
 
 > **Pawn control is non-obvious — read `bridge-gameplay-api.md` first.** Driving the player (sticky `IA_Move`, `apply_look_input`, navigating to a moving target, holding an input over time) has hard constraints a fresh API read won't reveal: `bridge.exec` runs on GameThread so `time.sleep` inside one `exec` freezes the engine and stops the sticky ticker; continuous steering must run from a reactive `register_runtime_timer` callback, not a Python `while` loop; `IA_Move` is camera-relative and the forward-axis convention varies per project. The "Pattern: chase a (possibly moving) target and stop on arrival" section has the working template.
 

@@ -33,6 +33,7 @@ public class UnrealBridge : ModuleRules
 			"UnrealEd",
 			"EditorSubsystem",
 			"MovieScene",
+			"MovieSceneTracks",
 			"AnimGraphRuntime",
 			"AnimationBlueprintLibrary",
 			"AnimationModifiers",
@@ -116,6 +117,9 @@ public class UnrealBridge : ModuleRules
 				"SmartObjectsModule",
 				"SmartObjectsEditorModule",
 				"WorldConditions",
+				"FieldNotification",
+				"ModelViewViewModel",
+				"ModelViewViewModelBlueprint",
 			});
 		}
 	}

@@ -16,7 +16,7 @@ structural rather than mnemonic.
 
 import unreal
 
-_GENERATED_AT = '2026-08-05T03:18:14+00:00'
+_GENERATED_AT = '2026-08-05T05:51:55+00:00'
 _UE_VERSION = '5.7.1-48512491+++UE5+Release-5.7'
 
 class Anim:
@@ -5940,6 +5940,91 @@ class UMG:
     """Wraps unreal.UnrealBridgeUMGLibrary (kwargs-only)."""
 
     @staticmethod
+    def add_mvvm_binding(*, widget_blueprint_path, view_model_name, source_field_path, destination_widget_name, destination_field_path, mode):
+        """X.add_mvvm_binding(widget_blueprint_path, view_model_name, source_field_path, destination_widget_name, destination_field_path, mode) -> str"""
+        return unreal.UnrealBridgeUMGLibrary.add_mvvm_binding(widget_blueprint_path, view_model_name, source_field_path, destination_widget_name, destination_field_path, mode)
+
+    @staticmethod
+    def add_mvvm_view_model(*, widget_blueprint_path, view_model_name, view_model_class_path, creation_type, creation_data, optional, create_getter, create_setter):
+        """X.add_mvvm_view_model(widget_blueprint_path, view_model_name, view_model_class_path, creation_type, creation_data, optional, create_getter, create_setter) -> str"""
+        return unreal.UnrealBridgeUMGLibrary.add_mvvm_view_model(widget_blueprint_path, view_model_name, view_model_class_path, creation_type, creation_data, optional, create_getter, create_setter)
+
+    @staticmethod
+    def add_widget(*, widget_blueprint_path, widget_class_path, widget_name, parent_name, insert_index):
+        """X.add_widget(widget_blueprint_path, widget_class_path, widget_name, parent_name, insert_index) -> BridgeWidgetOperationResult"""
+        return unreal.UnrealBridgeUMGLibrary.add_widget(widget_blueprint_path, widget_class_path, widget_name, parent_name, insert_index)
+
+    @staticmethod
+    def add_widget_animation_color_keys(*, widget_blueprint_path, animation_name, widget_name, property_name, keys, interpolation):
+        """X.add_widget_animation_color_keys(widget_blueprint_path, animation_name, widget_name, property_name, keys, interpolation) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.add_widget_animation_color_keys(widget_blueprint_path, animation_name, widget_name, property_name, keys, interpolation)
+
+    @staticmethod
+    def add_widget_animation_float_keys(*, widget_blueprint_path, animation_name, widget_name, property_name, keys, interpolation):
+        """X.add_widget_animation_float_keys(widget_blueprint_path, animation_name, widget_name, property_name, keys, interpolation) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.add_widget_animation_float_keys(widget_blueprint_path, animation_name, widget_name, property_name, keys, interpolation)
+
+    @staticmethod
+    def add_widget_animation_transform_keys(*, widget_blueprint_path, animation_name, widget_name, keys, interpolation):
+        """X.add_widget_animation_transform_keys(widget_blueprint_path, animation_name, widget_name, keys, interpolation) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.add_widget_animation_transform_keys(widget_blueprint_path, animation_name, widget_name, keys, interpolation)
+
+    @staticmethod
+    def click_live_button(*, instance_handle, widget_name):
+        """X.click_live_button(instance_handle, widget_name) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.click_live_button(instance_handle, widget_name)
+
+    @staticmethod
+    def compile_and_validate_widget_blueprint(*, widget_blueprint_path, save, check_accessibility):
+        """X.compile_and_validate_widget_blueprint(widget_blueprint_path, save, check_accessibility) -> BridgeWidgetValidationReport"""
+        return unreal.UnrealBridgeUMGLibrary.compile_and_validate_widget_blueprint(widget_blueprint_path, save, check_accessibility)
+
+    @staticmethod
+    def create_mvvm_view_model_blueprint(*, asset_path, parent_class_path):
+        """X.create_mvvm_view_model_blueprint(asset_path, parent_class_path) -> BridgeWidgetOperationResult"""
+        return unreal.UnrealBridgeUMGLibrary.create_mvvm_view_model_blueprint(asset_path, parent_class_path)
+
+    @staticmethod
+    def create_widget_animation(*, widget_blueprint_path, animation_name, duration_seconds, display_rate):
+        """X.create_widget_animation(widget_blueprint_path, animation_name, duration_seconds, display_rate) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.create_widget_animation(widget_blueprint_path, animation_name, duration_seconds, display_rate)
+
+    @staticmethod
+    def create_widget_blueprint(*, asset_path, parent_class_path):
+        """X.create_widget_blueprint(asset_path, parent_class_path) -> BridgeWidgetOperationResult"""
+        return unreal.UnrealBridgeUMGLibrary.create_widget_blueprint(asset_path, parent_class_path)
+
+    @staticmethod
+    def focus_live_widget(*, instance_handle, widget_name):
+        """X.focus_live_widget(instance_handle, widget_name) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.focus_live_widget(instance_handle, widget_name)
+
+    @staticmethod
+    def get_live_view_model_property(*, instance_handle, view_model_name, property_path):
+        """X.get_live_view_model_property(instance_handle, view_model_name, property_path) -> str"""
+        return unreal.UnrealBridgeUMGLibrary.get_live_view_model_property(instance_handle, view_model_name, property_path)
+
+    @staticmethod
+    def get_live_widget_property(*, instance_handle, widget_name, property_path):
+        """X.get_live_widget_property(instance_handle, widget_name, property_path) -> str"""
+        return unreal.UnrealBridgeUMGLibrary.get_live_widget_property(instance_handle, widget_name, property_path)
+
+    @staticmethod
+    def get_live_widget_tree(*, instance_handle):
+        """X.get_live_widget_tree(instance_handle) -> Array[BridgeLiveWidgetInfo]"""
+        return unreal.UnrealBridgeUMGLibrary.get_live_widget_tree(instance_handle)
+
+    @staticmethod
+    def get_mvvm_bindings(*, widget_blueprint_path):
+        """X.get_mvvm_bindings(widget_blueprint_path) -> Array[BridgeMVVMBindingInfo]"""
+        return unreal.UnrealBridgeUMGLibrary.get_mvvm_bindings(widget_blueprint_path)
+
+    @staticmethod
+    def get_mvvm_view_models(*, widget_blueprint_path):
+        """X.get_mvvm_view_models(widget_blueprint_path) -> Array[BridgeMVVMViewModelInfo]"""
+        return unreal.UnrealBridgeUMGLibrary.get_mvvm_view_models(widget_blueprint_path)
+
+    @staticmethod
     def get_widget_animations(*, widget_blueprint_path):
         """X.get_widget_animations(widget_blueprint_path) -> Array[BridgeWidgetAnimationInfo]"""
         return unreal.UnrealBridgeUMGLibrary.get_widget_animations(widget_blueprint_path)
@@ -5960,9 +6045,69 @@ class UMG:
         return unreal.UnrealBridgeUMGLibrary.get_widget_properties(widget_blueprint_path, widget_name)
 
     @staticmethod
+    def get_widget_slot_properties(*, widget_blueprint_path, widget_name):
+        """X.get_widget_slot_properties(widget_blueprint_path, widget_name) -> Array[BridgeWidgetPropertyValue]"""
+        return unreal.UnrealBridgeUMGLibrary.get_widget_slot_properties(widget_blueprint_path, widget_name)
+
+    @staticmethod
     def get_widget_tree(*, widget_blueprint_path):
         """X.get_widget_tree(widget_blueprint_path) -> Array[BridgeWidgetInfo]"""
         return unreal.UnrealBridgeUMGLibrary.get_widget_tree(widget_blueprint_path)
+
+    @staticmethod
+    def list_widget_classes(*, query, include_abstract, max_results):
+        """X.list_widget_classes(query, include_abstract, max_results) -> Array[BridgeWidgetClassInfo]"""
+        return unreal.UnrealBridgeUMGLibrary.list_widget_classes(query, include_abstract, max_results)
+
+    @staticmethod
+    def play_live_widget_animation(*, instance_handle, animation_name, start_time, num_loops, play_mode, playback_speed):
+        """X.play_live_widget_animation(instance_handle, animation_name, start_time, num_loops, play_mode, playback_speed) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.play_live_widget_animation(instance_handle, animation_name, start_time, num_loops, play_mode, playback_speed)
+
+    @staticmethod
+    def remove_all_widget_instances():
+        """X.remove_all_widget_instances() -> int32"""
+        return unreal.UnrealBridgeUMGLibrary.remove_all_widget_instances()
+
+    @staticmethod
+    def remove_mvvm_binding(*, widget_blueprint_path, binding_id):
+        """X.remove_mvvm_binding(widget_blueprint_path, binding_id) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.remove_mvvm_binding(widget_blueprint_path, binding_id)
+
+    @staticmethod
+    def remove_mvvm_view_model(*, widget_blueprint_path, view_model_name):
+        """X.remove_mvvm_view_model(widget_blueprint_path, view_model_name) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.remove_mvvm_view_model(widget_blueprint_path, view_model_name)
+
+    @staticmethod
+    def remove_widget(*, widget_blueprint_path, widget_name):
+        """X.remove_widget(widget_blueprint_path, widget_name) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.remove_widget(widget_blueprint_path, widget_name)
+
+    @staticmethod
+    def remove_widget_animation(*, widget_blueprint_path, animation_name):
+        """X.remove_widget_animation(widget_blueprint_path, animation_name) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.remove_widget_animation(widget_blueprint_path, animation_name)
+
+    @staticmethod
+    def remove_widget_animation_track(*, widget_blueprint_path, animation_name, widget_name, property_name):
+        """X.remove_widget_animation_track(widget_blueprint_path, animation_name, widget_name, property_name) -> int32"""
+        return unreal.UnrealBridgeUMGLibrary.remove_widget_animation_track(widget_blueprint_path, animation_name, widget_name, property_name)
+
+    @staticmethod
+    def remove_widget_instance(*, instance_handle):
+        """X.remove_widget_instance(instance_handle) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.remove_widget_instance(instance_handle)
+
+    @staticmethod
+    def rename_widget(*, widget_blueprint_path, widget_name, new_name):
+        """X.rename_widget(widget_blueprint_path, widget_name, new_name) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.rename_widget(widget_blueprint_path, widget_name, new_name)
+
+    @staticmethod
+    def reparent_widget(*, widget_blueprint_path, widget_name, new_parent_name, insert_index):
+        """X.reparent_widget(widget_blueprint_path, widget_name, new_parent_name, insert_index) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.reparent_widget(widget_blueprint_path, widget_name, new_parent_name, insert_index)
 
     @staticmethod
     def search_widgets(*, widget_blueprint_path, query):
@@ -5970,7 +6115,82 @@ class UMG:
         return unreal.UnrealBridgeUMGLibrary.search_widgets(widget_blueprint_path, query)
 
     @staticmethod
+    def set_canvas_slot_layout(*, widget_blueprint_path, widget_name, position, size, anchor_minimum, anchor_maximum, alignment, auto_size, z_order):
+        """X.set_canvas_slot_layout(widget_blueprint_path, widget_name, position, size, anchor_minimum, anchor_maximum, alignment, auto_size, z_order) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.set_canvas_slot_layout(widget_blueprint_path, widget_name, position, size, anchor_minimum, anchor_maximum, alignment, auto_size, z_order)
+
+    @staticmethod
+    def set_live_view_model_property(*, instance_handle, view_model_name, property_path, value):
+        """X.set_live_view_model_property(instance_handle, view_model_name, property_path, value) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.set_live_view_model_property(instance_handle, view_model_name, property_path, value)
+
+    @staticmethod
+    def set_live_widget_checked(*, instance_handle, widget_name, checked):
+        """X.set_live_widget_checked(instance_handle, widget_name, checked) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.set_live_widget_checked(instance_handle, widget_name, checked)
+
+    @staticmethod
+    def set_live_widget_material_scalar(*, instance_handle, widget_name, parameter_name, value):
+        """X.set_live_widget_material_scalar(instance_handle, widget_name, parameter_name, value) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.set_live_widget_material_scalar(instance_handle, widget_name, parameter_name, value)
+
+    @staticmethod
+    def set_live_widget_material_vector(*, instance_handle, widget_name, parameter_name, value):
+        """X.set_live_widget_material_vector(instance_handle, widget_name, parameter_name, value) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.set_live_widget_material_vector(instance_handle, widget_name, parameter_name, value)
+
+    @staticmethod
+    def set_live_widget_property(*, instance_handle, widget_name, property_path, value):
+        """X.set_live_widget_property(instance_handle, widget_name, property_path, value) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.set_live_widget_property(instance_handle, widget_name, property_path, value)
+
+    @staticmethod
+    def set_live_widget_text(*, instance_handle, widget_name, text):
+        """X.set_live_widget_text(instance_handle, widget_name, text) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.set_live_widget_text(instance_handle, widget_name, text)
+
+    @staticmethod
+    def set_live_widget_value(*, instance_handle, widget_name, value):
+        """X.set_live_widget_value(instance_handle, widget_name, value) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.set_live_widget_value(instance_handle, widget_name, value)
+
+    @staticmethod
+    def set_mvvm_view_settings(*, widget_blueprint_path, initialize_sources_on_construct, initialize_bindings_on_construct, initialize_events_on_construct, create_view_without_bindings):
+        """X.set_mvvm_view_settings(widget_blueprint_path, initialize_sources_on_construct, initialize_bindings_on_construct, initialize_events_on_construct, create_view_without_bindings) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.set_mvvm_view_settings(widget_blueprint_path, initialize_sources_on_construct, initialize_bindings_on_construct, initialize_events_on_construct, create_view_without_bindings)
+
+    @staticmethod
+    def set_view_model_field_notify(*, view_model_blueprint_path, variable_name, enabled):
+        """X.set_view_model_field_notify(view_model_blueprint_path, variable_name, enabled) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.set_view_model_field_notify(view_model_blueprint_path, variable_name, enabled)
+
+    @staticmethod
+    def set_widget_brush(*, widget_blueprint_path, widget_name, brush_property_path, resource_path, tint, draw_as, image_size, margin):
+        """X.set_widget_brush(widget_blueprint_path, widget_name, brush_property_path, resource_path, tint, draw_as, image_size, margin) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.set_widget_brush(widget_blueprint_path, widget_name, brush_property_path, resource_path, tint, draw_as, image_size, margin)
+
+    @staticmethod
+    def set_widget_is_variable(*, widget_blueprint_path, widget_name, is_variable):
+        """X.set_widget_is_variable(widget_blueprint_path, widget_name, is_variable) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.set_widget_is_variable(widget_blueprint_path, widget_name, is_variable)
+
+    @staticmethod
     def set_widget_property(*, widget_blueprint_path, widget_name, property_name, value):
         """X.set_widget_property(widget_blueprint_path, widget_name, property_name, value) -> bool"""
         return unreal.UnrealBridgeUMGLibrary.set_widget_property(widget_blueprint_path, widget_name, property_name, value)
+
+    @staticmethod
+    def set_widget_slot_property(*, widget_blueprint_path, widget_name, property_name, value):
+        """X.set_widget_slot_property(widget_blueprint_path, widget_name, property_name, value) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.set_widget_slot_property(widget_blueprint_path, widget_name, property_name, value)
+
+    @staticmethod
+    def spawn_widget_instance(*, widget_blueprint_path, z_order):
+        """X.spawn_widget_instance(widget_blueprint_path, z_order) -> str"""
+        return unreal.UnrealBridgeUMGLibrary.spawn_widget_instance(widget_blueprint_path, z_order)
+
+    @staticmethod
+    def stop_live_widget_animation(*, instance_handle, animation_name):
+        """X.stop_live_widget_animation(instance_handle, animation_name) -> bool"""
+        return unreal.UnrealBridgeUMGLibrary.stop_live_widget_animation(instance_handle, animation_name)
 
