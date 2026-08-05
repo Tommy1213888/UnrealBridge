@@ -35,6 +35,7 @@ public class UnrealBridge : ModuleRules
 			"MovieScene",
 			"MovieSceneTracks",
 			"AnimGraphRuntime",
+			"AnimationCore",
 			"AnimationBlueprintLibrary",
 			"AnimationModifiers",
 			"ContentBrowser",
@@ -114,6 +115,22 @@ public class UnrealBridge : ModuleRules
 		{
 			PrivateDependencyModuleNames.AddRange(new string[]
 			{
+				// Niagara authoring and compile diagnostics. The public API is kept
+				// build-safe on older engines through generated reflected stubs.
+				"Niagara",
+				"NiagaraCore",
+				"NiagaraEditor",
+				"NiagaraShader",
+				// Rig authoring. The editor-facing controllers are intentionally
+				// version-gated because their data models changed substantially in 5.6.
+				"ControlRig",
+				"ControlRigDeveloper",
+				"ControlRigEditor",
+				"RigVM",
+				"RigVMDeveloper",
+				"RigVMEditor",
+				"IKRig",
+				"IKRigEditor",
 				"SmartObjectsModule",
 				"SmartObjectsEditorModule",
 				"WorldConditions",

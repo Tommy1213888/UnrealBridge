@@ -74,7 +74,7 @@ def is_editor_running() -> bool:
     try:
         out = subprocess.check_output(
             ["tasklist", "/FI", "IMAGENAME eq UnrealEditor.exe", "/NH"],
-            text=True, stderr=subprocess.DEVNULL,
+            text=True, errors="replace", stderr=subprocess.DEVNULL,
         )
     except (subprocess.CalledProcessError, FileNotFoundError):
         return False
@@ -88,7 +88,7 @@ def is_pid_running(pid: int) -> bool:
     try:
         out = subprocess.check_output(
             ["tasklist", "/FI", f"PID eq {pid}", "/NH"],
-            text=True, stderr=subprocess.DEVNULL,
+            text=True, errors="replace", stderr=subprocess.DEVNULL,
         )
     except (subprocess.CalledProcessError, FileNotFoundError):
         return False
@@ -121,7 +121,7 @@ def get_editor_info_for_uproject(uproject: pathlib.Path,
             [sys.executable, str(BRIDGE_PY),
              "--json", "--discovery-timeout", str(discovery_timeout_ms),
              "list-editors"],
-            capture_output=True, text=True, timeout=10,
+            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=10,
         )
     except (subprocess.TimeoutExpired, FileNotFoundError):
         return (None, False)
@@ -167,7 +167,7 @@ def quit_editor_gracefully(timeout_s: float,
     if project_name:
         cmd += ["--project", project_name]
     cmd += ["--timeout", "10", "exec", script]
-    subprocess.run(cmd, capture_output=True, text=True)
+    subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
     deadline = time.time() + timeout_s
     while time.time() < deadline:
         if target_pid is not None:
@@ -186,7 +186,7 @@ def force_kill_pid(pid: int) -> None:
         return
     subprocess.run(
         ["taskkill", "/F", "/PID", str(pid)],
-        capture_output=True, text=True,
+        capture_output=True, text=True, errors="replace",
     )
     for _ in range(20):
         if not is_pid_running(pid):
@@ -199,7 +199,7 @@ def force_kill_editor() -> None:
     only. Kills sibling editors running other projects; do not use casually."""
     subprocess.run(
         ["taskkill", "/F", "/IM", "UnrealEditor.exe"],
-        capture_output=True, text=True,
+        capture_output=True, text=True, errors="replace",
     )
     for _ in range(20):
         if not is_editor_running():
@@ -273,7 +273,9 @@ def wait_for_bridge(timeout_s: float, project_name: "str | None" = None) -> bool
         cmd += ["--project", project_name]
     cmd += ["--timeout", "3", "ping"]
     while time.time() < deadline:
-        p = subprocess.run(cmd, capture_output=True, text=True)
+        p = subprocess.run(
+            cmd, capture_output=True, text=True, encoding="utf-8", errors="replace"
+        )
         if p.returncode == 0:
             try:
                 data = json.loads(p.stdout)

@@ -112,11 +112,11 @@ EOF
 ## API surface — use the wrapper module first
 
 ```python
-from unreal_bridge import Asset, Level, Blueprint, Editor, Anim, Material, PoseSearch, Chooser, StateTree, SmartObject, ...
+from unreal_bridge import Asset, Level, Blueprint, Editor, Anim, Rig, Niagara, Material, PoseSearch, Chooser, StateTree, SmartObject, ...
 paths, _ = Asset.search_assets_in_all_content(query="Hero", max_results=20)
 ```
 
-The wrapper has 24 classes (one per `UnrealBridge*Library`) with **kwargs-only signatures** — positional args raise `TypeError` immediately, no UE round-trip. This is the structural fix for positional-arg-order hallucinations. Regenerate after C++ header changes via `python tools/gen_manifest.py`.
+The wrapper has 26 classes (one per `UnrealBridge*Library`) with **kwargs-only signatures** — positional args raise `TypeError` immediately, no UE round-trip. This is the structural fix for positional-arg-order hallucinations. Regenerate after C++ header changes via `python tools/gen_manifest.py`.
 
 Fallback: raw `unreal.UnrealBridge*Library.foo(...)` works (preflight catches errors), but prefer the wrapper.
 
@@ -182,6 +182,8 @@ Signatures are now mechanically enforced (preflight). References carry semantic 
 | Asset queries | `references/bridge-asset-api.md` | Asset lookup, search, references/dependencies, **`SoftObjectPath` stringification** (top-of-file block) |
 | UMG / Widget | `references/bridge-umg-api.md` | **Read before any Widget Blueprint write.** Asset/tree/layout/style authoring, UI-material brushes, batched widget animations, UE 5.7+ MVVM, compile validation, and PIE functional verification. |
 | Animation | `references/bridge-anim-api.md` | ABP state machines, slots, sequences, montages, blend spaces. **Authoring an ABP? Read the "Authoring an Animation Blueprint (agent workflow)" section first.** |
+| **Control Rig / IK Rig / IK Retargeter** | `references/bridge-rig-api.md` | **Read before any rig or retarget asset write.** Type discovery, hierarchy and RigVM authoring, solver/goal/chain setup, retarget ops/mapping/poses/profiles, batch retargeting, compile/processor validation, transient evaluation, animation-quality review, and cleanup. Functional on UE 5.7+. |
+| **Niagara / VFX** | `references/bridge-niagara-api.md` | **Read before any Niagara asset write.** Template/script discovery, System/Emitter recipes, module inputs, User parameters, renderers/materials/bindings, compile/audit gates, Trail/Sparks/Explosion/Dissolve presets, moving transient previews, and cleanup. Functional on UE 5.7+. |
 | DataTable | `references/bridge-datatable-api.md` | Schema, rows, fields, search, CSV |
 | Material | `references/bridge-material-api.md` | Material instance parameters |
 | Level / Actor | `references/bridge-level-api.md` | Level queries, spawn/destroy/move, property get/set, selection |
@@ -211,6 +213,65 @@ Creating a WidgetTree is not completion. For every agent-authored screen:
 6. Always call `remove_widget_instance` / `remove_all_widget_instances` before stopping PIE. Delete validation-only assets from their exact dedicated folder and verify both Asset Registry and backing files are empty.
 
 The exact API sequence, MVVM modes, animation key structs, runtime semantics, and cleanup checklist are in `references/bridge-umg-api.md`.
+
+## Rig deliverable loop (mandatory after Control Rig / IK authoring)
+
+Creating assets or obtaining a clean compile is not completion. For every
+agent-authored Control Rig or retarget setup:
+
+1. Discover exact unit, template, solver, and retarget-op type paths before
+   writing; never guess reflected type names or RigVM pin paths.
+2. Build and review the Control Rig hierarchy, then author a connected RigVM
+   graph with explicit execution flow, meaningful control shapes, stable
+   naming, comments, and readable layout.
+3. Require `validate_control_rig(..., save=True)` to succeed, then call
+   `evaluate_control_rig` on a transient instance and verify expected control
+   and bone transforms for at least one non-default input.
+4. For IK Rig, validate the preview skeleton, retarget root, every chain, goal,
+   solver connection, and any reflected solver/goal/bone settings.
+5. For IK Retargeter, validate both rigs and meshes, review chain mappings and
+   op settings, initialize the processor, test representative retarget poses
+   and profiles, then batch-retarget at least one animation.
+6. Run `analyze_animation_quality` on representative output and review root
+   spikes, planted-foot sliding/penetration, and joint angular discontinuities;
+   visual playback remains required for final artistic acceptance.
+7. Validation-only work must live in one unique folder. Delete every generated
+   Control Rig, IK Rig, Retargeter, pose/profile carrier, and retargeted output,
+   then prove both Asset Registry and backing files contain no residue.
+
+The exact type-discovery calls, export-text property rules, RigVM addressing,
+retarget workflow, validation gates, and cleanup checklist are in
+`references/bridge-rig-api.md`.
+
+## Niagara deliverable loop (mandatory after VFX authoring)
+
+Creating or cleanly compiling a Niagara System is not completion. For every
+agent-authored effect:
+
+1. Discover exact System/Emitter templates and module/dynamic-input script
+   paths before writing; never guess plugin-mount paths or stack input names.
+2. Re-list Emitters, modules, inputs, renderers, and User parameters after
+   structural changes. Use returned handle/node/renderer IDs for mutations.
+3. Prove each intended gameplay/art control is linked to a `User.*` parameter
+   by input readback, then require `compile_niagara_system(..., save=True)` to
+   report valid, ready, zero-error output.
+4. Require `validate_niagara_system` to pass; resolve null materials, missing
+   GPU bounds, disabled/empty content, and budget findings.
+5. Spawn and advance a transient preview, then check active per-emitter state,
+   particle counts, memory, and timing. For weapon ribbons, alternate
+   `set_niagara_preview_transform(..., teleport=False)` with short simulation
+   advances so the component samples a real path.
+6. Review the effect visually at gameplay scale for timing, silhouette,
+   readability, color, overdraw, and culling. Runtime counts prove simulation,
+   not artistic acceptance.
+7. Remove every preview before deleting validation assets. Delete the exact
+   dedicated folder and prove both Asset Registry and backing files are empty;
+   an in-memory deleted UObject can persist until GC/restart and is not a disk
+   cleanup failure.
+
+The exact recipe structs, stack/input modes, renderer/material rules, preset
+semantics, cold-load compile behavior, moving-preview pattern, and cleanup
+checklist are in `references/bridge-niagara-api.md`.
 
 > **Pawn control is non-obvious — read `bridge-gameplay-api.md` first.** Driving the player (sticky `IA_Move`, `apply_look_input`, navigating to a moving target, holding an input over time) has hard constraints a fresh API read won't reveal: `bridge.exec` runs on GameThread so `time.sleep` inside one `exec` freezes the engine and stops the sticky ticker; continuous steering must run from a reactive `register_runtime_timer` callback, not a Python `while` loop; `IA_Move` is camera-relative and the forward-axis convention varies per project. The "Pattern: chase a (possibly moving) target and stop on arrival" section has the working template.
 

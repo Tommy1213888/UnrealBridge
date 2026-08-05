@@ -45,6 +45,30 @@ from `UnrealBridge.Build.cs` only for UE 5.7+, and the plugin references are
 optional, so UE 5.3 can still resolve and compile the descriptor even though it
 does not ship the SmartObjects plugin.
 
+`UnrealBridgeRigLibrary` also uses the reflected-header plus generated
+inverse-stub pattern. Its 98 Control Rig hierarchy/RigVM, IK Rig solver/goal/
+chain, IK Retargeter mapping/pose/profile/batch, transient evaluation, and
+animation-quality APIs are functional on UE 5.7+. On UE 5.3-5.6,
+`IsRigApiAvailable()` returns false and `GetLastRigError()` reports that the
+real implementation requires UE 5.7+, while every other call logs the same
+actionable requirement and returns a safe empty result. Control Rig, RigVM,
+and IK Rig editor data models changed substantially before 5.7, so their
+module dependencies are added only on 5.7+; the `ControlRig` and `IKRig`
+plugin descriptor dependencies are optional so they do not block older engine
+builds.
+
+`UnrealBridgeNiagaraLibrary` follows the same reflected-header plus generated
+inverse-stub pattern. Its 64 System/Emitter lifecycle and recipe, stack module
+and input, parameter, renderer/material/binding, compiler/audit, production
+preset, and transient preview APIs are functional on UE 5.7+. On UE 5.3-5.6,
+`IsNiagaraApiAvailable()` returns false and `GetLastNiagaraError()` reports
+that the real implementation requires UE 5.7+, while every other call logs the
+same actionable requirement and returns a safe empty result. Niagara editor
+stack and graph contracts changed substantially before 5.7, so the `Niagara`,
+`NiagaraCore`, `NiagaraEditor`, and `NiagaraShader` module dependencies are
+added only on 5.7+; the `Niagara` plugin descriptor dependency is optional so
+it does not block older engine builds.
+
 ### In-library safe no-op gate: UMG MVVM
 
 `UnrealBridgeUMGLibrary` itself remains fully reflected on every supported
@@ -93,6 +117,7 @@ appropriate code path internally.
 | `UnrealBridgeChooserLibrary::DeleteChooserRow` | 5.8 changed `FChooserColumnBase::DeleteRows` from `const TArray<uint32>&` to `TArrayView<int>` | `#if !UE_VERSION_OLDER_THAN(5, 8, 0)`: build a stack `int[]` and pass `MakeArrayView`; legacy: keep the `TArray<uint32>` form |
 | `UnrealBridgeChooserLibrary::EvaluateChooser` debug-row readback | 5.8 renamed `UChooserTable::GetDebugSelectedRow() → int32` to `GetDebugSelectedRows() → const TArray<int32>&` (multi-row support) | `#if !UE_VERSION_OLDER_THAN(5, 8, 0)`: read `GetDebugSelectedRows()[0]` if non-empty, else `-1`; legacy: keep the singular `GetDebugSelectedRow()` |
 | `UnrealBridgeGeometryLibrary::DisplaceMeshFromTexture` | 5.8 inserted a new `FGeometryScriptAdaptiveTessellationOptions` parameter (position 5) into `UGeometryScriptLibrary_MeshDeformFunctions::ApplyDisplaceFromTextureMap` | `#if !UE_VERSION_OLDER_THAN(5, 8, 0)`: pass a default-constructed `FGeometryScriptAdaptiveTessellationOptions{}` between `Options` and `UVChannel`; legacy: omit the parameter |
+| `UnrealBridgeRigLibrary::BatchRetargetAnimations` | 5.8 deprecated the positional `UIKRetargetBatchOperation::DuplicateAndRetarget` API, inserted target-path/source-path arguments, and introduced `FIKRetargetBatchOperationInputs` + `RunBatchRetarget` | On 5.8+, populate the input struct and pass the destination directly to `RunBatchRetarget`; on 5.7, use `DuplicateAndRetarget` and move the returned assets through AssetTools. The bridge UFUNCTION signature and result remain identical. |
 
 ## How the gate macro works
 

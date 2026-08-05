@@ -35,6 +35,8 @@ PRIVATE = REPO_ROOT / "Plugin" / "UnrealBridge" / "Source" / "UnrealBridge" / "P
 # the supplied list — used when a library has a handful of 5.7-gated funcs
 # alongside many version-stable ones).
 TARGETS: list[dict] = [
+    {"name": "UnrealBridgeNiagaraLibrary",       "scope": "all"},
+    {"name": "UnrealBridgeRigLibrary",            "scope": "all"},
     {"name": "UnrealBridgeStateTreeLibrary",      "scope": "all"},
     {"name": "UnrealBridgeSmartObjectLibrary",    "scope": "all"},
     {"name": "UnrealBridgeChooserLibrary",        "scope": "all"},
@@ -151,6 +153,10 @@ def render_stub(class_name: str, func: dict) -> str:
         body = '\treturn TEXT("StateTree authoring API requires Unreal Engine 5.7+");\n'
     elif class_name == "UUnrealBridgeSmartObjectLibrary" and name == "GetLastSmartObjectError":
         body = '\treturn TEXT("Smart Object API requires Unreal Engine 5.7+");\n'
+    elif class_name == "UUnrealBridgeRigLibrary" and name == "GetLastRigError":
+        body = '\treturn TEXT("Control Rig / IK Rig authoring API requires Unreal Engine 5.7+");\n'
+    elif class_name == "UUnrealBridgeNiagaraLibrary" and name == "GetLastNiagaraError":
+        body = '\treturn TEXT("Niagara authoring API requires Unreal Engine 5.7+");\n'
     else:
         body = stub_body(rt)
     return f"{rt} {class_name}::{name}({params})\n{{\n{log}{body}}}\n\n"

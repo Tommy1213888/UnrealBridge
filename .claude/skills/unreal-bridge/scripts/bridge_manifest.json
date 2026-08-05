@@ -31,7 +31,7 @@
       "TIMER"
     ]
   },
-  "generated_at": "2026-08-05T05:51:55+00:00",
+  "generated_at": "2026-08-05T11:19:19+00:00",
   "libraries": {
     "UnrealBridgeAnimLibrary": {
       "functions": {
@@ -17329,6 +17329,1944 @@
         }
       }
     },
+    "UnrealBridgeNiagaraLibrary": {
+      "functions": {
+        "add_niagara_emitter": {
+          "doc": "X.add_niagara_emitter(system_path, name, emitter_asset_or_template_path=\"\", save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "emitter_asset_or_template_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "add_niagara_module": {
+          "doc": "X.add_niagara_module(system_path, emitter_id_or_name, usage, script_path, suggested_name=\"\", index=-1, enabled=True, save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "usage",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "script_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "suggested_name",
+              "type": ""
+            },
+            {
+              "default": "-1",
+              "has_default": true,
+              "name": "index",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "enabled",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "add_niagara_parameter_assignment": {
+          "doc": "X.add_niagara_parameter_assignment(system_path, emitter_id_or_name, usage, parameter_name, type, value, index=-1, save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "usage",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "parameter_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            },
+            {
+              "default": "-1",
+              "has_default": true,
+              "name": "index",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "add_niagara_renderer": {
+          "doc": "X.add_niagara_renderer(system_path, emitter_id_or_name, renderer_type, name=\"\", material_path=\"\", mesh_path=\"\", save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "renderer_type",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "material_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "mesh_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "add_niagara_user_parameter": {
+          "doc": "X.add_niagara_user_parameter(system_path, name, type, default_value, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "default_value",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "advance_niagara_preview": {
+          "doc": "X.advance_niagara_preview(handle, seconds, tick_delta=0.016667) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "handle",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "seconds",
+              "type": ""
+            },
+            {
+              "default": "0.016667",
+              "has_default": true,
+              "name": "tick_delta",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "compile_niagara_system": {
+          "doc": "X.compile_niagara_system(system_path, force=True, wait_for_gpu_shaders=True, save=True) -> BridgeNiagaraCompileResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "force",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "wait_for_gpu_shaders",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraCompileResult"
+        },
+        "control_niagara_preview": {
+          "doc": "X.control_niagara_preview(handle, action) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "handle",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "action",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "create_dissolve_effect": {
+          "doc": "X.create_dissolve_effect(asset_path, style=\"Ash\", material_path=\"\", color=[0.080000, 0.800000, 1.000000, 1.000000], count=128, duration=2.000000, radius=100.000000, direction=[0.000000, 0.000000, 1.000000], save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"Ash\"",
+              "has_default": true,
+              "name": "style",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "material_path",
+              "type": ""
+            },
+            {
+              "default": "[0.080000, 0.800000, 1.000000, 1.000000]",
+              "has_default": true,
+              "name": "color",
+              "type": ""
+            },
+            {
+              "default": "128",
+              "has_default": true,
+              "name": "count",
+              "type": ""
+            },
+            {
+              "default": "2.000000",
+              "has_default": true,
+              "name": "duration",
+              "type": ""
+            },
+            {
+              "default": "100.000000",
+              "has_default": true,
+              "name": "radius",
+              "type": ""
+            },
+            {
+              "default": "[0.000000, 0.000000, 1.000000]",
+              "has_default": true,
+              "name": "direction",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "create_explosion_effect": {
+          "doc": "X.create_explosion_effect(asset_path, style=\"Layered\", material_path=\"\", core_color=[1.000000, 0.120000, 0.010000, 1.000000], scale=1.000000, duration=1.500000, debris_count=64, shockwave=True, light=True, save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"Layered\"",
+              "has_default": true,
+              "name": "style",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "material_path",
+              "type": ""
+            },
+            {
+              "default": "[1.000000, 0.120000, 0.010000, 1.000000]",
+              "has_default": true,
+              "name": "core_color",
+              "type": ""
+            },
+            {
+              "default": "1.000000",
+              "has_default": true,
+              "name": "scale",
+              "type": ""
+            },
+            {
+              "default": "1.500000",
+              "has_default": true,
+              "name": "duration",
+              "type": ""
+            },
+            {
+              "default": "64",
+              "has_default": true,
+              "name": "debris_count",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "shockwave",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "light",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "create_niagara_emitter": {
+          "doc": "X.create_niagara_emitter(asset_path, template_emitter_path=\"\", add_default_modules_and_renderer=True, save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "template_emitter_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "add_default_modules_and_renderer",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "create_niagara_system": {
+          "doc": "X.create_niagara_system(asset_path, template_system_path=\"\", save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "template_system_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "create_niagara_system_from_recipe": {
+          "doc": "X.create_niagara_system_from_recipe(asset_path, recipe, compile=True, save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "recipe",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "compile",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "create_spark_effect": {
+          "doc": "X.create_spark_effect(asset_path, style=\"Directional\", material_path=\"\", color=[1.000000, 0.450000, 0.050000, 1.000000], count=48, speed=900.000000, lifetime=0.600000, gravity=-980.000000, collision=True, save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"Directional\"",
+              "has_default": true,
+              "name": "style",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "material_path",
+              "type": ""
+            },
+            {
+              "default": "[1.000000, 0.450000, 0.050000, 1.000000]",
+              "has_default": true,
+              "name": "color",
+              "type": ""
+            },
+            {
+              "default": "48",
+              "has_default": true,
+              "name": "count",
+              "type": ""
+            },
+            {
+              "default": "900.000000",
+              "has_default": true,
+              "name": "speed",
+              "type": ""
+            },
+            {
+              "default": "0.600000",
+              "has_default": true,
+              "name": "lifetime",
+              "type": ""
+            },
+            {
+              "default": "-980.000000",
+              "has_default": true,
+              "name": "gravity",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "collision",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "create_weapon_trail_effect": {
+          "doc": "X.create_weapon_trail_effect(asset_path, style=\"Ribbon\", material_path=\"\", color=[1.000000, 0.350000, 0.050000, 1.000000], width=12.000000, lifetime=0.350000, spawn_rate=90.000000, local_space=False, save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": "\"Ribbon\"",
+              "has_default": true,
+              "name": "style",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "material_path",
+              "type": ""
+            },
+            {
+              "default": "[1.000000, 0.350000, 0.050000, 1.000000]",
+              "has_default": true,
+              "name": "color",
+              "type": ""
+            },
+            {
+              "default": "12.000000",
+              "has_default": true,
+              "name": "width",
+              "type": ""
+            },
+            {
+              "default": "0.350000",
+              "has_default": true,
+              "name": "lifetime",
+              "type": ""
+            },
+            {
+              "default": "90.000000",
+              "has_default": true,
+              "name": "spawn_rate",
+              "type": ""
+            },
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "local_space",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "delete_niagara_asset": {
+          "doc": "X.delete_niagara_asset(asset_path) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "duplicate_niagara_emitter": {
+          "doc": "X.duplicate_niagara_emitter(system_path, emitter_id_or_name, new_name, save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_name",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "get_last_niagara_error": {
+          "doc": "X.get_last_niagara_error() -> str",
+          "params": [],
+          "returns": "str"
+        },
+        "get_niagara_compile_diagnostics": {
+          "doc": "X.get_niagara_compile_diagnostics(system_path) -> BridgeNiagaraCompileResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraCompileResult"
+        },
+        "get_niagara_preview_info": {
+          "doc": "X.get_niagara_preview_info(handle) -> BridgeNiagaraPreviewInfo",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "handle",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraPreviewInfo"
+        },
+        "get_niagara_renderer_property": {
+          "doc": "X.get_niagara_renderer_property(system_path, emitter_id_or_name, renderer_id, property_name) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "renderer_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_name",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "get_niagara_script_info": {
+          "doc": "X.get_niagara_script_info(script_path) -> BridgeNiagaraScriptInfo",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "script_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraScriptInfo"
+        },
+        "get_niagara_system_info": {
+          "doc": "X.get_niagara_system_info(system_path) -> BridgeNiagaraSystemInfo",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraSystemInfo"
+        },
+        "is_niagara_api_available": {
+          "doc": "X.is_niagara_api_available() -> bool",
+          "params": [],
+          "returns": "bool"
+        },
+        "link_niagara_module_input": {
+          "doc": "X.link_niagara_module_input(system_path, module_id, input_name, linked_parameter, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "module_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "input_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "linked_parameter",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "list_niagara_emitters": {
+          "doc": "X.list_niagara_emitters(system_path) -> Array[BridgeNiagaraEmitterInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeNiagaraEmitterInfo]"
+        },
+        "list_niagara_module_input_object_properties": {
+          "doc": "X.list_niagara_module_input_object_properties(system_path, module_id, input_name, include_advanced=False) -> Array[BridgeNiagaraPropertyInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "module_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "input_name",
+              "type": ""
+            },
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "include_advanced",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeNiagaraPropertyInfo]"
+        },
+        "list_niagara_module_inputs": {
+          "doc": "X.list_niagara_module_inputs(system_path, module_id, include_hidden=False) -> Array[BridgeNiagaraModuleInputInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "module_id",
+              "type": ""
+            },
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "include_hidden",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeNiagaraModuleInputInfo]"
+        },
+        "list_niagara_modules": {
+          "doc": "X.list_niagara_modules(system_path, emitter_id_or_name=\"\", usage=\"All\") -> Array[BridgeNiagaraModuleInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": "\"All\"",
+              "has_default": true,
+              "name": "usage",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeNiagaraModuleInfo]"
+        },
+        "list_niagara_previews": {
+          "doc": "X.list_niagara_previews() -> Array[BridgeNiagaraPreviewInfo]",
+          "params": [],
+          "returns": "Array[BridgeNiagaraPreviewInfo]"
+        },
+        "list_niagara_renderer_properties": {
+          "doc": "X.list_niagara_renderer_properties(system_path, emitter_id_or_name, renderer_id, include_advanced=False) -> Array[BridgeNiagaraPropertyInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "renderer_id",
+              "type": ""
+            },
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "include_advanced",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeNiagaraPropertyInfo]"
+        },
+        "list_niagara_renderers": {
+          "doc": "X.list_niagara_renderers(system_path, emitter_id_or_name=\"\") -> Array[BridgeNiagaraRendererInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "emitter_id_or_name",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeNiagaraRendererInfo]"
+        },
+        "list_niagara_scripts": {
+          "doc": "X.list_niagara_scripts(usage=\"Module\", query=\"\", max_results=500) -> Array[BridgeNiagaraScriptInfo]",
+          "params": [
+            {
+              "default": "\"Module\"",
+              "has_default": true,
+              "name": "usage",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "query",
+              "type": ""
+            },
+            {
+              "default": "500",
+              "has_default": true,
+              "name": "max_results",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeNiagaraScriptInfo]"
+        },
+        "list_niagara_templates": {
+          "doc": "X.list_niagara_templates(asset_type=\"All\", query=\"\", max_results=200) -> Array[BridgeNiagaraTemplateInfo]",
+          "params": [
+            {
+              "default": "\"All\"",
+              "has_default": true,
+              "name": "asset_type",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "query",
+              "type": ""
+            },
+            {
+              "default": "200",
+              "has_default": true,
+              "name": "max_results",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeNiagaraTemplateInfo]"
+        },
+        "list_niagara_user_parameters": {
+          "doc": "X.list_niagara_user_parameters(system_path) -> Array[BridgeNiagaraParameterInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeNiagaraParameterInfo]"
+        },
+        "remove_all_niagara_previews": {
+          "doc": "X.remove_all_niagara_previews() -> int32",
+          "params": [],
+          "returns": "int32"
+        },
+        "remove_niagara_emitter": {
+          "doc": "X.remove_niagara_emitter(system_path, emitter_id_or_name, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_niagara_module": {
+          "doc": "X.remove_niagara_module(system_path, module_id, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "module_id",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_niagara_preview": {
+          "doc": "X.remove_niagara_preview(handle) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "handle",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_niagara_renderer": {
+          "doc": "X.remove_niagara_renderer(system_path, emitter_id_or_name, renderer_id, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "renderer_id",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_niagara_user_parameter": {
+          "doc": "X.remove_niagara_user_parameter(system_path, name, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "rename_niagara_emitter": {
+          "doc": "X.rename_niagara_emitter(system_path, emitter_id_or_name, new_name, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_name",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "rename_niagara_user_parameter": {
+          "doc": "X.rename_niagara_user_parameter(system_path, old_name, new_name, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "old_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_name",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "reset_niagara_module_input": {
+          "doc": "X.reset_niagara_module_input(system_path, module_id, input_name, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "module_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "input_name",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_emitter_enabled": {
+          "doc": "X.set_niagara_emitter_enabled(system_path, emitter_id_or_name, enabled, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "enabled",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_emitter_properties": {
+          "doc": "X.set_niagara_emitter_properties(system_path, emitter_id_or_name, local_space, sim_target, deterministic, random_seed, use_fixed_bounds, fixed_bounds, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "local_space",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "sim_target",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "deterministic",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "random_seed",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "use_fixed_bounds",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "fixed_bounds",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_module_data_interface_input": {
+          "doc": "X.set_niagara_module_data_interface_input(system_path, module_id, input_name, data_interface_class_path, properties, save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "module_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "input_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "data_interface_class_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "properties",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "set_niagara_module_dynamic_input": {
+          "doc": "X.set_niagara_module_dynamic_input(system_path, module_id, input_name, dynamic_input_script_path, suggested_name=\"\", save=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "module_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "input_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "dynamic_input_script_path",
+              "type": ""
+            },
+            {
+              "default": "\"\"",
+              "has_default": true,
+              "name": "suggested_name",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "set_niagara_module_enabled": {
+          "doc": "X.set_niagara_module_enabled(system_path, module_id, enabled, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "module_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "enabled",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_module_input": {
+          "doc": "X.set_niagara_module_input(system_path, module_id, input_name, value, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "module_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "input_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_module_input_object_property": {
+          "doc": "X.set_niagara_module_input_object_property(system_path, module_id, input_name, property_name, value, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "module_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "input_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_module_object_input": {
+          "doc": "X.set_niagara_module_object_input(system_path, module_id, input_name, object_path, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "module_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "input_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "object_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_preview_transform": {
+          "doc": "X.set_niagara_preview_transform(handle, transform, teleport=False) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "handle",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "transform",
+              "type": ""
+            },
+            {
+              "default": "False",
+              "has_default": true,
+              "name": "teleport",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_preview_variable": {
+          "doc": "X.set_niagara_preview_variable(handle, name, type, value) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "handle",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_renderer_binding": {
+          "doc": "X.set_niagara_renderer_binding(system_path, emitter_id_or_name, renderer_id, binding_property, variable_name, source_mode=\"Particles\", save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "renderer_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "binding_property",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "variable_name",
+              "type": ""
+            },
+            {
+              "default": "\"Particles\"",
+              "has_default": true,
+              "name": "source_mode",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_renderer_enabled": {
+          "doc": "X.set_niagara_renderer_enabled(system_path, emitter_id_or_name, renderer_id, enabled, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "renderer_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "enabled",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_renderer_material": {
+          "doc": "X.set_niagara_renderer_material(system_path, emitter_id_or_name, renderer_id, material_path, material_index=0, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "renderer_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "material_path",
+              "type": ""
+            },
+            {
+              "default": "0",
+              "has_default": true,
+              "name": "material_index",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_renderer_property": {
+          "doc": "X.set_niagara_renderer_property(system_path, emitter_id_or_name, renderer_id, property_name, value, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "emitter_id_or_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "renderer_id",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_system_effect_type": {
+          "doc": "X.set_niagara_system_effect_type(system_path, effect_type_path, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "effect_type_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_system_fixed_bounds": {
+          "doc": "X.set_niagara_system_fixed_bounds(system_path, enabled, bounds, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "enabled",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "bounds",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_system_warmup": {
+          "doc": "X.set_niagara_system_warmup(system_path, warmup_time, tick_delta=0.033333, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "warmup_time",
+              "type": ""
+            },
+            {
+              "default": "0.033333",
+              "has_default": true,
+              "name": "tick_delta",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_niagara_user_parameter_default": {
+          "doc": "X.set_niagara_user_parameter_default(system_path, name, value, save=True) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "spawn_niagara_preview": {
+          "doc": "X.spawn_niagara_preview(system_path, transform, auto_activate=True, reset_on_change=True) -> BridgeNiagaraOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "transform",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "auto_activate",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "reset_on_change",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraOperationResult"
+        },
+        "validate_niagara_system": {
+          "doc": "X.validate_niagara_system(system_path, check_materials=True, check_bounds=True, max_emitters=16, max_renderers_per_emitter=8, max_modules_per_emitter=64) -> BridgeNiagaraAuditResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "system_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "check_materials",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "check_bounds",
+              "type": ""
+            },
+            {
+              "default": "16",
+              "has_default": true,
+              "name": "max_emitters",
+              "type": ""
+            },
+            {
+              "default": "8",
+              "has_default": true,
+              "name": "max_renderers_per_emitter",
+              "type": ""
+            },
+            {
+              "default": "64",
+              "has_default": true,
+              "name": "max_modules_per_emitter",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeNiagaraAuditResult"
+        }
+      }
+    },
     "UnrealBridgePCGLibrary": {
       "functions": {
         "cleanup_pcg_component": {
@@ -20103,6 +22041,2666 @@
             }
           ],
           "returns": "bool"
+        }
+      }
+    },
+    "UnrealBridgeRigLibrary": {
+      "functions": {
+        "add_control_rig_bone": {
+          "doc": "X.add_control_rig_bone(asset_path, name, parent_name, parent_type, transform, global_transform, imported_bone) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "parent_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "parent_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "transform",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "global_transform",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "imported_bone",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_control_rig_branch_node": {
+          "doc": "X.add_control_rig_branch_node(asset_path, graph_name, position, node_name) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "position",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "node_name",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_control_rig_comment_node": {
+          "doc": "X.add_control_rig_comment_node(asset_path, graph_name, comment_text, position, size, color, node_name) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "comment_text",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "position",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "size",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "color",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "node_name",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_control_rig_connector": {
+          "doc": "X.add_control_rig_connector(asset_path, name, connector_type, description, optional, array) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "connector_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "description",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "optional",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "array",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_control_rig_control": {
+          "doc": "X.add_control_rig_control(asset_path, name, parent_name, parent_type, control_type, initial_value, offset_transform, shape_transform, shape_name, shape_color, animatable) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "parent_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "parent_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "control_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "initial_value",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "offset_transform",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "shape_transform",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "shape_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "shape_color",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "animatable",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_control_rig_curve": {
+          "doc": "X.add_control_rig_curve(asset_path, name, value) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_control_rig_element_tag": {
+          "doc": "X.add_control_rig_element_tag(asset_path, name, element_type, tag) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "element_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "tag",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "add_control_rig_member_variable": {
+          "doc": "X.add_control_rig_member_variable(asset_path, name, cpp_type, default_value, public, read_only) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "cpp_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "default_value",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "public",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "read_only",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_control_rig_null": {
+          "doc": "X.add_control_rig_null(asset_path, name, parent_name, parent_type, transform, global_transform) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "parent_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "parent_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "transform",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "global_transform",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_control_rig_template_node": {
+          "doc": "X.add_control_rig_template_node(asset_path, graph_name, notation, position, node_name) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "notation",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "position",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "node_name",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_control_rig_unit_node": {
+          "doc": "X.add_control_rig_unit_node(asset_path, graph_name, unit_struct_path, method_name, position, node_name) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "unit_struct_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "method_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "position",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "node_name",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_control_rig_variable_node": {
+          "doc": "X.add_control_rig_variable_node(asset_path, graph_name, variable_name, cpp_type, cpp_type_object_path, getter, default_value, position, node_name, create_member_variable) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "variable_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "cpp_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "cpp_type_object_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "getter",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "default_value",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "position",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "node_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "create_member_variable",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_default_ik_retarget_ops": {
+          "doc": "X.add_default_ik_retarget_ops(asset_path) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "add_ik_retarget_op": {
+          "doc": "X.add_ik_retarget_op(asset_path, op_type_path, op_name) -> int32",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "op_type_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "op_name",
+              "type": ""
+            }
+          ],
+          "returns": "int32"
+        },
+        "add_ik_rig_goal": {
+          "doc": "X.add_ik_rig_goal(asset_path, goal_name, bone_name) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "goal_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "bone_name",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_ik_rig_retarget_chain": {
+          "doc": "X.add_ik_rig_retarget_chain(asset_path, chain_name, start_bone, end_bone, goal_name) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "chain_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "start_bone",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "end_bone",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "goal_name",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "add_ik_rig_solver": {
+          "doc": "X.add_ik_rig_solver(asset_path, solver_type_path) -> int32",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "solver_type_path",
+              "type": ""
+            }
+          ],
+          "returns": "int32"
+        },
+        "analyze_animation_quality": {
+          "doc": "X.analyze_animation_quality(animation_path, foot_bone_names, num_samples, contact_height_tolerance, foot_slide_speed_tolerance, joint_angular_delta_tolerance_degrees, max_reported_bones) -> BridgeAnimationQualityReport",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "animation_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "foot_bone_names",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "num_samples",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "contact_height_tolerance",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "foot_slide_speed_tolerance",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "joint_angular_delta_tolerance_degrees",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "max_reported_bones",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeAnimationQualityReport"
+        },
+        "apply_ik_rig_auto_setup": {
+          "doc": "X.apply_ik_rig_auto_setup(asset_path, retarget_definition, full_body_ik) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "retarget_definition",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "full_body_ik",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "auto_align_ik_retarget_pose": {
+          "doc": "X.auto_align_ik_retarget_pose(asset_path, side, bone_names, method) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "side",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "bone_names",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "method",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "auto_layout_control_rig_graph": {
+          "doc": "X.auto_layout_control_rig_graph(asset_path, graph_name, horizontal_spacing, vertical_spacing) -> BridgeRigLayoutResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "horizontal_spacing",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "vertical_spacing",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeRigLayoutResult"
+        },
+        "auto_map_ik_retarget_chains": {
+          "doc": "X.auto_map_ik_retarget_chains(asset_path, mapping_type, force_remap, op_name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "mapping_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "force_remap",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "op_name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "batch_retarget_animations": {
+          "doc": "X.batch_retarget_animations(retargeter_path, source_asset_paths, source_mesh_path, target_mesh_path, destination_folder, search, replace, prefix, suffix, include_referenced_assets, overwrite_existing, save) -> BridgeRetargetBatchResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "retargeter_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_asset_paths",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_mesh_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_mesh_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "destination_folder",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "search",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "replace",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "prefix",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "suffix",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "include_referenced_assets",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "overwrite_existing",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeRetargetBatchResult"
+        },
+        "compile_control_rig": {
+          "doc": "X.compile_control_rig(asset_path, save) -> BridgeRigValidationReport",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeRigValidationReport"
+        },
+        "configure_ik_retargeter_assets": {
+          "doc": "X.configure_ik_retargeter_assets(asset_path, source_ik_rig_path, target_ik_rig_path, source_preview_mesh_path, target_preview_mesh_path) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_ik_rig_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_ik_rig_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_preview_mesh_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_preview_mesh_path",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "connect_control_rig_pins": {
+          "doc": "X.connect_control_rig_pins(asset_path, graph_name, output_pin_path, input_pin_path, create_cast_node) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "output_pin_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "input_pin_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "create_cast_node",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "connect_ik_rig_goal_to_solver": {
+          "doc": "X.connect_ik_rig_goal_to_solver(asset_path, goal_name, solver_index) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "goal_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "solver_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "create_control_rig": {
+          "doc": "X.create_control_rig(asset_path, source_skeletal_asset_path, modular_rig, import_curves) -> BridgeRigOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_skeletal_asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "modular_rig",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "import_curves",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeRigOperationResult"
+        },
+        "create_ik_retarget_pose": {
+          "doc": "X.create_ik_retarget_pose(asset_path, pose_name, side) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "pose_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "side",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "create_ik_retargeter": {
+          "doc": "X.create_ik_retargeter(asset_path, source_ik_rig_path, target_ik_rig_path, source_preview_mesh_path, target_preview_mesh_path, add_default_ops) -> BridgeRigOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_ik_rig_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_ik_rig_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_preview_mesh_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_preview_mesh_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "add_default_ops",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeRigOperationResult"
+        },
+        "create_ik_rig": {
+          "doc": "X.create_ik_rig(asset_path, skeletal_mesh_path) -> BridgeRigOperationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "skeletal_mesh_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeRigOperationResult"
+        },
+        "disconnect_control_rig_pins": {
+          "doc": "X.disconnect_control_rig_pins(asset_path, graph_name, output_pin_path, input_pin_path) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "output_pin_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "input_pin_path",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "disconnect_ik_rig_goal_from_solver": {
+          "doc": "X.disconnect_ik_rig_goal_from_solver(asset_path, goal_name, solver_index) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "goal_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "solver_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "duplicate_ik_retarget_pose": {
+          "doc": "X.duplicate_ik_retarget_pose(asset_path, pose_name, new_name, side) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "pose_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "side",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "evaluate_control_rig": {
+          "doc": "X.evaluate_control_rig(asset_path, event_name, input_controls) -> BridgeControlRigEvaluationResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "event_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "input_controls",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeControlRigEvaluationResult"
+        },
+        "get_control_rig_control_property": {
+          "doc": "X.get_control_rig_control_property(asset_path, control_name, property_path) -> BridgeRigPropertyResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "control_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeRigPropertyResult"
+        },
+        "get_control_rig_info": {
+          "doc": "X.get_control_rig_info(asset_path) -> BridgeControlRigInfo",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeControlRigInfo"
+        },
+        "get_ik_retarget_op_property": {
+          "doc": "X.get_ik_retarget_op_property(asset_path, op_index, property_path) -> BridgeRigPropertyResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "op_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeRigPropertyResult"
+        },
+        "get_ik_retargeter_info": {
+          "doc": "X.get_ik_retargeter_info(asset_path) -> BridgeIKRetargeterInfo",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeIKRetargeterInfo"
+        },
+        "get_ik_rig_info": {
+          "doc": "X.get_ik_rig_info(asset_path) -> BridgeIKRigInfo",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeIKRigInfo"
+        },
+        "get_ik_rig_property": {
+          "doc": "X.get_ik_rig_property(asset_path, target_kind, solver_index, target_name, property_path) -> BridgeRigPropertyResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_kind",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "solver_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeRigPropertyResult"
+        },
+        "get_last_rig_error": {
+          "doc": "X.get_last_rig_error() -> str",
+          "params": [],
+          "returns": "str"
+        },
+        "import_control_rig_hierarchy": {
+          "doc": "X.import_control_rig_hierarchy(asset_path, source_skeletal_asset_path, replace_existing, import_curves) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_skeletal_asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "replace_existing",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "import_curves",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "is_rig_api_available": {
+          "doc": "X.is_rig_api_available() -> bool",
+          "params": [],
+          "returns": "bool"
+        },
+        "list_control_rig_control_properties": {
+          "doc": "X.list_control_rig_control_properties(asset_path, control_name) -> Array[BridgeRigPropertyInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "control_name",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeRigPropertyInfo]"
+        },
+        "list_control_rig_elements": {
+          "doc": "X.list_control_rig_elements(asset_path, element_type) -> Array[BridgeRigElementInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "element_type",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeRigElementInfo]"
+        },
+        "list_control_rig_graphs": {
+          "doc": "X.list_control_rig_graphs(asset_path) -> Array[BridgeRigVMGraphInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeRigVMGraphInfo]"
+        },
+        "list_control_rig_links": {
+          "doc": "X.list_control_rig_links(asset_path, graph_name) -> Array[BridgeRigVMLinkInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeRigVMLinkInfo]"
+        },
+        "list_control_rig_nodes": {
+          "doc": "X.list_control_rig_nodes(asset_path, graph_name) -> Array[BridgeRigVMNodeInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeRigVMNodeInfo]"
+        },
+        "list_ik_retarget_chain_mappings": {
+          "doc": "X.list_ik_retarget_chain_mappings(asset_path, op_name) -> Array[BridgeIKChainMappingInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "op_name",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeIKChainMappingInfo]"
+        },
+        "list_ik_retarget_op_properties": {
+          "doc": "X.list_ik_retarget_op_properties(asset_path, op_index) -> Array[BridgeRigPropertyInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "op_index",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeRigPropertyInfo]"
+        },
+        "list_ik_retarget_ops": {
+          "doc": "X.list_ik_retarget_ops(asset_path) -> Array[BridgeIKRetargetOpInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeIKRetargetOpInfo]"
+        },
+        "list_ik_retarget_poses": {
+          "doc": "X.list_ik_retarget_poses(asset_path, side) -> Array[BridgeIKRetargetPoseInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "side",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeIKRetargetPoseInfo]"
+        },
+        "list_ik_retarget_profiles": {
+          "doc": "X.list_ik_retarget_profiles(asset_path) -> Array[str]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[str]"
+        },
+        "list_ik_rig_goals": {
+          "doc": "X.list_ik_rig_goals(asset_path) -> Array[BridgeIKGoalInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeIKGoalInfo]"
+        },
+        "list_ik_rig_properties": {
+          "doc": "X.list_ik_rig_properties(asset_path, target_kind, solver_index, target_name) -> Array[BridgeRigPropertyInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_kind",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "solver_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_name",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeRigPropertyInfo]"
+        },
+        "list_ik_rig_retarget_chains": {
+          "doc": "X.list_ik_rig_retarget_chains(asset_path) -> Array[BridgeIKChainInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeIKChainInfo]"
+        },
+        "list_ik_rig_solvers": {
+          "doc": "X.list_ik_rig_solvers(asset_path) -> Array[BridgeIKSolverInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeIKSolverInfo]"
+        },
+        "list_rig_types": {
+          "doc": "X.list_rig_types(kind, query, max_results) -> Array[BridgeRigTypeInfo]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "kind",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "query",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "max_results",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeRigTypeInfo]"
+        },
+        "move_ik_retarget_op": {
+          "doc": "X.move_ik_retarget_op(asset_path, op_index, target_index) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "op_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "move_ik_rig_solver": {
+          "doc": "X.move_ik_rig_solver(asset_path, solver_index, target_index) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "solver_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_control_rig_element": {
+          "doc": "X.remove_control_rig_element(asset_path, name, element_type) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "element_type",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_control_rig_element_tag": {
+          "doc": "X.remove_control_rig_element_tag(asset_path, name, element_type, tag) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "element_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "tag",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_control_rig_member_variable": {
+          "doc": "X.remove_control_rig_member_variable(asset_path, name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_control_rig_node": {
+          "doc": "X.remove_control_rig_node(asset_path, graph_name, node_name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "node_name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_ik_retarget_op": {
+          "doc": "X.remove_ik_retarget_op(asset_path, op_index) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "op_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_ik_retarget_pose": {
+          "doc": "X.remove_ik_retarget_pose(asset_path, pose_name, side) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "pose_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "side",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_ik_retarget_profile": {
+          "doc": "X.remove_ik_retarget_profile(asset_path, profile_name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "profile_name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_ik_rig_goal": {
+          "doc": "X.remove_ik_rig_goal(asset_path, goal_name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "goal_name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_ik_rig_retarget_chain": {
+          "doc": "X.remove_ik_rig_retarget_chain(asset_path, chain_name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "chain_name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "remove_ik_rig_solver": {
+          "doc": "X.remove_ik_rig_solver(asset_path, solver_index) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "solver_index",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "rename_control_rig_element": {
+          "doc": "X.rename_control_rig_element(asset_path, name, element_type, new_name) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "element_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_name",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "rename_ik_retarget_pose": {
+          "doc": "X.rename_ik_retarget_pose(asset_path, pose_name, new_name, side) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "pose_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "side",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "rename_ik_rig_retarget_chain": {
+          "doc": "X.rename_ik_rig_retarget_chain(asset_path, chain_name, new_name) -> str",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "chain_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "new_name",
+              "type": ""
+            }
+          ],
+          "returns": "str"
+        },
+        "reparent_control_rig_element": {
+          "doc": "X.reparent_control_rig_element(asset_path, name, element_type, parent_name, parent_type, maintain_global_transform) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "element_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "parent_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "parent_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "maintain_global_transform",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "reset_ik_retarget_pose": {
+          "doc": "X.reset_ik_retarget_pose(asset_path, side, pose_name, bone_names) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "side",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "pose_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "bone_names",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "save_current_ik_retarget_profile": {
+          "doc": "X.save_current_ik_retarget_profile(asset_path, profile_name, apply_source_pose, apply_target_pose, force_all_ik_off) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "profile_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "apply_source_pose",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "apply_target_pose",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "force_all_ik_off",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_control_rig_control_property": {
+          "doc": "X.set_control_rig_control_property(asset_path, control_name, property_path, value) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "control_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_control_rig_control_shape": {
+          "doc": "X.set_control_rig_control_shape(asset_path, control_name, shape_name, shape_color, visible) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "control_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "shape_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "shape_color",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "visible",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_control_rig_element_transform": {
+          "doc": "X.set_control_rig_element_transform(asset_path, name, element_type, transform, global_transform, initial, affect_children) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "element_type",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "transform",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "global_transform",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "initial",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "affect_children",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_control_rig_node_position": {
+          "doc": "X.set_control_rig_node_position(asset_path, graph_name, node_name, position) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "node_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "position",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_control_rig_pin_default_value": {
+          "doc": "X.set_control_rig_pin_default_value(asset_path, graph_name, pin_path, default_value, resize_arrays) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "graph_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "pin_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "default_value",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "resize_arrays",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_current_ik_retarget_pose": {
+          "doc": "X.set_current_ik_retarget_pose(asset_path, pose_name, side) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "pose_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "side",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_current_ik_retarget_profile": {
+          "doc": "X.set_current_ik_retarget_profile(asset_path, profile_name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "profile_name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_ik_retarget_chain_mapping": {
+          "doc": "X.set_ik_retarget_chain_mapping(asset_path, target_chain_name, source_chain_name, op_name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_chain_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "source_chain_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "op_name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_ik_retarget_op_enabled": {
+          "doc": "X.set_ik_retarget_op_enabled(asset_path, op_index, enabled) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "op_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "enabled",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_ik_retarget_op_parent": {
+          "doc": "X.set_ik_retarget_op_parent(asset_path, child_op_name, parent_op_name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "child_op_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "parent_op_name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_ik_retarget_op_property": {
+          "doc": "X.set_ik_retarget_op_property(asset_path, op_index, property_path, value) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "op_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_ik_retarget_pose_bone_rotation": {
+          "doc": "X.set_ik_retarget_pose_bone_rotation(asset_path, side, bone_name, rotation_offset) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "side",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "bone_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "rotation_offset",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_ik_retarget_pose_root_offset": {
+          "doc": "X.set_ik_retarget_pose_root_offset(asset_path, side, translation_offset) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "side",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "translation_offset",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_ik_rig_bone_excluded": {
+          "doc": "X.set_ik_rig_bone_excluded(asset_path, bone_name, excluded) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "bone_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "excluded",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_ik_rig_property": {
+          "doc": "X.set_ik_rig_property(asset_path, target_kind, solver_index, target_name, property_path, value) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_kind",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "solver_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "target_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "property_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "value",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_ik_rig_retarget_root": {
+          "doc": "X.set_ik_rig_retarget_root(asset_path, root_bone_name) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "root_bone_name",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_ik_rig_solver_bones": {
+          "doc": "X.set_ik_rig_solver_bones(asset_path, solver_index, start_bone, end_bone) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "solver_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "start_bone",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "end_bone",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "set_ik_rig_solver_enabled": {
+          "doc": "X.set_ik_rig_solver_enabled(asset_path, solver_index, enabled) -> bool",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "solver_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "enabled",
+              "type": ""
+            }
+          ],
+          "returns": "bool"
+        },
+        "validate_control_rig": {
+          "doc": "X.validate_control_rig(asset_path, save) -> BridgeRigValidationReport",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeRigValidationReport"
+        },
+        "validate_ik_retargeter": {
+          "doc": "X.validate_ik_retargeter(asset_path, initialize_processor, save) -> BridgeRigValidationReport",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "initialize_processor",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeRigValidationReport"
+        },
+        "validate_ik_rig": {
+          "doc": "X.validate_ik_rig(asset_path, save) -> BridgeRigValidationReport",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeRigValidationReport"
         }
       }
     },
@@ -24686,6 +29284,27 @@
       "priority_order",
       "to_state"
     ],
+    "BridgeAnimationBoneMetric": [
+      "bone_name",
+      "flagged",
+      "foot_bone",
+      "maximum_angular_delta_degrees",
+      "maximum_horizontal_speed",
+      "minimum_relative_height"
+    ],
+    "BridgeAnimationQualityReport": [
+      "animation_path",
+      "bone_metrics",
+      "duration",
+      "error",
+      "issues",
+      "maximum_foot_slide_speed",
+      "maximum_joint_angular_delta_degrees",
+      "maximum_root_speed",
+      "minimum_foot_height",
+      "samples",
+      "success"
+    ],
     "BridgeAssetInfo": [
       "asset_name",
       "class_path",
@@ -24929,6 +29548,27 @@
       "component_class",
       "name",
       "parent_name"
+    ],
+    "BridgeControlRigEvaluationResult": [
+      "bones",
+      "controls",
+      "error",
+      "event_name",
+      "success"
+    ],
+    "BridgeControlRigInfo": [
+      "asset_path",
+      "bone_count",
+      "connector_count",
+      "control_count",
+      "curve_count",
+      "dirty",
+      "generated_class_path",
+      "graph_count",
+      "modular_rig",
+      "node_count",
+      "null_count",
+      "preview_skeletal_mesh_path"
     ],
     "BridgeCreateAssetResult": [
       "error",
@@ -25214,6 +29854,84 @@
       "render_thread_ms",
       "timestamp_seconds",
       "total_ms"
+    ],
+    "BridgeIKChainInfo": [
+      "bone_count",
+      "end_bone",
+      "goal_name",
+      "name",
+      "start_bone",
+      "valid"
+    ],
+    "BridgeIKChainMappingInfo": [
+      "mapped",
+      "op_name",
+      "settings_at_default",
+      "source_chain_name",
+      "target_chain_name"
+    ],
+    "BridgeIKGoalInfo": [
+      "bone_name",
+      "connected_solver_indices",
+      "current_transform",
+      "initial_transform",
+      "name",
+      "position_alpha",
+      "rotation_alpha"
+    ],
+    "BridgeIKRetargetOpInfo": [
+      "display_name",
+      "enabled",
+      "has_chain_mapping",
+      "index",
+      "name",
+      "parent_op_name",
+      "target_ik_rig_path",
+      "type_path"
+    ],
+    "BridgeIKRetargetPoseInfo": [
+      "bone_rotation_offset_count",
+      "current",
+      "name",
+      "root_translation_offset",
+      "side"
+    ],
+    "BridgeIKRetargeterInfo": [
+      "asset_path",
+      "current_profile",
+      "current_source_pose",
+      "current_target_pose",
+      "dirty",
+      "mapping_count",
+      "op_count",
+      "source_ik_rig_path",
+      "source_pose_count",
+      "source_preview_mesh_path",
+      "target_ik_rig_path",
+      "target_pose_count",
+      "target_preview_mesh_path",
+      "unmapped_chain_count"
+    ],
+    "BridgeIKRigInfo": [
+      "asset_path",
+      "bone_count",
+      "chain_count",
+      "dirty",
+      "goal_count",
+      "preview_skeletal_mesh_path",
+      "retarget_root",
+      "skeleton_path",
+      "solver_count"
+    ],
+    "BridgeIKSolverInfo": [
+      "bones_with_settings",
+      "display_name",
+      "enabled",
+      "end_bone",
+      "goals",
+      "index",
+      "start_bone",
+      "type_path"
     ],
     "BridgeIMCMapping": [
       "action_name",
@@ -25641,6 +30359,218 @@
       "max_hierarchy_levels",
       "max_streaming_pages",
       "nanite_static_mesh_components"
+    ],
+    "BridgeNiagaraAuditResult": [
+      "emitter_count",
+      "error_count",
+      "gpu_emitter_count",
+      "issues",
+      "module_count",
+      "passed",
+      "renderer_count",
+      "translucent_renderer_count",
+      "warning_count"
+    ],
+    "BridgeNiagaraCompileMessage": [
+      "emitter_id",
+      "message",
+      "node_id",
+      "pin_id",
+      "script_usage",
+      "severity",
+      "short_description"
+    ],
+    "BridgeNiagaraCompileResult": [
+      "error",
+      "error_count",
+      "messages",
+      "ready_to_run",
+      "success",
+      "valid",
+      "warning_count"
+    ],
+    "BridgeNiagaraEmitterInfo": [
+      "deterministic",
+      "enabled",
+      "fixed_bounds",
+      "id",
+      "interpolated_spawn_mode",
+      "local_space",
+      "module_count",
+      "name",
+      "random_seed",
+      "renderer_count",
+      "sim_target",
+      "source_asset_path"
+    ],
+    "BridgeNiagaraEmitterRuntimeInfo": [
+      "bytes_used",
+      "cpu_time_ms",
+      "execution_state",
+      "name",
+      "particle_count"
+    ],
+    "BridgeNiagaraEmitterSpec": [
+      "deterministic",
+      "enabled",
+      "fixed_bounds",
+      "local_space",
+      "modules",
+      "name",
+      "random_seed",
+      "renderers",
+      "sim_target",
+      "template_path",
+      "use_fixed_bounds"
+    ],
+    "BridgeNiagaraInputValue": [
+      "mode",
+      "name",
+      "properties",
+      "source_path",
+      "type",
+      "value"
+    ],
+    "BridgeNiagaraModuleInfo": [
+      "assignment",
+      "deprecated",
+      "emitter_id",
+      "emitter_name",
+      "enabled",
+      "id",
+      "index",
+      "input_count",
+      "name",
+      "script_path",
+      "usage",
+      "usage_id",
+      "version_id"
+    ],
+    "BridgeNiagaraModuleInputInfo": [
+      "hidden",
+      "mode",
+      "module_id",
+      "name",
+      "static",
+      "type",
+      "value",
+      "variable_id"
+    ],
+    "BridgeNiagaraModuleSpec": [
+      "enabled",
+      "index",
+      "inputs",
+      "name",
+      "script_path",
+      "usage"
+    ],
+    "BridgeNiagaraOperationResult": [
+      "asset_path",
+      "id",
+      "message",
+      "success",
+      "warnings"
+    ],
+    "BridgeNiagaraParameterInfo": [
+      "data_interface",
+      "name",
+      "object",
+      "type",
+      "user_parameter",
+      "value"
+    ],
+    "BridgeNiagaraParameterSpec": [
+      "default_value",
+      "name",
+      "type"
+    ],
+    "BridgeNiagaraPreviewInfo": [
+      "active",
+      "complete",
+      "desired_age",
+      "emitters",
+      "handle",
+      "system_path",
+      "total_bytes_used",
+      "total_particle_count",
+      "transform"
+    ],
+    "BridgeNiagaraPropertyInfo": [
+      "category",
+      "editable",
+      "name",
+      "type",
+      "value"
+    ],
+    "BridgeNiagaraPropertyValue": [
+      "name",
+      "value"
+    ],
+    "BridgeNiagaraRendererInfo": [
+      "binding_count",
+      "emitter_id",
+      "enabled",
+      "id",
+      "material_path",
+      "material_paths",
+      "mesh_paths",
+      "type"
+    ],
+    "BridgeNiagaraRendererSpec": [
+      "bindings",
+      "enabled",
+      "material_path",
+      "mesh_path",
+      "name",
+      "properties",
+      "type"
+    ],
+    "BridgeNiagaraScriptInfo": [
+      "asset_path",
+      "category",
+      "deprecated",
+      "description",
+      "experimental",
+      "keywords",
+      "library_visible",
+      "major_version",
+      "minor_version",
+      "name",
+      "usage"
+    ],
+    "BridgeNiagaraSystemInfo": [
+      "asset_path",
+      "dirty",
+      "effect_type_path",
+      "emitter_count",
+      "enabled_emitter_count",
+      "fixed_bounds",
+      "module_count",
+      "ready_to_run",
+      "renderer_count",
+      "user_parameter_count",
+      "valid",
+      "warmup_tick_count",
+      "warmup_tick_delta",
+      "warmup_time"
+    ],
+    "BridgeNiagaraSystemRecipe": [
+      "effect_type_path",
+      "emitters",
+      "fixed_bounds",
+      "template_path",
+      "use_fixed_bounds",
+      "user_parameters",
+      "warmup_tick_delta",
+      "warmup_time"
+    ],
+    "BridgeNiagaraTemplateInfo": [
+      "asset_path",
+      "asset_type",
+      "category",
+      "description",
+      "name",
+      "tags"
     ],
     "BridgeNodeCoverageEntry": [
       "graph_name",
@@ -26105,6 +31035,12 @@
       "reconnected_pins",
       "success"
     ],
+    "BridgeRetargetBatchResult": [
+      "created_asset_paths",
+      "error",
+      "failed_source_asset_paths",
+      "success"
+    ],
     "BridgeRichCurveKey": [
       "arrive_tangent",
       "arrive_tangent_weight",
@@ -26115,6 +31051,103 @@
       "tangent_weight_mode",
       "time",
       "value"
+    ],
+    "BridgeRigElementInfo": [
+      "control_type",
+      "current_global_transform",
+      "current_local_transform",
+      "display_name",
+      "imported_bone",
+      "initial_global_transform",
+      "initial_local_transform",
+      "name",
+      "parent_name",
+      "parent_type",
+      "tags",
+      "type"
+    ],
+    "BridgeRigLayoutResult": [
+      "layer_count",
+      "nodes_positioned",
+      "success",
+      "warnings"
+    ],
+    "BridgeRigNamedTransform": [
+      "name",
+      "transform",
+      "type"
+    ],
+    "BridgeRigOperationResult": [
+      "asset_path",
+      "error",
+      "name",
+      "success"
+    ],
+    "BridgeRigPropertyInfo": [
+      "category",
+      "display_name",
+      "editable",
+      "path",
+      "type",
+      "value"
+    ],
+    "BridgeRigPropertyResult": [
+      "error",
+      "success",
+      "type",
+      "value"
+    ],
+    "BridgeRigTypeInfo": [
+      "category",
+      "deprecated",
+      "display_name",
+      "kind",
+      "type_path"
+    ],
+    "BridgeRigVMGraphInfo": [
+      "function_library",
+      "link_count",
+      "name",
+      "node_count",
+      "node_path"
+    ],
+    "BridgeRigVMLinkInfo": [
+      "source_pin_path",
+      "target_pin_path"
+    ],
+    "BridgeRigVMNodeInfo": [
+      "class_name",
+      "name",
+      "path",
+      "pins",
+      "position",
+      "title"
+    ],
+    "BridgeRigVMPinInfo": [
+      "array",
+      "cpp_type",
+      "cpp_type_object_path",
+      "default_value",
+      "direction",
+      "linked",
+      "name",
+      "path"
+    ],
+    "BridgeRigValidationIssue": [
+      "code",
+      "message",
+      "severity",
+      "subject"
+    ],
+    "BridgeRigValidationReport": [
+      "compiled",
+      "error",
+      "error_count",
+      "found",
+      "issues",
+      "saved",
+      "success",
+      "warning_count"
     ],
     "BridgeScreenshotResult": [
       "base64",

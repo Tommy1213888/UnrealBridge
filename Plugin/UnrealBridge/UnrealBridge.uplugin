@@ -76,6 +76,21 @@
 			"Name": "ModelViewViewModel",
 			"Enabled": true,
 			"Optional": true
+		},
+		{
+			"Name": "ControlRig",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "IKRig",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Niagara",
+			"Enabled": true,
+			"Optional": true
 		}
 	]
 }

@@ -24,17 +24,19 @@ UnrealBridge 是一个面向 AI Agent 的 Unreal Engine 编辑器桥接层，围
 
 ## 亮点
 
-- **基于 AST 的防幻觉契约层。** 用户脚本到达 UE 之前，`bridge_preflight.py` 先用 Python AST 解析，对照自动生成的清单（24 个库 × 1172 UFUNCTION）逐一校验每个 `unreal.UnrealBridge*Library.fn(...)` 调用——**不回到编辑器** 就能拦下不存在的库 / 函数名（带 did-you-mean）、错误的位置参数数量、未知关键字、不存在的桥接枚举成员。第二层把 `AssetRegistry` / `GameplayStatics` 的裸调用模式重定向到桥接等价物，并追踪每个返回值的实际类型，在对 `str` / `SoftObjectPath` 这类绑定类型做属性访问时给出警告；UE 对象抛出真正的 `AttributeError` 时则回查 UE Python，列出该类实际反射的 `UPROPERTY` 并给出可粘贴的修正代码（自动处理 `snake_case` ↔ `PascalCase` 的差异）。第三层 ship 一份纯关键字参数的 Python wrapper 模块，让"位置参数顺序写错"在语法层面就不可能发生。三层叠加把新会话 agent 的桥接调用失败率从 **24% 降到 16%**（A/B 验证）——这是先前仅靠 `SKILL.md` 的"调用前先查文档"提示规则一直没能稳定做到的。
+- **基于 AST 的防幻觉契约层。** 用户脚本到达 UE 之前，`bridge_preflight.py` 先用 Python AST 解析，对照自动生成的清单（26 个库 × 1378 UFUNCTION）逐一校验每个 `unreal.UnrealBridge*Library.fn(...)` 调用——**不回到编辑器** 就能拦下不存在的库 / 函数名（带 did-you-mean）、错误的位置参数数量、未知关键字、不存在的桥接枚举成员。第二层把 `AssetRegistry` / `GameplayStatics` 的裸调用模式重定向到桥接等价物，并追踪每个返回值的实际类型，在对 `str` / `SoftObjectPath` 这类绑定类型做属性访问时给出警告；UE 对象抛出真正的 `AttributeError` 时则回查 UE Python，列出该类实际反射的 `UPROPERTY` 并给出可粘贴的修正代码（自动处理 `snake_case` ↔ `PascalCase` 的差异）。第三层 ship 一份纯关键字参数的 Python wrapper 模块，让"位置参数顺序写错"在语法层面就不可能发生。三层叠加把新会话 agent 的桥接调用失败率从 **24% 降到 16%**（A/B 验证）——这是先前仅靠 `SKILL.md` 的"调用前先查文档"提示规则一直没能稳定做到的。
 
   <p align="center">
     <img src="docs/images/zh/02-preflight.png" alt="本地 AST 预检 · 不让幻觉抵达编辑器">
   </p>
 
 - **资产结构深度内省 + 作者级写操作。** `UnrealBridgeAnimLibrary` 覆盖 AnimBP 状态机、AnimGraph 节点、链接层、Slot、曲线、Sequence / Montage / BlendSpace 以及骨骼树的完整查询，并配套一整套写操作：从零搭建 ABP、增删状态 / 转移 / 条件规则、AnimGraph 节点创建与连线、状态机与 AnimGraph 的自动布局；`UnrealBridgeAssetLibrary` 在关键字搜索之外，支持资产的正向依赖与反向引用分析，可向 Agent 输出完整的依赖关系视图。相较于基础 CRUD 封装或需自行拼装反射调用的方案，该层次的结构化能力属于开箱即用。
+- **可交付的 Control Rig 与动画重定向工作流。** `UnrealBridgeRigLibrary` 可制作 Control Rig Hierarchy 和完整连线的 RigVM Graph，并在瞬态实例上求值；配置 IK Rig Solver／Goal／Chain；构建 IK Retargeter 的 Op Stack、Mapping、Pose 与 Profile；初始化真实 Retarget Processor、批量生成重定向动画，并对 Root Spike、脚滑／穿地和关节跳变做采样质检。Type／Property 发现和编译／Processor 诊断确保全过程走官方编辑器 Controller，而不是直接改私有数据。
+- **可交付的 Niagara 特效工作流。** `UnrealBridgeNiagaraLibrary` 可发现引擎模板与脚本，制作 System／Emitter、Stack Module 与输入、User Parameter、Renderer、材质与 Binding，并通过编译、交付审计和瞬态模拟做质量验收。生产预设覆盖可移动 Ribbon、动态 Beam、静态 Beam 武器 Trail，方向性／放射状火花，含真实冲击波和 Light 层的多层爆炸，以及材质同步的消散／解体粒子。
 - **基于 Reactive 系统的事件订阅。** Agent 可订阅 GAS 事件、属性变化、Actor 生命周期、AnimNotify、输入、定时器，以及编辑器端的资产变更事件。在指定事件触发时由桥接层主动回调，无需 Agent 轮询——这是纯请求 / 响应式协议无法覆盖的场景。
 - **PIE 运行时的 Agent 控制接口。** `UnrealBridgeGameplayLibrary` 提供聚合式世界观测、导航寻路，以及移动 / 视角 / 跳跃等操作输入，适用于 AI 行为验证、自动化测试、游戏内 NPC 原型等运行时工作流。
 - **蓝图工具链。** 不仅仅是自动布局：`auto_layout_graph` 的 `pin_aligned` 策略读取 Slate 实时几何对齐 exec 轨道、`straighten_exec_chain` 把主干拉直、`collapse_nodes_to_function` 提取子图、`lint_blueprint` 按固定规则扫 orphan / 未命名节点 / 过大函数 / 无注释大图，`add_comment_box` + 预设配色（Section / Validation / Danger / Network / UI / Debug / Setup）让图谱分区可读；AnimGraph 与状态机还有专用的 `auto_layout_anim_graph` / `auto_layout_state_machine`（后者递归进入每个状态内部 + 规则图）。
-- **Python 原生执行。** 24 个 `UnrealBridge*Library` 累计 1172 个 `UFUNCTION`，覆盖常见子系统；未封装的能力可直接通过 `unreal.*` 原生 API 调用。相较于固定工具列表的 MCP 方案与仅暴露单一 `call` 命令的反射协议，该设计在灵活性与结构性之间取得了折衷。所有关卡写操作均包裹于 `FScopedTransaction` 内，支持标准 Undo / Redo。
+- **Python 原生执行。** 26 个 `UnrealBridge*Library` 累计 1378 个 `UFUNCTION`，覆盖常见子系统；未封装的能力可直接通过 `unreal.*` 原生 API 调用。相较于固定工具列表的 MCP 方案与仅暴露单一 `call` 命令的反射协议，该设计在灵活性与结构性之间取得了折衷。所有关卡写操作均包裹于 `FScopedTransaction` 内，支持标准 Undo / Redo。
 
 ## 架构
 
@@ -45,7 +47,7 @@ flowchart LR
     subgraph Host["Agent 主机"]
       CLI["bridge.py"]
       Pre["AST preflight<br/>（本地 — 调用前拦截，<br/>不发起 TCP）"]
-      Mani[("bridge_manifest.json<br/>24 个库 · 1172 UFUNCTION")]
+      Mani[("bridge_manifest.json<br/>26 个库 · 1378 UFUNCTION")]
     end
 
     Gen["tools/gen_manifest.py<br/>扫 C++ 头文件"]
@@ -56,7 +58,7 @@ flowchart LR
       Reactive["UnrealBridgeReactiveSubsystem<br/>+ 10 个事件适配器"]
       Exec["IPythonScriptPlugin::<br/>ExecPythonCommandEx<br/>（GameThread）"]
       Wrap["unreal_bridge<br/>kwargs-only 包装<br/>（可选的更安全入口）"]
-      Libs["24× UnrealBridge*Library"]
+      Libs["26× UnrealBridge*Library"]
       Engine["UEditor · UWorld · Assets"]
     end
 
@@ -207,6 +209,8 @@ python .claude/skills/unreal-bridge/scripts/rebuild_relaunch.py  # 动到反射
 | 库 | 作用 |
 |---|---|
 | `UnrealBridgeServer` | TCP 监听、长度前缀 JSON 帧、派发到 GameThread |
+| `UnrealBridgeRigLibrary` | UE 5.7+ 的完整 Control Rig／IK 交付能力：Control Rig 资产、Hierarchy 与 Control 制作；可发现的 RigVM Unit／Template、成员变量、节点、Pin、连线、注释与自动布局；编译诊断和瞬态事件求值；IK Rig Solver／Goal／Chain／排除骨骼、反射设置与 Humanoid/FBIK 自动配置；IK Retargeter Op Stack、Chain Mapping、Pose、Profile、真实 Processor 初始化与可保存的批量重定向；Root Motion、脚部接触和关节跳变采样质检。UE 5.3-5.6 保留同一反射与 kwargs API，调用时输出明确日志并安全返回。 |
+| `UnrealBridgeNiagaraLibrary` | UE 5.7+ 的完整 Niagara／VFX 交付能力：模板与脚本发现；System／Emitter 生命周期和声明式 Recipe；含本地、Linked、Dynamic、Object、Data Interface 输入的 Stack Module；User Parameter；Sprite／Ribbon／Mesh／Light／Decal／Component Renderer、材质和 Binding；Warmup、Fixed Bounds、Effect Type；编译诊断与交付审计；Trail／Beam、方向性／放射状 Sparks、多层 Explosion／Shockwave／Light 和 Dissolve 预设；支持变量、控制与移动 Transform 的瞬态预览，以及逐 Emitter 粒子数、内存和 CPU 回读。UE 5.3-5.6 保留同一反射与 kwargs API，调用时输出明确日志并安全返回。 |
 | `UnrealBridgeBlueprintLibrary` | 蓝图全栈读写：类层级 / 变量 / 函数 / 组件 / 接口 / 事件分发器；图谱的调用关系、执行流、引脚连接、节点搜索；20+ 类节点插入（Branch、Cast、循环、Delay、Timer、SpawnActor、MakeStruct 等）、引脚连接、节点坐标读写、对齐、注释框、AutoLayoutGraph；运行时调试 —— 断点增删查、`get_last_breakpoint_hit` 捕获函数 locals / params / return **加上**执行对象的 BP 类实例变量（带 `OwnerClass` 归属）、PIE node coverage；编译错误查询 |
 | `UnrealBridgeAssetLibrary` | 资产关键字搜索（支持 include / exclude 词元）；派生类查询；正向依赖与反向引用分析（含递归）；DataAsset / StaticMesh / SkeletalMesh / Texture / Sound 元信息；目录树、重定向解析、批量 tag 与磁盘大小查询；**SearchableName 索引查询**（`find_assets_referencing_searchable_name` / `get_searchable_names_used_by_asset` / `list_searchable_name_values`）—— 编辑器右键 "Find References" 在 `GameplayTag` / `PrimaryAssetId` / 任意 USTRUCT 索引命名值上拿到的就是这套数据 |
 | `UnrealBridgeAnimLibrary` | AnimBP 深度内省：状态机、AnimGraph 节点、链接层、Slot、曲线；Sequence / Montage / BlendSpace 资产信息；骨骼树、Socket、VirtualBone、BlendProfile。**写操作**：ABP 创建与变量、状态机 / 状态 / 导管 / 转移的增删改、转移属性（crossfade、优先级、双向）、常量规则捷径与真实变量驱动规则（配合 BP 库写 `KismetMathLibrary` 比较节点）、9 类 AnimGraph 节点工厂 + `add_anim_graph_node_by_class_name` 兜底、引脚连线 / 断开 / 移位、AnimGraph 与状态机的自动布局；AnimNotify、同步标记、Montage Section、Socket 的增删配置 |
@@ -220,7 +224,7 @@ python .claude/skills/unreal-bridge/scripts/rebuild_relaunch.py  # 动到反射
 | `UnrealBridgeMaterialLibrary` | 材质实例参数查询 |
 | `UnrealBridgeUMGLibrary` | Widget Blueprint 完整交付能力：资产创建、控件类发现与层级 CRUD、控件/Slot 反射属性、Canvas 布局和 SlateBrush 资源；批量透明度/颜色/2D Transform 动画；编译、可访问性与陈旧引用校验；UE 5.7+ 的 FieldNotify ViewModel 创建、Source 配置、单向/双向 MVVM 绑定及诊断（5.3-5.6 为带明确日志的安全 no-op）；PIE 实例生成、实时几何/状态回读、Button/Text/Slider/CheckBox/焦点语义操作、动画播放、动态 UI 材质参数与实时 MVVM 写入 |
 | `UnrealBridgeLevelLibrary` | Actor 查询（名称 / Class / Tag / Folder / 半径 / Box / 射线）与编辑（生成 / 销毁 / 变换 / 挂载 / 可见性 / Mobility、嵌套属性读写、函数调用）；地形高度剖面与 Trace 探测；编辑器内自定义 NavGraph（节点、边、最短路径、JSON 持久化）；正交俯视图与动画 Pose / Montage 时间轴截图；所有写操作走事务 |
-| `UnrealBridgeEditorLibrary` | 编辑器会话控制：资产开关 / 保存 / 加载；Content Browser 与视口；PIE 启停 / 模拟 / 暂停；Undo / Redo、控制台命令、CVar；蓝图批量编译、重定向修复；Live Coding 触发；原始视口截图与包含单帧调试覆盖层的所见即所得已呈现窗口截图、GBuffer 通道（Depth / DeviceDepth / Normal / BaseColor）与 HitProxy ID pass；标签页、通知、诊断信息。Bridge 自观测：调用日志（请求 ID、耗时、端点、输出大小的环形缓冲）、性能统计、签名注册表 JSON dump（一次性输出全部 1216 个 `UFUNCTION` 的元信息） |
+| `UnrealBridgeEditorLibrary` | 编辑器会话控制：资产开关 / 保存 / 加载；Content Browser 与视口；PIE 启停 / 模拟 / 暂停；Undo / Redo、控制台命令、CVar；蓝图批量编译、重定向修复；Live Coding 触发；原始视口截图与包含单帧调试覆盖层的所见即所得已呈现窗口截图、GBuffer 通道（Depth / DeviceDepth / Normal / BaseColor）与 HitProxy ID pass；标签页、通知、诊断信息。Bridge 自观测：调用日志（请求 ID、耗时、端点、输出大小的环形缓冲）、性能统计、签名注册表 JSON dump（一次性输出全部 1380 个反射 `UFUNCTION` 的元信息） |
 | `UnrealBridgeGameplayAbilityLibrary` | GameplayAbility / GameplayEffect / AttributeSet 蓝图元信息；Tag 层级与匹配；按 Tag 列出能力与效果；Actor 的 ASC 状态（属性值、激活 Ability / Effect、Cooldown 检查）；运行时发送 GameplayEvent、修改属性；GA / GE / GC 蓝图作者支持（CDO 编辑、GA 图节点、GE magnitude / component / 继承 Tag、GC Tag 设置） |
 | `UnrealBridgeGameplayTagLibrary` | GameplayTag 重构工作流：`find_assets_referencing_tag`（支持子 tag 展开）、`list_all_registered_tags`、`get_tag_source_info`。Mutation：`add_gameplay_tag` / `rename_gameplay_tag`（自动写 redirect，并针对 UE 5.7 的"redirect 静默丢失"问题做了持久化加固） / `remove_gameplay_tag`。源枚举 `list_tag_source_inis`；redirect 管理 `list_gameplay_tag_redirects` + `remove_gameplay_tag_redirect`，支持 enumerate-then-sweep 清理 |
 | `UnrealBridgePerfLibrary` | AAA 量级性能采集，八个维度。**Point-in-time**：帧时序（FPS / GT / RT / GPU / RHI ms，`FStatUnitData` + RHI globals 双源）、渲染计数器、进程内存、`TObjectIterator` 类直方图、ISO-8601 时间戳聚合快照。**内存 / 资产分解**：texture / mesh / audio / UObject 按 folder / LOD group / compression format / class 分组——支持 disk 或 runtime 两种模式；任意 UClass 下 top-N 最大资产；world-actor 按 class × level 分布（World Partition 部分支持）。**时间序列**：opt-in 周期采样配 ring buffer，常开的 frame-time 直方图与 hitch log（走 `OnEndFrame` hook），CSV 导出，**`get_frame_time_percentiles([50,90,95,99])`** 拿 AAA 项目真实长尾延迟。**渲染细分**：per-actor 渲染成本、LOD 分布、按 material 聚合 primitive、shadow caster、Lumen / Nanite 诊断；**`get_texture_streaming_residency`**（per-texture resident vs wanted mip + pool over-budget）、**`get_render_target_memory`**（per-subclass RT 字节总量）、**`get_per_pass_gpu_timings`**（BasePass / Lumen / Translucency 平均时长，源 `FRealtimeGPUProfiler`；UE 5.7 新 RHI profiler 上优雅降级）、**`analyze_all_materials`**（跨库结构复杂度启发式，找最重的 master）。**Live trace 控制**：`start_trace_capture` / `stop_trace_capture` / `list_trace_channels` / `get_trace_state` 封装 `FTraceAuxiliary`。**Trace summary 解析**（5.7+）：`parse_trace_to_summary` 一次调用从 `.utrace` 解出 CPU + GPU 热点 + per-thread 热点 + counters + load-time 分解 + 帧统计；专项 `parse_alloc_trace_to_summary`（peak commit + tag inventory + alloc/free delta）、`parse_net_trace_to_summary`（per-game-instance + per-connection 流量总量）、`parse_cook_trace_to_summary`（top-N 包按 `BeginCacheCookedPlatformData` 排序——给 4 小时 cook 归因）。**回归工作流**：`compare_perf_snapshots(before, after, threshold)` 返回 per-field delta + flagged regression 列表；`begin_auto_hitch_capture` / `end_auto_hitch_capture` 对每帧 ≥ 阈值的现场抓 rich snapshot 进 ring buffer；`begin_insights_for_trace` shell 出 UnrealInsights.exe 把人接进来 |
@@ -278,7 +282,7 @@ UnrealBridge/
 
 ## 系统要求
 
-- **Unreal Engine 5.3+**,需启用 `PythonScriptPlugin` 与 `GameplayAbilities`(均为引擎自带)。`tools/build_matrix.py` 已对 5.3.2 / 5.4.4 / 5.5.4 / 5.6.1 / 5.7.1 / 5.8.0 验证 BuildPlugin 通过;部分库(Chooser / PoseSearch / Material / Navigation / StateTree / Smart Object)、UMG MVVM 及少量独立 UFUNCTION 需要 5.7+,低版本仍保留带明确日志的 UMG MVVM 安全 no-op,5.3 与 5.8 各有少量 inline shim,详见 [docs/version-compatibility.md](docs/version-compatibility.md)。UE 5.2 及更早版本不支持。
+- **Unreal Engine 5.3+**,需启用 `PythonScriptPlugin` 与 `GameplayAbilities`(均为引擎自带)。`tools/build_matrix.py` 已对 5.3.2 / 5.4.4 / 5.5.4 / 5.6.1 / 5.7.1 / 5.8.0 验证 BuildPlugin 通过;部分库(Chooser / PoseSearch / Material / Navigation / StateTree / Smart Object / Control Rig、IK 与 Niagara)、UMG MVVM 及少量独立 UFUNCTION 需要 5.7+,低版本仍保留 StateTree／Smart Object／Rig／Niagara 安全桩和带明确日志的 UMG MVVM 安全 no-op,5.3 与 5.8 各有少量 inline shim,详见 [docs/version-compatibility.md](docs/version-compatibility.md)。UE 5.2 及更早版本不支持。
 - **Windows 10/11** —— 插件本身可移植,但辅助脚本里的路径按 Windows 风格写死
 - **Python 3.9+**,已加入 PATH
 - **Visual Studio 2022** + UE 工作负载 —— 用于编译插件。**Toolchain 注意事项:**

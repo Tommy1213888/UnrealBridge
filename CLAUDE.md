@@ -64,6 +64,8 @@ Priority CLI > env > `EditorPerProjectUserSettings.ini [UnrealBridge]` > default
 - **UnrealBridgeBlueprintLibrary** — Blueprint introspection: class hierarchy, variables, functions, components, interfaces, graph analysis (call graph, execution flow, node inspection, pin connections), timelines, event dispatchers, cross-graph search, write ops (set variable defaults, component properties, add variables)
 - **UnrealBridgeAssetLibrary** — Asset search (keyword with include/exclude tokens), derived class queries, asset references/dependencies, DataAsset queries, folder listing
 - **UnrealBridgeAnimLibrary** — AnimBlueprint introspection: state machines, AnimGraph nodes, linked layers, slots, curves, anim sequence/montage/blend space info, skeleton bone tree
+- **UnrealBridgeRigLibrary** — UE 5.7+ Control Rig hierarchy/RigVM authoring and transient evaluation; IK Rig solver/goal/chain setup; IK Retargeter ops, mappings, poses, profiles, processor validation and batch retargeting; sampled animation-quality diagnostics. UE 5.3-5.6 expose safe logged stubs
+- **UnrealBridgeNiagaraLibrary** — UE 5.7+ Niagara/VFX authoring and delivery: System/Emitter lifecycle and recipes, stack modules and inputs, user parameters, renderers/materials/bindings, compiler diagnostics and audits, weapon Trail/Beam, Sparks, layered Explosion/shockwave/light and Dissolve presets, plus transient preview simulation/transform/runtime metrics. UE 5.3-5.6 expose safe logged stubs
 - **UnrealBridgeDataTableLibrary** — DataTable row inspection
 - **UnrealBridgeMaterialLibrary** — Material instance parameter queries
 - **UnrealBridgeUMGLibrary** — Widget Blueprint introspection: widget tree, properties, animations, bindings, events, search, property write
