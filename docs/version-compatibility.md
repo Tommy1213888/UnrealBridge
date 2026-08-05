@@ -55,10 +55,13 @@ does not ship the SmartObjects plugin.
 
 ## Inline shims (function works on both, different code paths)
 
-These remain callable on 5.4 — the macro picks the right code path internally.
+These remain callable on every supported engine version; the macro picks the
+appropriate code path internally.
 
-| Function | What 5.4 lacks | Shim |
+| Function | What older engines lack | Shim |
 |---|---|---|
+| `UnrealBridgeAnimLibrary::CopyAndApplyAnimationModifiers` | 5.5 lacks `UAnimationModifiersAssetUserData::AddAnimationModifierOfClass` | Existing matching modifiers are still copied and applied; when a target modifier would need to be created, log a warning and skip that modifier on 5.5 and older |
+| `UnrealBridgeEditorLibrary::CaptureActiveViewportAsDisplayed` | 5.5 lacks `FWindowsWindow::GetWindowPixels` | Log a warning and use the existing Slate screenshot fallback on 5.5 and older |
 | `UnrealBridgeAnimLibrary::SetAnimStateDefault` | `UAnimStateEntryNode::GetOutputPin()` | walk `Entry->Pins[]` for the first `EGPD_Output` pin |
 | `UnrealBridgeGameplayAbilityLibrary::GetGameplayAbilityBlueprintInfo` and `ListGameplayAbilitiesByTag` | `UGameplayAbility::GetAssetTags()` | read legacy `CDO->AbilityTags` field |
 | `UnrealBridgeBlueprintLibrary::GetPIENodeCoverage` | `FKismetDebugUtilities::FindSourceNodeForCodeLocation` const-correctness | `const_cast<UFunction*>(Func)` |
@@ -124,19 +127,28 @@ break is in `SharedPCH.UnrealEd.Cpp20.cpp`, an engine TU. Plugin
 5.3 / 5.4 don't expose a user-configurable `AdditionalArguments` knob
 for cl.exe flags.
 
-**The project does not patch the engine.** If you're contributing on a
-machine with MSVC ≥ 14.44 and need to verify 5.3 / 5.4 locally, you
-have two options — both **outside** the repo:
+**The project does not patch the engine.** Install MSVC 14.38 side-by-side
+via the Visual Studio Installer. For a 5.3 / 5.4 verification run, temporarily
+set the global UBT configuration to:
 
-1. Install an older MSVC (≤ 14.40, i.e. VS 2022 17.10) side-by-side
-   via the Visual Studio Installer; pin UE 5.3 / 5.4 to it via
-   `WindowsPlatform.CompilerVersion` in
-   `%APPDATA%/Unreal Engine/UnrealBuildTool/BuildConfiguration.xml`.
-2. Apply the 5.7 fix to your local engine install manually (one file,
-   one `#elif` replacement). **Don't commit this to UnrealBridge**, and
-   re-apply if the Launcher re-verifies.
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration xmlns="https://www.unrealengine.com/BuildConfiguration">
+  <WindowsPlatform>
+    <Compiler>VisualStudio2022</Compiler>
+    <CompilerVersion>14.38.33130</CompilerVersion>
+  </WindowsPlatform>
+</Configuration>
+```
 
-If neither option is convenient, disable 5.3 / 5.4 in your local
+The file is `%APPDATA%/Unreal Engine/UnrealBuildTool/BuildConfiguration.xml`.
+Save its existing contents first and restore them immediately after the
+affected builds. UE 5.4's UBT does not map arbitrary environment variables to
+XML config fields, so an `env` entry in `tools/engines.local.json` cannot pin
+this compiler version. Never work around this by editing engine headers.
+
+If temporarily changing the UBT configuration is not convenient, disable
+5.3 / 5.4 in your local
 `tools/engines.local.json` (gitignored) so build_matrix skips them —
 plugin code is still version-compatible, it just can't be verified
 against those engines on your toolchain.

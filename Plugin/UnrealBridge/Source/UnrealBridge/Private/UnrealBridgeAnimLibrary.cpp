@@ -1128,6 +1128,12 @@ int32 UUnrealBridgeAnimLibrary::CopyAndApplyAnimationModifiers(const FString& So
 
 			if (!TargetModifier)
 			{
+#if UE_VERSION_OLDER_THAN(5, 6, 0)
+				UE_LOG(LogTemp, Warning,
+					TEXT("UnrealBridge: CopyAndApplyAnimationModifiers cannot add missing modifier %s to %s on Unreal Engine 5.5 or older because AddAnimationModifierOfClass is unavailable; modifier skipped."),
+					*GetNameSafe(SourceModifier->GetClass()), *TargetPath);
+				continue;
+#else
 				if (!UAnimationModifiersAssetUserData::AddAnimationModifierOfClass(Target, SourceModifier->GetClass()))
 				{
 					UE_LOG(LogTemp, Warning, TEXT("UnrealBridge: failed to add modifier %s to %s"),
@@ -1138,6 +1144,7 @@ int32 UUnrealBridgeAnimLibrary::CopyAndApplyAnimationModifiers(const FString& So
 				TargetUserData = Target->GetAssetUserData<UAnimationModifiersAssetUserData>();
 				TargetModifier = FindUnclaimedModifier(
 					TargetUserData, SourceModifier->GetClass(), ClaimedTargetModifiers);
+#endif
 			}
 
 			if (!TargetModifier)

@@ -34,6 +34,7 @@
 #include "UObject/Package.h"
 #include "Misc/App.h"
 #include "Misc/EngineVersion.h"
+#include "Misc/EngineVersionComparison.h"
 #include "UObject/Package.h"
 #include "UObject/UObjectGlobals.h"
 #include "HighResScreenshot.h"
@@ -1006,6 +1007,13 @@ namespace BridgeEditorImpl
 		FString& OutError)
 	{
 #if PLATFORM_WINDOWS
+#if UE_VERSION_OLDER_THAN(5, 6, 0)
+		OutBitmap.Reset();
+		OutSize = FIntPoint::ZeroValue;
+		OutError = TEXT("Native-window viewport readback requires Unreal Engine 5.6 or newer; using the Slate screenshot fallback.");
+		UE_LOG(LogTemp, Warning, TEXT("UnrealBridge: CaptureActiveViewportAsDisplayed: %s"), *OutError);
+		return false;
+#else
 		const TSharedPtr<SWindow> WidgetWindow = FSlateApplication::Get().FindWidgetWindow(ViewportWidget);
 		if (!WidgetWindow.IsValid())
 		{
@@ -1071,6 +1079,7 @@ namespace BridgeEditorImpl
 		OutSize = FIntPoint(CaptureWidth, CaptureHeight);
 		OutError.Reset();
 		return true;
+#endif
 #else
 		OutError = TEXT("Native-window viewport readback is unavailable on this platform.");
 		return false;
