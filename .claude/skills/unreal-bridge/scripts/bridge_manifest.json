@@ -31,7 +31,7 @@
       "TIMER"
     ]
   },
-  "generated_at": "2026-08-05T11:19:19+00:00",
+  "generated_at": "2026-08-06T15:18:20+00:00",
   "libraries": {
     "UnrealBridgeAnimLibrary": {
       "functions": {
@@ -2144,6 +2144,18 @@
           ],
           "returns": "Array[type(Class)]"
         },
+        "get_mesh_material_slots": {
+          "doc": "X.get_mesh_material_slots(mesh_asset_path) -> Array[BridgeMeshMaterialSlot]",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "mesh_asset_path",
+              "type": ""
+            }
+          ],
+          "returns": "Array[BridgeMeshMaterialSlot]"
+        },
         "get_package_dependencies": {
           "doc": "X.get_package_dependencies(package_name, hard_only) -> Array[str]",
           "params": [
@@ -2485,6 +2497,90 @@
             }
           ],
           "returns": "(out_soft_paths=Array[SoftObjectPath], out_include_tokens_for_highlight=Array[str])"
+        },
+        "set_mesh_material": {
+          "doc": "X.set_mesh_material(mesh_asset_path, material_index, material_asset_path, save=True) -> BridgeMeshMaterialEditResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "mesh_asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "material_index",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "material_asset_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeMeshMaterialEditResult"
+        },
+        "set_mesh_material_by_slot_name": {
+          "doc": "X.set_mesh_material_by_slot_name(mesh_asset_path, slot_name, material_asset_path, save=True) -> BridgeMeshMaterialEditResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "mesh_asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "slot_name",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "material_asset_path",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeMeshMaterialEditResult"
+        },
+        "set_mesh_materials": {
+          "doc": "X.set_mesh_materials(mesh_asset_path, assignments, save=True) -> BridgeMeshMaterialEditResult",
+          "params": [
+            {
+              "default": null,
+              "has_default": false,
+              "name": "mesh_asset_path",
+              "type": ""
+            },
+            {
+              "default": null,
+              "has_default": false,
+              "name": "assignments",
+              "type": ""
+            },
+            {
+              "default": "True",
+              "has_default": true,
+              "name": "save",
+              "type": ""
+            }
+          ],
+          "returns": "BridgeMeshMaterialEditResult"
         }
       }
     },
@@ -30320,6 +30416,27 @@
       "material_indices",
       "triangle_count",
       "vertex_count"
+    ],
+    "BridgeMeshMaterialAssignment": [
+      "material_asset_path",
+      "material_index",
+      "slot_name"
+    ],
+    "BridgeMeshMaterialEditResult": [
+      "changed_count",
+      "changed_indices",
+      "error",
+      "mesh_type",
+      "package_dirty",
+      "saved",
+      "slots",
+      "success"
+    ],
+    "BridgeMeshMaterialSlot": [
+      "imported_slot_name",
+      "material_asset_path",
+      "material_index",
+      "slot_name"
     ],
     "BridgeMontageInfo": [
       "blend_in_time",

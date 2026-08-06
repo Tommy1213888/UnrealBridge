@@ -16,7 +16,7 @@ structural rather than mnemonic.
 
 import unreal
 
-_GENERATED_AT = '2026-08-05T11:19:19+00:00'
+_GENERATED_AT = '2026-08-06T15:18:20+00:00'
 _UE_VERSION = '5.7.1-48512491+++UE5+Release-5.7'
 
 class Anim:
@@ -492,6 +492,11 @@ class Asset:
         return unreal.UnrealBridgeAssetLibrary.get_derived_classes_by_blueprint_path(blueprint_class_path)
 
     @staticmethod
+    def get_mesh_material_slots(*, mesh_asset_path):
+        """X.get_mesh_material_slots(mesh_asset_path) -> Array[BridgeMeshMaterialSlot]"""
+        return unreal.UnrealBridgeAssetLibrary.get_mesh_material_slots(mesh_asset_path)
+
+    @staticmethod
     def get_package_dependencies(*, package_name, hard_only):
         """X.get_package_dependencies(package_name, hard_only) -> Array[str]"""
         return unreal.UnrealBridgeAssetLibrary.get_package_dependencies(package_name, hard_only)
@@ -580,6 +585,21 @@ class Asset:
     def search_assets_under_path(*, content_folder_path, query, max_results):
         """X.search_assets_under_path(content_folder_path, query, max_results) -> (out_soft_paths=Array[SoftObjectPath], out_include_tokens_for_highlight=Array[str])  Note: SoftObjectPath does NOT stringify usefully — call .export_text() for the '/Game/Foo.Foo' path (or .to_tuple()[0]). See bridge-asset-api.md."""
         return unreal.UnrealBridgeAssetLibrary.search_assets_under_path(content_folder_path, query, max_results)
+
+    @staticmethod
+    def set_mesh_material(*, mesh_asset_path, material_index, material_asset_path, save=True):
+        """X.set_mesh_material(mesh_asset_path, material_index, material_asset_path, save=True) -> BridgeMeshMaterialEditResult"""
+        return unreal.UnrealBridgeAssetLibrary.set_mesh_material(mesh_asset_path, material_index, material_asset_path, save)
+
+    @staticmethod
+    def set_mesh_material_by_slot_name(*, mesh_asset_path, slot_name, material_asset_path, save=True):
+        """X.set_mesh_material_by_slot_name(mesh_asset_path, slot_name, material_asset_path, save=True) -> BridgeMeshMaterialEditResult"""
+        return unreal.UnrealBridgeAssetLibrary.set_mesh_material_by_slot_name(mesh_asset_path, slot_name, material_asset_path, save)
+
+    @staticmethod
+    def set_mesh_materials(*, mesh_asset_path, assignments, save=True):
+        """X.set_mesh_materials(mesh_asset_path, assignments, save=True) -> BridgeMeshMaterialEditResult"""
+        return unreal.UnrealBridgeAssetLibrary.set_mesh_materials(mesh_asset_path, assignments, save)
 
 
 class Blueprint:

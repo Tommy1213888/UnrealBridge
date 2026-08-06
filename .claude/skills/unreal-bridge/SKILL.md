@@ -144,6 +144,7 @@ Bypass with `--no-preflight` (rare). Preview with `bridge.py preflight <path>`.
 | Pawn movement script freezes the editor | `time.sleep` inside `exec` blocks GameThread — see `bridge-gameplay-api.md` "chase a target" pattern (use `register_runtime_timer`). |
 | `print('中文' / '한글' / '日本語')` shows `���` or `涓枃` mojibake | Almost always **display-only** — the wire is byte-perfect UTF-8. See "Non-ASCII output (CJK / Greek / emoji)" below. |
 | Need "where is this GameplayTag used?" / Find References on a tag | `unreal.UnrealBridgeGameplayTagLibrary.find_assets_referencing_tag(tag, include_children, ...)`. Mutations: `add_gameplay_tag` / `rename_gameplay_tag` (auto-redirect) / `remove_gameplay_tag`; pick the target ini via `list_tag_source_inis(...)`. For `PrimaryAssetId` / other named-value structs use the generic `UnrealBridgeAssetLibrary.find_assets_referencing_searchable_name(struct_type, value, ...)`. See `bridge-gameplaytag-api.md`. |
+| Need to change default materials on a StaticMesh / SkeletalMesh asset | Use `Asset.get_mesh_material_slots(...)` then `set_mesh_material`, `set_mesh_material_by_slot_name`, or atomic `set_mesh_materials`. Pass `save=False` for an undoable in-memory comparison. Do not mutate the raw `Materials` UPROPERTY. |
 
 ## Verify before you call — don't lean on preflight
 
